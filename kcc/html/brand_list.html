@@ -6,32 +6,60 @@
 		<title>品牌</title>
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<link rel="stylesheet" href="../css/app.css">
-		<link rel="stylesheet" href="../css/swiper.min.css">
-		<link rel="stylesheet" href="../css/page.css">
-		<link rel="stylesheet" href="../css/firstPage.css">
 		<style type="text/css">
 			body{
 				background: #fff;;
 			}
+			.head_right{
+				float: right;
+			}
+			
+			.select_type{
+				height: 0.45rem;
+				align-items: center;
+				justify-content: space-around;
+				background: #F1F1F1;
+				color: #666666;
+				font-size: 0.16rem;
+				position: fixed;
+				width: 100%;
+				box-sizing: border-box;
+				border-bottom: 1px solid #E9E9E9;
+			}
+			
+			.active{
+				color: #000;
+				font-weight: bold;
+			}
+			
+			
+			.active_line{
+				height: 0.02rem;
+				width: 0.5rem;
+				background-color: #3E4EAA;
+				border-radius: 4px;
+				position: absolute;
+				bottom: 0px;
+				left: 50%;
+				margin-left: -0.25rem;
+			}
+			
+			.select_type .item{
+				height: 47px;
+				position: relative;
+			}
+			
 			.content_wrap{
 				padding: 0.15rem;
-				margin-top: 0.63rem;
+				margin-top: 0.46rem;
 			}
 			
-			.item_left_wrap{
-				height: 2rem;
-				background-color: #FA9FAD;
-				flex: 3;
-				border-top-left-radius: 0.05rem;
-				border-bottom-left-radius: 0.05rem;
-			}
-			
-			.item_right_wrap{
-				height: 2rem;
-				background-color: #CD1632;
-				flex: 2;
-				border-top-right-radius: 0.05rem;
-				border-bottom-right-radius: 0.05rem;
+			.content_head{
+				border-radius: 0.1rem;
+				height: 1.5rem;
+				padding: 0.2rem 0.3rem;
+				box-sizing: border-box;
+				background-color: #fff;
 			}
 			
 			.circle {
@@ -39,7 +67,7 @@
                 height: 1rem;
                 position: relative;
                 border-radius: 50%;
-                background: #CD1632;
+                background: #9DA1E7;
             }
                  
             .clip_left,.clip_right{
@@ -54,7 +82,7 @@
                 position: absolute;
                 border-radius: 50%;
                 top: 0px;left: 0px;
-                background-color: #FBC6CE;
+                background-color: #DCDCDC;
             }
             /*出于展示用的改变背景色*/
             /*.circle_left{
@@ -80,7 +108,7 @@
                 border-radius: 50%;
                 left: 0.12rem;
                 top: 0.12rem;
-                background: #FA9FAD;
+                background: #fff;
                 position: absolute;
                 font-size: 16px;
 				display: flex;
@@ -91,27 +119,16 @@
             }
 			
 			.percent_num{
-				color: #fff;
+				color: #9DA1E7;
 				font-size: 0.2rem;
 			}
 			
 			.percent{
-				color: #fff;
+				color: #9DA1E7;
 				font-size: 0.16rem;
 			}
 			
-			.left_bottom_wrap{
-				line-height: normal;
-				margin-top: 0.1rem;
-				color: #CD1632;
-				width: 1.2rem;
-			}
-			
-			.left_bottom_wrap .item{
-				width: 1.2rem;
-			}
-			
-			.container {
+			.contain {
 				width: 0.1rem;
 				margin: 0 auto 0.05rem;
 			}
@@ -126,223 +143,293 @@
 			}
 			
 			.recommand_text{
-				color: #cd1632;
+				color: #9B9B9B;
 			}
 			
-			.content_wrap .item{
-				margin-bottom: 0.1rem;
+			
+			.head_wrap{
+				height: 100%;
+				padding: 0.1rem 0rem;
+			}
+			
+			.head_name{
+				font-size: 0.18rem;
+				font-weight: bold;
+				color: #000;
+			}
+			
+			.head_left_wrap .item{
+				width: 1.2rem;
+			}
+			
+			.head_left_wrap .item span:nth-child(1){
+				color: #9B9B9B;
+			}
+			
+			.wrap{
+				height: 1.5rem;
+				background-color: #fff;
+				padding: 0rem 0rem 0rem 0.2rem;
+				box-sizing: border-box;
+			}
+			.wrap .item_wrap{
+				height: 1.5rem;
+				border-bottom: 1px solid #E7E7E7;
+				display: flex;
+				flex-direction: row;
+				padding: 0.2rem 0rem;
+			}
+			
+			.left_wrap{
+				width: 90%;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+			
+			.right_wrap{
+				width: 10%;
+				height: 100%;
+				
+			}
+			
+			.right_wrap img{
+				height: 0.3rem;
+			}
+			
+			.head_title{
+				display: flex;
+				flex-direction: row;
+			}
+			
+			.container {
+			  width: 100%;
+			  background-color: #9DA1E7;
+			  border-radius: 0.2rem;
+			  position: relative;
+			  height: 0.25rem;
+			}
+			
+			.container .right{
+				position: absolute;
+				right: 0.1rem;
+				top: 50%;
+				margin-top: -0.1rem;
+				color: #fff;
+			}
+
+			.skills {
+			  text-align: right;
+			  padding-right: 0.2rem;
+			  padding-top: 0.03rem;
+			  color: white;
+			  border-top-left-radius: 0.2rem;
+			  border-bottom-left-radius: 0.2rem;
+			  height: 0.25rem;
+			}
+			
+			.left {width: 60%; background-color: #5A64B0;}
+			
+			.add_num{
+				color: #FC595C;
+			}
+			.reduce_num{
+				color: #5ABE68;
 			}
 			
 		</style>
 	</head>
 	<body>
-		<div class="header-bar tab-header" >
-		    <div class="header-left">
-		    	<img src="../images/firstPage/touxiang.jpg">
-		    </div>
-			
-			
-			<div class="header-title" style="line-height: 0.44rem;">
-				品牌
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">品类选择</h1>
+			<img src="../images/app.png" class="head_right">
+		</header>
+		
+		
+		<div class="mui-content" style="text-align: center; background: #F1F1F1;">
+			<div class="row select_type">
+				<div class="col_center item" onclick="changeType(0)">
+					<span class="titleType active" >好奇止尿裤</span>
+					<span class="active_line"></span>
+				</div>
+				
+				<div class="col_center item" onclick="changeType(1)">
+					<span class="titleType" >好奇成长裤</span>
+					<span class=""></span>
+				</div>
+				
+				<div class="col_center item" onclick="changeType(2)">
+					<span class="titleType" >好奇湿巾</span>
+					<span class=""></span>
+				</div>
+				
 			</div>
 			
-			<div class="header-right">
-				<span class="mui-icon mui-icon-search"></span>
+			<div class="content_wrap">
+				
+				<div class="row_between content_head">
+					<div class="col_between head_wrap">
+						<span class="head_name">好奇纸尿裤</span>
+						<div class="head_left_wrap">
+							<div class="row_between item">
+								<span>高出行业</span>
+								<span>5%</span>
+							</div>
+							<div class="row_between item">
+								<span>当月环比</span>
+								<div class="row_center">
+									<div class="contain">
+										<div class="corner"></div>
+									</div>
+									<div>2%</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--背景圆-->
+					<div class="circle">
+						<!--左半边圆-->
+						<div class="circle_left">
+							<div class="clip_left">
+								 
+							</div>
+						</div>
+						<!--右半边圆-->
+						<div class="circle_right">
+							<div class="clip_right"></div>
+						</div>
+						<div class="mask">
+							<div>
+								<span class="percent_num">75</span>
+								<span class="percent">%</span>
+							</div>
+							
+							<span class="recommand_text">好评率</span>
+						</div>
+					</div>
+					
+				</div>
+				
+				
 			</div>
+			
+			<div>
+				<div class="wrap">
+					<div class="item_wrap">
+						<div class="left_wrap">
+							<div class="head_title">
+								<span class="head_name">好奇心钻纸尿裤</span>
+							</div>
+							
+							<div class="row_between">
+								<span>好评600</span>
+								<span>差评400</span>
+							</div>
+							
+							<div class="container">
+							  <div class="skills left">60%</div>
+							  <span class="right">40%</span>
+							</div>
+							
+							<div class="row_between">
+								<div>
+									<span>环比增长</span>
+									<span class="add_num">+12%</span>
+								</div>
+								<div>
+									<span>环比增长</span>
+									<span class="reduce_num">-10%</span>
+								</div>
+							</div>
+							
+						</div>
+						
+						<div class="row_center right_wrap">
+							<img src="../images/load_more.png" >
+						</div>
+					</div>
+				</div>
+				
+				<div class="wrap">
+					<div class="item_wrap">
+						<div class="left_wrap">
+							<div class="head_title">
+								<span class="head_name">好奇心钻纸尿裤</span>
+							</div>
+							
+							<div class="row_between">
+								<span>好评600</span>
+								<span>差评400</span>
+							</div>
+							
+							<div class="container">
+							  <div class="skills left">60%</div>
+							  <span class="right">40%</span>
+							</div>
+							
+							<div class="row_between">
+								<div>
+									<span>环比增长</span>
+									<span>12%</span>
+								</div>
+								<div>
+									<span>环比增长</span>
+									<span>12%</span>
+								</div>
+							</div>
+							
+						</div>
+						
+						<div class="row_center right_wrap">
+							<img src="../images/load_more.png" >
+						</div>
+					</div>
+				</div>
+				
+				<div class="wrap">
+					<div class="item_wrap">
+						<div class="left_wrap">
+							<div class="head_title">
+								<span class="head_name">好奇心钻纸尿裤</span>
+							</div>
+							
+							<div class="row_between">
+								<span>好评600</span>
+								<span>差评400</span>
+							</div>
+							
+							<div class="container">
+							  <div class="skills left">60%</div>
+							  <span class="right">40%</span>
+							</div>
+							
+							<div class="row_between">
+								<div>
+									<span>环比增长</span>
+									<span>12%</span>
+								</div>
+								<div>
+									<span>环比增长</span>
+									<span>12%</span>
+								</div>
+							</div>
+							
+						</div>
+						
+						<div class="row_center right_wrap">
+							<img src="../images/load_more.png" >
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			
 		</div>
 		
-		<div class="content_wrap">
-			<div class="row item">
-				<div class="item_left_wrap col_center">
-					<!--背景圆-->
-					<div class="circle">
-						<!--左半边圆-->
-						<div class="circle_left">
-							<div class="clip_left">
-								 
-							</div>
-						</div>
-						<!--右半边圆-->
-						<div class="circle_right">
-							<div class="clip_right"></div>
-						</div>
-						<div class="mask">
-							<div>
-								<span class="percent_num">75</span>
-								<span class="percent">%</span>
-							</div>
-							
-							<span class="recommand_text">好评率</span>
-						</div>
-					</div>
-					
-					<div class="col_between left_bottom_wrap">
-						<div class="row_between item">
-							<span>高出行业</span>
-							<span>5%</span>
-						</div>
-						<div class="row_between item">
-							<span>当月环比</span>
-							<div class="row_center">
-								<div class="container">
-									<div class="corner"></div>
-								</div>
-								<div>2%</div>
-							</div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="item_right_wrap row_center">
-					<img src="../images/firstPage/touxiang.jpg" alt="">
-				</div>
-			</div>
 		
-			<div class="row item">
-				<div class="item_left_wrap col_center">
-					<!--背景圆-->
-					<div class="circle">
-						<!--左半边圆-->
-						<div class="circle_left">
-							<div class="clip_left">
-								 
-							</div>
-						</div>
-						<!--右半边圆-->
-						<div class="circle_right">
-							<div class="clip_right"></div>
-						</div>
-						<div class="mask">
-							<div>
-								<span class="percent_num">75</span>
-								<span class="percent">%</span>
-							</div>
-							
-							<span class="recommand_text">好评率</span>
-						</div>
-					</div>
-					
-					<div class="col_between left_bottom_wrap">
-						<div class="row_between item">
-							<span>高出行业</span>
-							<span>5%</span>
-						</div>
-						<div class="row_between item">
-							<span>当月环比</span>
-							<div class="row_center">
-								<div class="container">
-									<div class="corner"></div>
-								</div>
-								<div>2%</div>
-							</div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="item_right_wrap row_center">
-					<img src="../images/firstPage/touxiang.jpg" alt="">
-				</div>
-			</div>
-					
-			<div class="row item">
-				<div class="item_left_wrap col_center">
-					<!--背景圆-->
-					<div class="circle">
-						<!--左半边圆-->
-						<div class="circle_left">
-							<div class="clip_left">
-								 
-							</div>
-						</div>
-						<!--右半边圆-->
-						<div class="circle_right">
-							<div class="clip_right"></div>
-						</div>
-						<div class="mask">
-							<div>
-								<span class="percent_num">75</span>
-								<span class="percent">%</span>
-							</div>
-							
-							<span class="recommand_text">好评率</span>
-						</div>
-					</div>
-					
-					<div class="col_between left_bottom_wrap">
-						<div class="row_between item">
-							<span>高出行业</span>
-							<span>5%</span>
-						</div>
-						<div class="row_between item">
-							<span>当月环比</span>
-							<div class="row_center">
-								<div class="container">
-									<div class="corner"></div>
-								</div>
-								<div>2%</div>
-							</div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="item_right_wrap row_center">
-					<img src="../images/firstPage/touxiang.jpg" alt="">
-				</div>
-			</div>
-					
-					
-			<div class="row item">
-				<div class="item_left_wrap col_center">
-					<!--背景圆-->
-					<div class="circle">
-						<!--左半边圆-->
-						<div class="circle_left">
-							<div class="clip_left">
-								 
-							</div>
-						</div>
-						<!--右半边圆-->
-						<div class="circle_right">
-							<div class="clip_right"></div>
-						</div>
-						<div class="mask">
-							<div>
-								<span class="percent_num">75</span>
-								<span class="percent">%</span>
-							</div>
-							
-							<span class="recommand_text">好评率</span>
-						</div>
-					</div>
-					
-					<div class="col_between left_bottom_wrap">
-						<div class="row_between item">
-							<span>高出行业</span>
-							<span>5%</span>
-						</div>
-						<div class="row_between item">
-							<span>当月环比</span>
-							<div class="row_center">
-								<div class="container">
-									<div class="corner"></div>
-								</div>
-								<div>2%</div>
-							</div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="item_right_wrap row_center">
-					<img src="../images/firstPage/touxiang.jpg" alt="">
-				</div>
-			</div>
-					
-							
-		</div>
 
 	</body>
 	<script type="text/javascript" src="../js/mui.min.js"></script>
@@ -359,17 +446,29 @@
 		
 		$(function(){
 			console.log($('.percent_num').text());
-                if( $('.percent_num').text() <= 50 ){
-                    $('.circle_right').css('transform','rotate('+($('.percent_num').text()*3.6)+'deg)');
-                }else{
-                    $('.circle_right').css({
-                        'transform':'rotate(0deg)',
-                        "background":"#CD1632"
-                    });
-                    $('.circle_left').css('transform','rotate('+(($('.percent_num').text()-50)*3.6)+'deg)');
-                }
-            })
-			
+				if( $('.percent_num').text() <= 50 ){
+					$('.circle_right').css('transform','rotate('+($('.percent_num').text()*3.6)+'deg)');
+				}else{
+					$('.circle_right').css({
+						'transform':'rotate(0deg)',
+						"background":"#9DA1E7"
+					});
+					$('.circle_left').css('transform','rotate('+(($('.percent_num').text()-50)*3.6)+'deg)');
+				}
+			})
+		
+		function changeType(index){
+			$(".titleType").each(function(ind){
+				$(this).removeClass("active");
+				$(this).next().removeClass("active_line");
+				
+				if(index == ind){
+					$(this).addClass("active");
+					$(this).next().addClass("active_line");
+					
+				}
+			})
+		}	
 		
 		$("input").focus(function(){
 		  $(this).parent().css("border-bottom","1px solid #107EFF");

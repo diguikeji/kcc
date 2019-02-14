@@ -138,6 +138,12 @@ header{
 	color: #333333;
 	background-color: #FFFFFF;
 }
+/**
+ * 头部返回图标的颜色
+ */
+header > a{
+	color: #333333;
+}
 
 header img{
 	width: 0.3rem;
