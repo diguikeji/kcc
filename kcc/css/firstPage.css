@@ -1,0 +1,37 @@
+.shoucang-list{padding:0 15px;}
+
+.shoucang-list li{height:1rem;background: #f5f5f5;border-left:5px solid #cf102d;width:100%;border-radius: 0.1rem;padding-left:1.35rem;position: relative;margin-bottom:0.1rem;}
+.shoucang-list li.blue{border-left:5px solid #278ed0;}
+.shoucang-title{padding:20px 15px 15px 15px;}
+.shoucang-list li .left{width:1.2rem;height:0.7rem;border-right:1px solid #ddd;position: absolute;left:0.1rem;top:0.15rem;padding-top:0.1rem;padding-left:0.6rem;color:#cf102d;font-size:0.17rem;font-weight: bold;}
+.shoucang-list li .left img{width:0.5rem;height:0.5rem;border-radius: 50%;position: absolute;left:0;top:0.1rem;}
+.shoucang-list li .left p{font-weight: normal;font-size:0.14rem;font-size:0.11rem;}
+.shoucang-list li .left .text{padding-top:0.05rem;}
+
+.shoucang-list li .right{font-size:0.11rem;color:#999;padding:0.3rem 10px 0 0.1rem;box-sizing: border-box;}
+.shoucang-list li .right .bottom-text{padding-top:0.08rem;}
+.shoucang-list li .right .bottom-text div{width:50%;text-align: left;float:left;}
+.shoucang-list li .right .bottom-text div:last-child{text-align: right;}
+.shoucang-list li .right .bottom-text span{color:#000;}
+.shoucang-list li .right .hengtiao{background: #e6e6e6;height:0.12rem;border-radius: 0.1rem;}
+.shoucang-list li .right .hengtiao>div{height:0.12rem;background: -webkit-linear-gradient(left, #fdafbc , #cf102d);border-radius: 0.1rem;position: relative;}
+.shoucang-list li.blue .right .hengtiao>div{background: -webkit-linear-gradient(left, #afdffc , #288fd1);}
+.shoucang-list li .right .hengtiao>div img{width:0.1rem;}
+.shoucang-list li .right .hengtiao>div span{background: #cf102d;width:0.21rem;border-radius:50%;height:0.21rem;text-align: center;display: inline-block;position: absolute;right:0;top:-0.05rem;}
+.shoucang-list li.blue .right .hengtiao>div span{background: #288fd1;}
+.shoucang-list li.blue .left{color:#278ed0;}
+
+.header-tab span{color:#9f9f9f;margin:0 0.03rem;line-height: 0.42rem;display: inline-block;}
+.header-tab span.active{color:#404040;border-bottom:1px solid #5962b2;}
+
+
+
+
+
+
+
+
+
+
+
+

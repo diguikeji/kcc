@@ -4,7 +4,7 @@ var util = {
 		tabActive:['images/tab/1-1.png','images/tab/2-1.png','images/tab/3-1.png'],
 		ACTIVE_COLOR: "#000",
 		NORMAL_COLOR: "#000",
-		subpages: ["html/brand.html", "html/live.html"]
+		subpages: ["html/brand.html", "html/shoucang.html"]
 	},
 	/**
 	 *  简单封装了绘制原生view控件的方法
