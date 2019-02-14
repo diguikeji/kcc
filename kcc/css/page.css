@@ -1,0 +1,26 @@
+.header-bar{position: fixed;height:0.63rem;line-height: 0.44rem;z-index:10000;width:100%;left:0;top:0;box-shadow:0px 3px 27px 0px rgba(221,221,221,0.41);background: #f1f1f1;}
+.header-bar .header-title{font-size:17px;color:#333333;text-align: center;font-weight: 500;line-height: normal;}
+.header-bar .header-title p{margin-top:-0.02rem;}
+.header-bar .header-right{position: absolute;right:0;top:0;padding:0 0.1rem;}
+.header-bar .header-right img{width:0.28rem;margin-top:0.08rem;}
+.has-header{padding-top:0.48rem;}
+.header-bar .header-left{position: absolute;left:0;padding:0 0.16rem;}
+.header-bar .header-left img{width:0.33rem;margin-top:0.06rem;}
+.tab-header{padding-top:18px;box-sizing: border-box;}
+.tab-header .header-right{top:18px;}
+
+.has-tab-header{padding-top:0.63rem;}
+.banner-col{padding:0.15rem 0;}
+
+.home-list{list-style: none;margin:0;padding:0;border-top:0.15rem solid #f1f1f1;}
+.home-list li{position: relative;padding:0.15rem 0 0.15rem 0.7rem;height:0.8rem;box-sizing: border-box;}
+.home-list li img{width:0.51rem;height:0.51rem;position: absolute;left:0.12rem;top:0.15rem;}
+.home-list li .right-col{position: relative;padding-right:0.3rem;padding-top:0.05rem;border-bottom:1px solid #eee;}
+.home-list li .right-col .right-text{position: absolute;right:0.12rem;top:0.1rem;color:#999;}
+.home-list li .right-col p{color:#999;}
+.home-list li .right-col .quan{display: inline-block;width:7px;height:7px;background: #e60012;border-radius: 50%;position: absolute;right:0.16rem;top:0.25rem;}
+
+
+
+
+

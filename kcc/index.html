@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+		<title>首页</title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/app.css">
+		<link rel="stylesheet" href="css/swiper.min.css">
+		<link rel="stylesheet" href="css/page.css">
+		<link rel="stylesheet" href="css/firstPage.css">
+		<style>
+	 		body{background-color: #fff!important;}
+			.swiper-banner img{display: block;width:100%;}
+
+
+		</style>
+	</head>
+
+	<body>
+
+	<div class="header-bar tab-header">
+
+		<div class="header-left">
+			<img src="images/firstPage/touxiang.jpg">
+		</div>
+
+		<div class="header-title">
+			本周总览
+			<p>新增9258个评论</p>
+		</div>
+
+		<div class="header-right">
+			<span class="mui-icon mui-icon-search"></span>
+		</div>
+
+	</div>
+
+	<div class="has-tab-header">
+
+	<div class="banner-col">
+
+			<div class="swiper-container swiper-banner">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<img src="images/firstPage/home_03.jpg">
+					</div>
+					<div class="swiper-slide">
+						<img src="images/firstPage/home_03.jpg">
+					</div>
+					<div class="swiper-slide">
+						<img src="images/firstPage/home_03.jpg">
+					</div>
+					<div class="swiper-slide">
+						<img src="images/firstPage/home_03.jpg">
+					</div>
+					<div class="swiper-slide">
+						<img src="images/firstPage/home_03.jpg">
+					</div>
+				</div>
+
+
+			</div>
+	</div>
+
+
+	<ul class="home-list">
+		<li>
+			<img src="images/firstPage/home_07.jpg" />
+			<div class="right-col">
+			<div>好奇心好奇心好奇心</div>
+			<p>测试测试测试测试测试测试</p>
+				<div class="right-text">
+					<div>17:25</div>
+					<span class="quan"></span>
+				</div>
+			</div>
+		</li>
+		<li>
+			<img src="images/firstPage/home_07.jpg" />
+			<div class="right-col">
+				<div>好奇心好奇心好奇心</div>
+				<p>测试测试测试测试测试测试</p>
+				<div class="right-text">
+					<div>17:25</div>
+					<span class="quan"></span>
+				</div>
+			</div>
+		</li>
+		<li>
+			<img src="images/firstPage/home_07.jpg" />
+			<div class="right-col">
+				<div>好奇心好奇心好奇心</div>
+				<p>测试测试测试测试测试测试</p>
+				<div class="right-text">
+					<div>17:25</div>
+					<span class="quan"></span>
+				</div>
+			</div>
+		</li>
+	</ul>
+
+
+	</div>
+
+
+		<script src="js/util.js"></script>
+		<script src="js/jquery-2.1.1.min.js"></script>
+	   <script src="lib/swiper.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/myStorage.js"></script>
+		<script type="text/javascript">
+
+			
+			var swiper = new Swiper('.swiper-banner', {
+				slidesPerView: 1.2,
+				loop : true,
+				centeredSlides: true,
+				spaceBetween: 16
+
+			});
+
+				mui.init({
+					swipeBack: true //启用右滑关闭功能
+				});
+				
+				mui.plusReady(function() {
+					
+
+					commonEvent();
+
+					plus.navigator.setStatusBarBackground('transparent');
+					
+
+					// 创建子webview窗口 并初始化
+					var aniShow = {};
+					util.initSubpage(aniShow);
+					
+					var nview = plus.nativeObj.View.getViewById('tabBarColView'),
+						activePage = plus.webview.currentWebview(),
+						targetPage,
+						subpages = util.options.subpages,
+						pageW = window.innerWidth,
+						currIndex = 0;
+					
+					/**
+					 * 根据判断view控件点击位置判断切换的tab
+					 */
+					//console.log(JSON.stringify(nview));
+					
+					nview.addEventListener('click', function(e) {
+						var clientX = e.clientX;
+						if(clientX > 0 && clientX <= parseInt(pageW * 0.33)) {
+							currIndex = 0;
+							
+						} else if(clientX > parseInt(pageW * 0.33) && clientX <= parseInt(pageW * 0.66)) {
+							currIndex = 1;
+						} 
+						else if(clientX > parseInt(pageW * 0.66) && clientX <= parseInt(pageW * 0.99)) {
+							currIndex = 2;
+						} 
+
+						
+						
+						// 匹配对应tab窗口	
+						if(currIndex > 0) {
+							targetPage = plus.webview.getWebviewById(subpages[currIndex - 1]);
+							
+						} else {
+							targetPage = plus.webview.currentWebview();
+							
+						}
+						
+						
+						
+						if(targetPage == activePage) {
+							return;
+						}
+
+						//底部选项卡切换
+							util.toggleNview(currIndex);
+							// 子页面切换
+							util.changeSubpage(targetPage, activePage, aniShow);
+							//更新当前活跃的页面
+							activePage = targetPage;
+
+						//plus.webview.open('html/new-webview.html', 'new', {}, 'slide-in-right', 200);
+						
+						
+					});
+				});
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				function httpRequest()
+				{
+					
+						
+								//外卖详情
+						Global.commonAjax({
+			                    url: "express/deliveries/1"
+								
+			            },
+						function(data) {
+							console.log("外卖详情");
+							console.log(JSON.stringify(data));
+						},
+						function(err) {
+						    console.log("外卖详情"+JSON.stringify(err));
+						});
+						
+						
+
+						//楼宇按照地理位置搜索
+						Global.commonAjax({
+			                    url: "buildings/locate?lat=31&lng=121"
+								
+			            },
+						function(data) {
+							console.log("楼宇按照地理位置搜索");
+							console.log(JSON.stringify(data));
+						},
+						function(err) {
+						    console.log("楼宇按照地理位置搜索报错"+JSON.stringify(err));
+						});
+					
+					
+				}
+				
+				
+
+			
+		</script>
+	</body>
+
+</html>
