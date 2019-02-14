@@ -379,20 +379,26 @@
 		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
 		});
 		
-		$(".content_wrap .item").click(function(){
-			goToBrandList();
-		});
-		
-		function goToBrandList(){
+		function goToForget(){
 			Global.openWindow({
-			    url: 'brand_list.html',
-			    id: 'brand_list.html',
+			    url: 'forget.html',
+			    id: 'forget.html',
 			    waiting: {
 			        autoShow: false
 			    }
 			})
 		}
 		
+		
+		function goToRegister(){
+			Global.openWindow({
+			    url: 'register.html',
+			    id: 'register.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+		}
 		
 		function loginAction(){
 			var mobile = $(".mobile").val();
