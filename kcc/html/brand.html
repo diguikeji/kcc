@@ -137,7 +137,7 @@
 	</head>
 	<body>
 		<div class="header-bar tab-header" >
-		    <div class="header-left">
+		    <div class="header-left" >
 		    	<img src="../images/firstPage/touxiang.jpg">
 		    </div>
 			
@@ -353,8 +353,10 @@
 		
 		mui.init();
 		
+		var _self;
 		mui.plusReady(function() {
-			
+			_self = plus.webview.currentWebview();
+			preload();
 		});
 		
 		$(function(){
@@ -440,6 +442,99 @@
 			var h = plus.webview.getWebviewById("html/my.html");
 			mui.fire(h,'loginRefresh',{loginRefresh: "loginRefresh"});
 		}
+		
+		function showLeftMenu(){
+			var _left = parseInt(_self.getStyle().left);
+			if(_left > 0) { //处于显示状态
+				closeMenu();
+			} else {
+				openMenu();
+			}
+		}
+		
+		/**
+		 * 显示侧滑菜单
+		 */
+		function openMenu() {
+			plus.webview.startAnimation({
+					'view': _self,
+					'styles': {
+						'fromLeft': '0',
+						'toLeft': "70%"
+					},
+					'action': 'show'
+				}, {
+					'view': menu,
+					'styles': {
+						'fromLeft': "-70%",
+						'toLeft': '0'
+					},
+					'action': 'show'
+				},
+				function(e) {
+					//console.log(JSON.stringify(e));
+					if(e.id == menu.id) { //侧滑菜单打开
+					}
+				}.bind(this)
+			)
+		};
+		/**
+		 * 关闭菜单
+		 */
+		function closeMenu() {
+			plus.webview.startAnimation({
+					'view': _self,
+					'styles': {
+						'fromLeft': '70%',
+						'toLeft': "0"
+					},
+					'action': 'show'
+				}, {
+					'view': menu,
+					'styles': {
+						'fromLeft': "0",
+						'toLeft': '-70%'
+					},
+					'action': 'show'
+				},
+				function(e) {
+					console.log(JSON.stringify(e));
+					if(e.id == _self.id) {}
+				}.bind(this)
+			)
+		};
+		window.addEventListener("menu:close", closeMenu);
+					
+		
+		
+		//初始化，并预加载webview模式的选项卡			
+		function preload() {
+		
+			var menu_style = {
+				left: "-70%",
+				width: '70%',
+				popGesture: "none",
+				render:"always"
+			};
+		
+			if(mui.os.ios) {
+				menu_style.zindex = -1;
+			}
+		
+			//处理侧滑导航，为了避免和子页面初始化等竞争资源，延迟加载侧滑页面；
+			menu = mui.openWindow({
+				id: 'index-menu',
+				url: 'index-menu.html',
+				styles: menu_style,
+				show: {
+					aniShow: 'none'
+				},
+				waiting: {
+					autoShow: false
+				}
+			});
+		}
+		
 		
 	</script>
 </html>
