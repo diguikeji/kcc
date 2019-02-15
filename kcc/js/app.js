@@ -429,6 +429,30 @@ $("#louyuText").click(function()
 
 });
 
+function search()
+{
+    if(window.location.href.indexOf("index.html")>-1)
+    {
+        Global.openWindow({
+            url: 'html/search.html',
+            id: 'search.html',
+            waiting: {
+                autoShow: false
+            }
+        })
+    }
+    else {
+        Global.openWindow({
+            url: 'search.html',
+            id: 'search.html',
+            waiting: {
+                autoShow: false
+            }
+        })
+    }
+
+}
+
 //url传参数
 function GetQueryString(name)
 {
