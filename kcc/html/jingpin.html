@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="../css/page.css">
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<link rel="stylesheet" href="../css/secondPage.css">
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
 		<style>
 
 			body,.mui-content{background: #f1f1f1!important;}
@@ -369,6 +370,59 @@
 			</div>
 		</div>
 
+	</div>
+
+	<div class="right-modal hide">
+
+		<div class="shadow-col"></div>
+		<div class="right-modal-col">
+
+
+			<div class="modal-row">
+				<div class="modal-title">平台</div>
+				<div class="tag-list">
+					<span>天猫</span>
+					<span>京东</span>
+				</div>
+			</div>
+
+			<div class="modal-row">
+				<div class="modal-title">店铺</div>
+				<div class="tag-list">
+					<span class="active">天猫国际</span>
+					<span>京东超市</span>
+					<span>京东超市</span>
+					<span>京东超市</span>
+					<span>京东超市</span>
+					<span>京东超市</span>
+				</div>
+			</div>
+
+
+			<div class="modal-row">
+				<div class="modal-title">日期</div>
+				<div class="tag-list">
+					<span>当天</span>
+					<span>本周</span>
+					<span>本月</span>
+					<span>本季度</span>
+					<span>近半年</span>
+					<span>近一年</span>
+				</div>
+			</div>
+
+			<div class="date-main clearfix">
+				<div class="date-col" onclick="dateCol(this)">开始日期</div>
+				<div class="line"></div>
+				<div class="date-col" onclick="dateCol(this)">结束日期</div>
+			</div>
+
+			<div class="modal-bottom">
+				<span>重置</span>
+				<span>确定</span>
+			</div>
+
+		</div>
 
 	</div>
 
@@ -377,7 +431,34 @@
 	   <script src="../js/myStorage.js"></script>
 		<script src="../js/app.js"></script>
 		<script src="../js/echarts.min.js"></script>
+		<script src="../js/mui.picker.min.js"></script>
+
 		<script>
+
+
+			function dateCol($obj)
+			{
+				var options = {"type":"date"};
+
+				var picker = new mui.DtPicker(options);
+				picker.show(function(rs) {
+
+					$($obj).text(rs.text);
+
+					picker.dispose();
+				});
+			}
+
+			$(".header-right").click(function()
+			{
+				$(".right-modal").show();
+			});
+
+			$(".shadow-col").click(function()
+			{
+				$(".right-modal").hide();
+			});
+
 
 			$(".jingpin-bottom .right div").click(function()
 			{
