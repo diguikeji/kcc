@@ -98,7 +98,7 @@
 		<div class="login_wrap">
 			<div class="row_between">
 				<img src="../images/login/login_phone.png">
-				<input type="tel" placeholder="请输入手机号码" maxlength="11" class="mobile">
+				<input type="text" placeholder="请输入手机号码" maxlength="11" class="mobile">
 			</div>
 			
 			<div class="row_between">
@@ -158,7 +158,7 @@
 		
 		function loginAction(){
 			var mobile = $(".mobile").val();
-			if(mobile && mobile.length != 11){
+			if(!mobile){
 				mui.toast("请输入正确手机号");
 				return;
 			}
@@ -171,20 +171,20 @@
 			
 			
 			var params = {
-				mobile: mobile,
+				username: mobile,
 				password: password
 			}
 			Global.commonAjax({
-				url: 'login',
+				url: 'user/login',
 				method: 'POST',
 				data: params
 			}, function(data){
 				mui.toast("登录成功");
-				console.log(data.token);
-				myStorage.setItem("token", data.token);
-				//发送事件 我的页面刷新
-				sendRefresh();
-				plus.webview.currentWebview().close();
+				
+// 				myStorage.setItem("token", data.token);
+// 				//发送事件 我的页面刷新
+// 				sendRefresh();
+// 				plus.webview.currentWebview().close();
 				
 				
 			}, function(err){

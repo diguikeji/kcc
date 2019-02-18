@@ -106,8 +106,9 @@ var Global = {};
         },
         //网络请求
         commonAjax: function(params,callback, errorback) {
-           var baseUrl = "https://lfb.kai-dian.com/api/";
-
+           var baseUrl = "http://116.232.109.179:8080/";
+			
+			console.log(JSON.stringify(params));
             //默认 get请求
             if (!params.method) {
                 params.method = "GET";
@@ -116,11 +117,14 @@ var Global = {};
             }
 			
 			//没有网络
-			console.log("params+"+params.url);
             if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
                 Global.errorNet();
                 return;
             }
+			
+			if(params.data){
+				params.data.from = "2";
+			}
 			
 			var waiting;
             mui.ajax(baseUrl + params.url, {
@@ -129,10 +133,10 @@ var Global = {};
                 data: params.data,
                 timeout: 10000,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 beforeSend: function(xhr) {
-                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     xhr.setRequestHeader("Accept", "application/json");
                     var token = myStorage.getItem("token");
                     
