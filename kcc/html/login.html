@@ -87,7 +87,6 @@
 	</head>
 	<body>
 		<div class="row_between head_wrap">
-			<img src="../images/login/login_close.png" onclick="closeLogin();">
 			<!-- <img src="../images/login/shengluehao.png" > -->
 		</div>
 		
@@ -98,12 +97,12 @@
 		<div class="login_wrap">
 			<div class="row_between">
 				<img src="../images/login/login_phone.png">
-				<input type="tel" placeholder="请输入手机号码" maxlength="11" class="mobile">
+				<input type="text" placeholder="请输入手机号码" maxlength="11" value="test1" class="mobile">
 			</div>
 			
 			<div class="row_between">
 				<img src="../images/login/login_pwd.png">
-				<input type="password" placeholder="请输入密码" class="password">
+				<input type="password" placeholder="请输入密码" value="1A2b3c4d5e" class="password">
 			</div>
 
 
@@ -158,10 +157,10 @@
 		
 		function loginAction(){
 			var mobile = $(".mobile").val();
-			if(mobile && mobile.length != 11){
+			/*if(mobile && mobile.length != 11){
 				mui.toast("请输入正确手机号");
 				return;
-			}
+			}*/
 			
 			var password = $(".password").val();
 			if(!password){
@@ -171,11 +170,12 @@
 			
 			
 			var params = {
-				mobile: mobile,
+				from:2,
+				username: mobile,
 				password: password
 			}
 			Global.commonAjax({
-				url: 'login',
+				url: 'user/login/',
 				method: 'POST',
 				data: params
 			}, function(data){

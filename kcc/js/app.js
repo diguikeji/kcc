@@ -106,7 +106,7 @@ var Global = {};
         },
         //网络请求
         commonAjax: function(params,callback, errorback) {
-           var baseUrl = "https://lfb.kai-dian.com/api/";
+           var baseUrl = "http://116.232.109.179:8080/";
 
             //默认 get请求
             if (!params.method) {
@@ -145,7 +145,7 @@ var Global = {};
 
                 },
                 success: function(data) {
-                    // console.log(JSON.stringify(data));
+                    console.log(JSON.stringify(data));
 					if (data.success) {
                         callback(data.data ? data.data : "");
                     } else{

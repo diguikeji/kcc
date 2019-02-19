@@ -117,6 +117,7 @@
         "launchwebview" : {
             "bottom" : "0px",
             "background" : "#fff",
+            "border" : "1px solid #999",
             "subNViews" : [
                 {
                     "id" : "tabBarColView",
@@ -125,7 +126,7 @@
                         "left" : "0",
                         "height" : "50px",
                         "width" : "100%",
-                        "border-top" : "1px solid #999",
+                        "border" : "1px solid #999",
                         "backgroundColor" : "#fff"
                     },
                     "tags" : [
@@ -137,7 +138,6 @@
                                 "top" : "9px",
                                 "left" : "24%",
                                 "width" : "24px",
-                                "margin-left" : "-12px",
                                 "height" : "37px"
                             }
                         },
@@ -149,7 +149,6 @@
                                 "top" : "9px",
                                 "left" : "49%",
                                 "width" : "24px",
-                                "margin-left" : "-12px",
                                 "height" : "37px"
                             }
                         },
@@ -161,7 +160,6 @@
                                 "top" : "9px",
                                 "left" : "74%",
                                 "width" : "24px",
-                                "margin-left" : "-12px",
                                 "height" : "37px"
                             }
                         }
