@@ -9,78 +9,15 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel="stylesheet" href="css/mui.min.css">
 		<link rel="stylesheet" href="css/app.css">
-		<style type="text/css">
-			body,
-			.mui-content {
-				background-color: #DCDCDC;
-			}
-			
-			.title {
-				margin: 35px 15px 10px;
-			}
-			
-			.title+.content {
-				margin: 10px 15px 35px;
-				color: #bbb;
-				text-indent: 1em;
-				font-size: 14px;
-				line-height: 24px;
-			}
-			
-			.mui-table-view {
-				margin-bottom: 35px;
-			}
-			
-			.head_wrap{
-				height: 200px;
-				width: 100%;
-				box-sizing: border-box;
-				background-color: #0062CC;
-			}
-			
-			.head_wrap img{
-				width: 60px;
-				height: 60px;
-				margin-right: 20px;
-			}
-			
-			.menu_item{
-				padding: 0px 10px;
-				height: 60px;
-				border-bottom: 1px solid #DCDCDC;
-			}
-			
-			.menu_item img{
-				width: 20px;
-				height: 20px;
-				margin-right: 10px;
-				
-			}
-			
-			.list_wrap{
-				background-color: white;
-				color: #000;
-				height: 100%;
-			}
-			
-			.change_pwd{
-				border-bottom: 10px solid #DCDCDC;
-				border-top: 10px solid #DCDCDC;
-				height: 80px;
-			}
-			
-			.logout{
-				color: #0062CC;
-				height: 60px;
-			}
-		</style>
+
 	</head>
 
-	<body>
-		<div class="mui-content">
-			<div class="row_center head_wrap" onclick="goToLogin();">
-				<img src="images/default_head.png" >
-				<span>赵旭，快来咔嚓</span>
+	<body style="background: transparent;">
+        <div id="modalMenuCol">
+		<div class="modal-menu">
+			<div class="row_center head_wrap" onclick="changeHeadImg()">
+				<img id="portrait" src="images/default_head.png">
+				<span><span class="username"></span>，快来咔嚓</span>
 			</div>
 			<div class="list_wrap">
 				<div class="row_between menu_item">
@@ -88,41 +25,33 @@
 						<img src="images/default_head.png" >
 						<span>咔嚓名</span>
 					</div>
-					<span>Will</span>
+					<span class="username"></span>
 				</div>
-				
+
 				<div class="row_between menu_item">
 					<div class="row_center">
 						<img src="images/default_head.png" >
 						<span>部门</span>
 					</div>
-					<span>MKT</span>
+					<span id="department"></span>
 				</div>
-				
+
 				<div class="row_between menu_item">
 					<div class="row_center">
 						<img src="images/default_head.png" >
 						<span>职位</span>
 					</div>
-					<span>VP</span>
+					<span id="position"></span>
 				</div>
-				
+
 				<div class="row_between menu_item">
 					<div class="row_center">
-						<img src="images/default_head.png" >
+						<img id="" src="images/default_head.png" >
 						<span>最近登录</span>
 					</div>
-					<span>3天前</span>
+					<span id="app_last_login"></span>
 				</div>
-				
-				<div class="row_between menu_item">
-					<div class="row_center">
-						<img src="images/default_head.png" >
-						<span>部门</span>
-					</div>
-					<span>MKT</span>
-				</div>
-				
+
 				<div class="row_between menu_item change_pwd" onclick="changePwd();">
 					<div class="row_center">
 						<img src="images/default_head.png" >
@@ -130,12 +59,14 @@
 					</div>
 					<span></span>
 				</div>
-				
-				<div class="row_center logout">退出登录</div>
-				
+
+				<div class="row_center logout" id="loginOut" onclick="loginOut()">退出登录</div>
+
 			</div>
-			
+
 		</div>
+            <div class="shadow-col"></div>
+        </div>
 		<script src="js/mui.min.js"></script>
 		<script src="js/util.js"></script>
 		<script src="js/jquery-2.1.1.min.js"></script>
@@ -167,19 +98,45 @@
 					moveMode: "follow"
 				}, function(e) {});
 
+                httpRequest();
+
 			})
+
+            function  httpRequest()
+            {
+                Global.commonAjax({
+                    url: 'user/get-info/',
+                    method: 'GET'
+                }, function(data){
+                    console.log("信息");
+                    console.log(JSON.stringify(data));
+					myStorage.setItem("user",data);
+                    $(".username").text(data.info.username);
+                    $("#department").text(data.info.department);
+                    $("#app_last_login").text(data.info.app_last_login);
+                    $("#position").text(data.info.position);
+                    $('#portrait').attr("src", data.info.portrait);
+                    
+                    updateInfo();
+
+                },function(err)
+                {
+                    mui.toast(err);
+                })
+            }
+
 			mui('.mui-table-view').on('tap', 'a', function() {
 				var id = this.getAttribute("href");
 				var type = this.getAttribute("open-type");
 				var href = this.href;
-				
+
 				var webview_style = {
 					popGesture: "close",
 					statusbar : {
 						background: "#f7f7f7"
 					}
 				}
-				
+
 				var extras = {};
 
 				var titleType = this.getAttribute("data-title-type");
@@ -255,7 +212,7 @@
 				mui.fire(mui.currentWebview.opener(), "menu:close");
 			}
 
-			
+
 
 			mui.init({
 				swipeBack: false,
@@ -263,17 +220,17 @@
 					backbutton: false //关闭back按键监听
 				}
 			});
-			
+
 			function goToLogin(){
 				Global.openWindow({
 				    url: 'html/login.html',
-				    id: 'html/login.html',
+				    id: 'login.html',
 				    waiting: {
 				        autoShow: false
 				    }
 				})
 			}
-			
+
 			function changePwd(){
 				Global.openWindow({
 				    url: 'html/change_pwd.html',
@@ -283,6 +240,123 @@
 				    }
 				})
 			}
+
+			window.addEventListener('loginRefresh',function(e){
+				httpRequest();
+			});
+
+			var fileName = "temp.jpg";
+			//修改头像
+			function changeHeadImg() {
+				plus.nativeUI.actionSheet({
+					cancel: "取消",
+					buttons: [{
+						title: "拍照"
+					}, {
+						title: "从相册中选择"
+					}]
+				}, function(e) { //1 是拍照  2 从相册中选择
+					switch (e.index) {
+						case 1:
+							appendByCamera();
+							break;
+						case 2:
+							appendByGallery();
+							break;
+					}
+				});
+			}
+
+
+			// 拍照添加文件
+			function appendByCamera() {
+				plus.camera.getCamera().captureImage(function(e) {
+					console.log("e is" + e);
+					plus.io.resolveLocalFileSystemURL(e, function(entry) {
+						var path = entry.toLocalURL();
+						console.log(path);
+						var pathList = path.split("/");
+						fileName = pathList[pathList.length-1];
+						console.log(fileName);
+
+						Global.getCanvasBase64(path)
+								.then(function(base64) {
+									console.log(base64);
+									uploadFile(base64);
+								}, function(err) {
+									console.log(err);
+								})
+
+					}, function(e) {
+						mui.toast("读取拍照文件错误：" + e.message);
+					});
+
+				});
+			}
+			// 从相册添加文件
+			function appendByGallery() {
+				plus.gallery.pick(function(path) {
+					var pathList = path.split("/");
+					fileName = pathList[pathList.length-1];
+					console.log(fileName);
+					Global.getCanvasBase64(path)
+							.then(function(base64) {
+								console.log(base64);
+								uploadFile(base64);
+							}, function(err) {
+								console.log(err);
+							})
+
+				});
+			}
+			//上传图片
+			function uploadFile(base64) {
+				var params = {
+					portrait: base64
+				};
+				Global.commonAjax({
+							url: "user/upload-portrait/",
+							method: "POST",
+							data: params
+						},
+						function(data) {
+							console.log("头像上传");
+							console.log(JSON.stringify(data));
+							mui.toast("上传成功");
+							$('#portrait').attr("src", base64);
+							var user=myStorage.getItem("user");
+							user.info.portrait=base64;
+							myStorage.setItem("user",user);
+							
+							updateInfo();
+							
+						},
+						function(err) {
+							mui.toast("上传失败");
+						}
+				);
+			}
+
+
+
+			//更新头像
+			function updateInfo(){
+				
+				var h = plus.webview.getWebviewById("html/brand.html");
+				mui.fire(h,'loginRefresh',{loginRefresh: "loginRefresh"});
+				
+				var h1 = plus.webview.getWebviewById(plus.runtime.appid);
+				mui.fire(h1,'loginRefresh',{loginRefresh: "loginRefresh"});
+				
+				
+				var h2 = plus.webview.getWebviewById("html/shoucang.html");
+				mui.fire(h2,'loginRefresh',{loginRefresh: "loginRefresh"});
+				
+				
+			}
+
+
+
 		</script>
 	</body>
 

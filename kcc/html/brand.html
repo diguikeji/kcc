@@ -19,7 +19,7 @@
 			}
 			
 			.item_left_wrap{
-				height: 2rem;
+				height: 1.65rem;
 				background-color: #FA9FAD;
 				flex: 3;
 				border-top-left-radius: 0.05rem;
@@ -27,19 +27,28 @@
 			}
 			
 			.item_right_wrap{
-				height: 2rem;
+				height: 1.65rem;
 				background-color: #CD1632;
 				flex: 2;
 				border-top-right-radius: 0.05rem;
 				border-bottom-right-radius: 0.05rem;
 			}
-			
+
+			.content_wrap .item.blue .item_right_wrap{background: #278ED0;}
+			.content_wrap .item.blue .item_left_wrap{background: #94C5E5;}
+
+			.content_wrap .item.blue .left_bottom_wrap{color:#278ED0;}
+
+			.content_wrap .item.blue .corner{border-bottom: 0.06rem solid #278ED0;}
+
+			.content_wrap .item.blue .recommand_text{color:#278ED0;}
+
 			.circle {
                 width: 1rem;
                 height: 1rem;
                 position: relative;
                 border-radius: 50%;
-                background: #CD1632;
+				padding-top:0.1rem;
             }
                  
             .clip_left,.clip_right{
@@ -79,8 +88,7 @@
                 height: 0.75rem;
                 border-radius: 50%;
                 left: 0.12rem;
-                top: 0.12rem;
-                background: #FA9FAD;
+                top: 0.22rem;
                 position: absolute;
                 font-size: 16px;
 				display: flex;
@@ -92,23 +100,24 @@
 			
 			.percent_num{
 				color: #fff;
-				font-size: 0.2rem;
+				font-size: 0.15rem;
 			}
 			
 			.percent{
 				color: #fff;
-				font-size: 0.16rem;
+				font-size: 0.1rem;
 			}
 			
 			.left_bottom_wrap{
 				line-height: normal;
-				margin-top: 0.1rem;
+				padding-top: 0.15rem;
 				color: #CD1632;
 				width: 1.2rem;
 			}
 			
 			.left_bottom_wrap .item{
-				width: 1.2rem;
+				width: 0.9rem;
+				font-size:0.12rem;
 			}
 			
 			.container {
@@ -119,18 +128,22 @@
 			.corner {
 				width: 0px;                 /*  宽高设置为0，很重要，否则达不到效果 */
 				height: 0px;
-				border: 0.05rem solid #CD1632;
-				border-top-color: transparent;    /* 设置透明背景色 */
-				border-left-color: transparent;
-				border-right-color: transparent;
+				border-left:0.04rem solid transparent;
+				border-right:0.04rem solid transparent;
+				border-bottom:0.06rem solid #CD1632;
+				position: relative;
+				top:0.02rem;
+				margin-right:0.02rem;
+
 			}
 			
 			.recommand_text{
 				color: #cd1632;
+				font-size:0.11rem;
 			}
 			
 			.content_wrap .item{
-				margin-bottom: 0.1rem;
+				margin-bottom: 0.05rem;
 			}
 			
 		</style>
@@ -138,7 +151,7 @@
 	<body>
 		<div class="header-bar tab-header" >
 		    <div class="header-left" >
-		    	<img src="../images/firstPage/touxiang.jpg">
+		    	<img id="portrait" src="../images/default_head.png">
 		    </div>
 			
 			
@@ -151,31 +164,64 @@
 			</div>
 		</div>
 		
-		<div class="content_wrap">
-			<div class="row item">
-				<div class="item_left_wrap col_center">
-					<!--背景圆-->
-					<div class="circle">
-						<!--左半边圆-->
-						<div class="circle_left">
-							<div class="clip_left">
-								 
+		<div class="content_wrap" id="listCol">
+
+			<!--<div class="row item">
+			<div class="item_left_wrap col_center">
+				&lt;!&ndash;背景圆&ndash;&gt;
+				<div class="circle">
+
+					<div class="huan"></div>
+
+					<div class="mask">
+						<div>
+							<span class="percent_num">75</span>
+							<span class="percent">%</span>
+						</div>
+
+						<span class="recommand_text">好评率</span>
+					</div>
+				</div>
+
+				<div class="col_between left_bottom_wrap">
+					<div class="row_between item">
+						<span>高出行业</span>
+						<span>5%</span>
+					</div>
+					<div class="row_between item">
+						<span>当月环比</span>
+						<div class="row_center">
+							<div class="container">
+								<div class="corner"></div>
 							</div>
+							<div>2%</div>
 						</div>
-						<!--右半边圆-->
-						<div class="circle_right">
-							<div class="clip_right"></div>
-						</div>
+					</div>
+
+				</div>
+
+			</div>
+			<div class="item_right_wrap row_center">
+				<img src="../images/firstPage/touxiang.jpg" alt="">
+			</div>
+		</div>
+			<div class="row item blue">
+				<div class="item_left_wrap col_center">
+					&lt;!&ndash;背景圆&ndash;&gt;
+					<div class="circle">
+
+						<div class="huan blue"></div>
+
 						<div class="mask">
 							<div>
 								<span class="percent_num">75</span>
 								<span class="percent">%</span>
 							</div>
-							
+
 							<span class="recommand_text">好评率</span>
 						</div>
 					</div>
-					
+
 					<div class="col_between left_bottom_wrap">
 						<div class="row_between item">
 							<span>高出行业</span>
@@ -190,158 +236,15 @@
 								<div>2%</div>
 							</div>
 						</div>
-						
+
 					</div>
-					
+
 				</div>
 				<div class="item_right_wrap row_center">
 					<img src="../images/firstPage/touxiang.jpg" alt="">
 				</div>
-			</div>
-		
-			<div class="row item">
-				<div class="item_left_wrap col_center">
-					<!--背景圆-->
-					<div class="circle">
-						<!--左半边圆-->
-						<div class="circle_left">
-							<div class="clip_left">
-								 
-							</div>
-						</div>
-						<!--右半边圆-->
-						<div class="circle_right">
-							<div class="clip_right"></div>
-						</div>
-						<div class="mask">
-							<div>
-								<span class="percent_num">75</span>
-								<span class="percent">%</span>
-							</div>
-							
-							<span class="recommand_text">好评率</span>
-						</div>
-					</div>
-					
-					<div class="col_between left_bottom_wrap">
-						<div class="row_between item">
-							<span>高出行业</span>
-							<span>5%</span>
-						</div>
-						<div class="row_between item">
-							<span>当月环比</span>
-							<div class="row_center">
-								<div class="container">
-									<div class="corner"></div>
-								</div>
-								<div>2%</div>
-							</div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="item_right_wrap row_center">
-					<img src="../images/firstPage/touxiang.jpg" alt="">
-				</div>
-			</div>
-					
-			<div class="row item">
-				<div class="item_left_wrap col_center">
-					<!--背景圆-->
-					<div class="circle">
-						<!--左半边圆-->
-						<div class="circle_left">
-							<div class="clip_left">
-								 
-							</div>
-						</div>
-						<!--右半边圆-->
-						<div class="circle_right">
-							<div class="clip_right"></div>
-						</div>
-						<div class="mask">
-							<div>
-								<span class="percent_num">75</span>
-								<span class="percent">%</span>
-							</div>
-							
-							<span class="recommand_text">好评率</span>
-						</div>
-					</div>
-					
-					<div class="col_between left_bottom_wrap">
-						<div class="row_between item">
-							<span>高出行业</span>
-							<span>5%</span>
-						</div>
-						<div class="row_between item">
-							<span>当月环比</span>
-							<div class="row_center">
-								<div class="container">
-									<div class="corner"></div>
-								</div>
-								<div>2%</div>
-							</div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="item_right_wrap row_center">
-					<img src="../images/firstPage/touxiang.jpg" alt="">
-				</div>
-			</div>
-					
-					
-			<div class="row item">
-				<div class="item_left_wrap col_center">
-					<!--背景圆-->
-					<div class="circle">
-						<!--左半边圆-->
-						<div class="circle_left">
-							<div class="clip_left">
-								 
-							</div>
-						</div>
-						<!--右半边圆-->
-						<div class="circle_right">
-							<div class="clip_right"></div>
-						</div>
-						<div class="mask">
-							<div>
-								<span class="percent_num">75</span>
-								<span class="percent">%</span>
-							</div>
-							
-							<span class="recommand_text">好评率</span>
-						</div>
-					</div>
-					
-					<div class="col_between left_bottom_wrap">
-						<div class="row_between item">
-							<span>高出行业</span>
-							<span>5%</span>
-						</div>
-						<div class="row_between item">
-							<span>当月环比</span>
-							<div class="row_center">
-								<div class="container">
-									<div class="corner"></div>
-								</div>
-								<div>2%</div>
-							</div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="item_right_wrap row_center">
-					<img src="../images/firstPage/touxiang.jpg" alt="">
-				</div>
-			</div>
-					
-							
+			</div>-->
+
 		</div>
 
 	</body>
@@ -349,6 +252,7 @@
 	<script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../js/app.js"></script>
 	<script src="../js/myStorage.js"></script>
+	<script src="../js/circleChart.min.js"></script>
 	<script type="text/javascript">
 		
 		mui.init();
@@ -357,29 +261,88 @@
 		mui.plusReady(function() {
 			_self = plus.webview.currentWebview();
 			preload();
+			httpRequest();
+
 		});
-		
-		$(function(){
-			console.log($('.percent_num').text());
-                if( $('.percent_num').text() <= 50 ){
-                    $('.circle_right').css('transform','rotate('+($('.percent_num').text()*3.6)+'deg)');
-                }else{
-                    $('.circle_right').css({
-                        'transform':'rotate(0deg)',
-                        "background":"#CD1632"
-                    });
-                    $('.circle_left').css('transform','rotate('+(($('.percent_num').text()-50)*3.6)+'deg)');
-                }
-            })
-			
-		
-		$("input").focus(function(){
-		  $(this).parent().css("border-bottom","1px solid #107EFF");
-		});
-		
-		$("input").blur(function(){
-		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
-		});
+
+
+		function  httpRequest()
+		{
+
+			Global.commonAjax({
+				url: 'app/brand/get-brands/',
+				method: 'GET'
+			}, function(data){
+
+				console.log("品牌列表");
+				console.log(JSON.stringify(data));
+				data=data.brands;
+				for(var i=0;i<data.length;i++)
+				{
+					$("#listCol").append('<div class="row item blue" data-id="'+data[i].brand_id+'">'+
+							'<div class="item_left_wrap col_center" >'+
+							'<div class="circle">'+
+							'<div class="huan" data-color="'+data[i].brand_color1+'"></div>'+
+
+							'<div class="mask">'+
+							'<div>'+
+							'<span class="percent_num">75</span>'+
+							'<span class="percent">%</span>'+
+							'</div>'+
+							'<span class="recommand_text" style="color:'+data[i].brand_color1+'">好评率</span>'+
+							'</div>'+
+							'</div>'+
+								'<div class="col_between left_bottom_wrap" style="color:'+data[i].brand_color1+'">'+
+									'<div class="row_between item">'+
+							'<span>高出行业</span>'+
+							'<span>5%</span>'+
+							'</div>'+
+						'<div class="row_between item">'+
+							'<span>当月环比</span>'+
+							'<div class="row_center">'+
+								'<div class="container">'+
+									'<div class="corner" style="border-bottom: 0.06rem solid '+data[i].brand_color1+';"></div>'+
+									'</div>'+
+								'<div>2%</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>'+
+						'</div>'+
+					'<div class="item_right_wrap row_center" style="background:'+data[i].brand_color1+';">'+
+					'<img src="'+data[i].brand_icon1+'" alt="">'+
+					'</div>'+
+				'</div>');
+				}
+
+				$(".huan").each(function()
+				{
+					var color=$(this).attr("data-color");
+
+					
+
+					$(this).circleChart({
+						size: 100,
+						value: 50,
+						text: "",
+						color:color,
+						onDraw: function(el, circle) {
+							//circle.text(Math.round(circle.value) + "%");
+						}
+					});
+
+				});
+
+
+			}, function(err){
+				console.log("品牌列表失败"+err);
+			});
+		}
+
+
+
+
+
+
 		
 		$(".content_wrap .item").click(function(){
 			goToBrandList();
@@ -394,55 +357,17 @@
 			    }
 			})
 		}
-		
-		
-		function loginAction(){
-			var mobile = $(".mobile").val();
-			if(mobile && mobile.length != 11){
-				mui.toast("请输入正确手机号");
-				return;
-			}
-			
-			var password = $(".password").val();
-			if(!password){
-				mui.toast("请输入正确的密码");
-				return;
-			}
-			
-			
-			var params = {
-				mobile: mobile,
-				password: password
-			}
-			Global.commonAjax({
-				url: 'login',
-				method: 'POST',
-				data: params
-			}, function(data){
-				mui.toast("登录成功");
-				console.log(data.token);
-				myStorage.setItem("token", data.token);
-				//发送事件 我的页面刷新
-				sendRefresh();
-				plus.webview.currentWebview().close();
-				
-				
-			}, function(err){
-				mui.toast(err);
-			});
-		}
-		
-		function closeLogin(){
-			console.log("colse")
-			plus.webview.currentWebview().close();
-		}
+
 		
 		function sendRefresh(){
 			console.log("sendRefresh")
 			var h = plus.webview.getWebviewById("html/my.html");
 			mui.fire(h,'loginRefresh',{loginRefresh: "loginRefresh"});
 		}
-		
+
+
+
+
 		function showLeftMenu(){
 			var _left = parseInt(_self.getStyle().left);
 			if(_left > 0) { //处于显示状态
@@ -451,31 +376,31 @@
 				openMenu();
 			}
 		}
-		
+
 		/**
 		 * 显示侧滑菜单
 		 */
 		function openMenu() {
 			plus.webview.startAnimation({
-					'view': _self,
-					'styles': {
-						'fromLeft': '0',
-						'toLeft': "70%"
+						'view': _self,
+						'styles': {
+							'fromLeft': '0',
+							'toLeft': "70%"
+						},
+						'action': 'show'
+					}, {
+						'view': menu,
+						'styles': {
+							'fromLeft': "-70%",
+							'toLeft': '0'
+						},
+						'action': 'show'
 					},
-					'action': 'show'
-				}, {
-					'view': menu,
-					'styles': {
-						'fromLeft': "-70%",
-						'toLeft': '0'
-					},
-					'action': 'show'
-				},
-				function(e) {
-					//console.log(JSON.stringify(e));
-					if(e.id == menu.id) { //侧滑菜单打开
-					}
-				}.bind(this)
+					function(e) {
+						//console.log(JSON.stringify(e));
+						if(e.id == menu.id) { //侧滑菜单打开
+						}
+					}.bind(this)
 			)
 		};
 		/**
@@ -483,44 +408,44 @@
 		 */
 		function closeMenu() {
 			plus.webview.startAnimation({
-					'view': _self,
-					'styles': {
-						'fromLeft': '70%',
-						'toLeft': "0"
+						'view': _self,
+						'styles': {
+							'fromLeft': '70%',
+							'toLeft': "0"
+						},
+						'action': 'show'
+					}, {
+						'view': menu,
+						'styles': {
+							'fromLeft': "0",
+							'toLeft': '-70%'
+						},
+						'action': 'show'
 					},
-					'action': 'show'
-				}, {
-					'view': menu,
-					'styles': {
-						'fromLeft': "0",
-						'toLeft': '-70%'
-					},
-					'action': 'show'
-				},
-				function(e) {
-					console.log(JSON.stringify(e));
-					if(e.id == _self.id) {}
-				}.bind(this)
+					function(e) {
+						console.log(JSON.stringify(e));
+						if(e.id == _self.id) {}
+					}.bind(this)
 			)
 		};
 		window.addEventListener("menu:close", closeMenu);
-					
-		
-		
-		//初始化，并预加载webview模式的选项卡			
+
+
+
+		//初始化，并预加载webview模式的选项卡
 		function preload() {
-		
+
 			var menu_style = {
 				left: "-70%",
 				width: '70%',
 				popGesture: "none",
 				render:"always"
 			};
-		
+
 			if(mui.os.ios) {
 				menu_style.zindex = -1;
 			}
-		
+
 			//处理侧滑导航，为了避免和子页面初始化等竞争资源，延迟加载侧滑页面；
 			menu = mui.openWindow({
 				id: 'index-menu',
@@ -534,7 +459,16 @@
 				}
 			});
 		}
+
+
+
+	window.addEventListener('loginRefresh',function(e){
+				console.log("品牌更新头像");
+				var user=myStorage.getItem("user");
+				$('#portrait').attr("src", user.info.portrait);
+	});
 		
+
 		
 	</script>
 </html>

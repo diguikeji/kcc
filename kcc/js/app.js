@@ -15,7 +15,7 @@ var Global = {};
 					};
     		
     		options.styles.statusbar = {
-							background: "#fff"
+							background: "#f1f1f1"
 						};
     		
     		mui.openWindow($obj.url, $obj.id,options);
@@ -106,8 +106,9 @@ var Global = {};
         },
         //网络请求
         commonAjax: function(params,callback, errorback) {
-           var baseUrl = "http://116.232.109.179:8080/";
-
+           var baseUrl = "http://mpvpn.3322.org:9090/";
+			
+			console.log(JSON.stringify(params));
             //默认 get请求
             if (!params.method) {
                 params.method = "GET";
@@ -116,11 +117,14 @@ var Global = {};
             }
 			
 			//没有网络
-			console.log("params+"+params.url);
             if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
                 Global.errorNet();
                 return;
             }
+			
+			if(params.data){
+				params.data.from = "2";
+			}
 			
 			var waiting;
             mui.ajax(baseUrl + params.url, {
@@ -129,15 +133,17 @@ var Global = {};
                 data: params.data,
                 timeout: 10000,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 beforeSend: function(xhr) {
-                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     xhr.setRequestHeader("Accept", "application/json");
                     var token = myStorage.getItem("token");
+                    console.log("token");
+                    console.log(token);
                     
                     if (token) {
-                        xhr.setRequestHeader("Authorization", "Bearer " + token);
+                        xhr.setRequestHeader("Cookie", "sessionid=" + token);
                     };
 
                     //Global.showLoading();
@@ -146,11 +152,13 @@ var Global = {};
                 },
                 success: function(data) {
                     console.log(JSON.stringify(data));
-					if (data.success) {
+                    
+                    callback(data);
+					/*if (data.success) {
                         callback(data.data ? data.data : "");
                     } else{
 						errorback(data.msg ? data.msg : "");
-					}
+					}*/
 
                 },
                 error: function(data) {
@@ -159,20 +167,32 @@ var Global = {};
                 },
                 complete: function(xhr, status) {
                     console.log(xhr.status);
+
+                    console.log(JSON.stringify(xhr));
+
 					waiting.close();
 					if(xhr.status == 401){
 						//重新登录
-// 						if(params.url.indexOf("profile") != -1){
-// 							
-// 							errorback("");
-// 						}else{
-// 							Global.goToLogin();
-// 						}
-						//Global.goToLogin();
+   						if(params.url.indexOf("profile") != -1){
+   							
+   							errorback("");
+   						}else{
+   							Global.goToLogin();
+   						}
+   						
+						setTimeout(function()
+						{
+							Global.goToLogin();	
+						},1000)
+						
 						
 					}else if(xhr.status == 200){
 						
-					}else{
+					}
+                    else if(xhr.status == 400){
+                        mui.toast();
+                    }
+                    else{
 						errorback("请求出错");
 					}
 
@@ -193,24 +213,21 @@ var Global = {};
 			    }
 			}
 			console.log("ddddddddddddddd")
-			if(path && path.__view_array__[0] && 
-					path.__view_array__[0].id.indexOf("html/") != -1){
-				//包含
-				Global.openWindow({
-				    url: 'html/login.html',
-				    id: 'html/login.html',
-				    waiting: {
-				        autoShow: false
-				    }
-				})
+
+            var options = {
+                styles:{
+                	popGesture: "none",
+                	"statusbar":{
+					                background: "#ffffff"
+					            }
+                }
+            };
+			if(window.location.href.indexOf("index")>-1){
+
+                mui.openWindow('html/login.html','login.html',options);
+
 			}else{
-				Global.openWindow({
-				    url: 'login.html',
-				    id: 'login.html',
-				    waiting: {
-				        autoShow: false
-				    }
-				})
+                mui.openWindow('login.html','login.html',options);
 			}
 			
 		},
@@ -335,7 +352,6 @@ mui("body").on('tap','.add-value',function(event){
 
 });
 mui("body").on('tap','.sub-value',function(event){
-
 
     event.stopPropagation();
     var value=parseInt($(this).next().text());
@@ -471,8 +487,32 @@ function GetQueryString(name)
 	  	//window.location.reload(1);
 	  });
 
+function loginOut()
+{
+
+    Global.commonAjax({
+        url: 'user/logout/',
+        method: 'GET'
+    }, function(data){
+
+        console.log("退出"+JSON.stringify(data));
+        myStorage.removeItem("token");
+        mui.toast("退出成功");
+        Global.openWindow({
+            url: 'html/login.html',
+            id: 'login.html',
+            waiting: {
+                autoShow: false
+            }
+        })
+
+    }, function(err){
+        mui.toast("退出失败");
+        console.log("退出"+err);
+    });
 
 
+}
 
 
 

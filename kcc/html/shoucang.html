@@ -20,7 +20,7 @@
 	<body>
 		<div class="header-bar tab-header" >
 		    <div class="header-left">
-		    	<img src="../images/firstPage/touxiang.jpg">
+		    	<img id="portrait" src="../images/default_head.png">
 		    </div>
 			
 			
@@ -203,6 +203,11 @@
 			
 		});
 		
+		
+		window.addEventListener('loginRefresh',function(e){
+				var user=myStorage.getItem("user");
+				$('#portrait').attr("src", user.info.portrait);
+				});
 
 		
 	</script>

@@ -30,7 +30,7 @@
 	<div class="header-bar tab-header">
 
 		<div class="header-left" onclick="showLeftMenu();">
-			<img src="images/firstPage/touxiang.jpg">
+			<img id="portrait" src="images/default_head.png">
 		</div>
 
 		<div class="header-title">
@@ -355,7 +355,7 @@
 				
 					//处理侧滑导航，为了避免和子页面初始化等竞争资源，延迟加载侧滑页面；
 					menu = mui.openWindow({
-						id: 'index-menu',
+						id: 'index-menu.html',
 						url: 'index-menu.html',
 						styles: menu_style,
 						show: {
@@ -367,46 +367,23 @@
 					});
 				}
 				
-				
-				
-				
+
 				
 				function httpRequest()
 				{
 					
 						
-								//外卖详情
-						Global.commonAjax({
-			                    url: "express/deliveries/1"
-								
-			            },
-						function(data) {
-							console.log("外卖详情");
-							console.log(JSON.stringify(data));
-						},
-						function(err) {
-						    console.log("外卖详情"+JSON.stringify(err));
-						});
 						
-						
-
-						//楼宇按照地理位置搜索
-						Global.commonAjax({
-			                    url: "buildings/locate?lat=31&lng=121"
-								
-			            },
-						function(data) {
-							console.log("楼宇按照地理位置搜索");
-							console.log(JSON.stringify(data));
-						},
-						function(err) {
-						    console.log("楼宇按照地理位置搜索报错"+JSON.stringify(err));
-						});
 					
 					
 				}
 				
 				
+				window.addEventListener('loginRefresh',function(e){
+					console.log("首页更新头像");
+				var user=myStorage.getItem("user");
+				$('#portrait').attr("src", user.info.portrait);
+				});
 
 			
 		</script>

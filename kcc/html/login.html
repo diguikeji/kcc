@@ -180,11 +180,11 @@
 				data: params
 			}, function(data){
 				mui.toast("登录成功");
-				console.log(data.token);
-				myStorage.setItem("token", data.token);
-				//发送事件 我的页面刷新
-				sendRefresh();
-				plus.webview.currentWebview().close();
+				
+ 				myStorage.setItem("token", data.sessionid);
+ 				//发送事件 我的页面刷新
+ 				sendRefresh();
+ 				plus.webview.currentWebview().close();
 				
 				
 			}, function(err){
@@ -199,7 +199,7 @@
 		
 		function sendRefresh(){
 			console.log("sendRefresh")
-			var h = plus.webview.getWebviewById("html/my.html");
+			var h = plus.webview.getWebviewById("index-menu.html");
 			mui.fire(h,'loginRefresh',{loginRefresh: "loginRefresh"});
 		}
 		

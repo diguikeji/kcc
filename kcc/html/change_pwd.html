@@ -6,9 +6,10 @@
 		<title>修改密码</title>
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<link rel="stylesheet" href="../css/app.css">
+		<link rel="stylesheet" href="../css/page.css">
 		<style type="text/css">
 			body{
-				background: #EFEFF4;
+				background: #f1f1f1;
 			}
 			.head_wrap{
 				padding: 16px 16px 0px;
@@ -28,7 +29,7 @@
 			}
 			
 			.login_wrap{
-				padding: 0px 24px;
+				padding: 0px 15px;
 				background-color: #fff;
 			}
 			
@@ -45,6 +46,7 @@
 				margin-bottom: 0px;
 				border: none;
 				background: transparent;
+				font-size:0.14rem;
 			}
 			
 			::-webkit-input-placeholder{
@@ -63,7 +65,7 @@
 				border-radius: 20px;
 				margin: 30px 5% 0px;
 				box-sizing: border-box;
-				background-color: #8fccf0;
+				background-color: #5962B2;
 				color: #FFF;
 				font-size: 16px;
 				border:0;
@@ -93,40 +95,48 @@
 			}
 			
 			.info_text{
-				font-size: 0.14rem; padding-left: 0.1rem;
+				font-size: 0.12rem; padding-left: 15px;color:#999999;
 				margin-top: 0.1rem; 
 			}
 			
 		</style>
 	</head>
 	<body>
-		<header class="mui-bar mui-bar-nav" >
-		    <!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
-			<img src="../images/back.png" class="mui-action-back">
-			
-		    <h1 class="mui-title">修改密码</h1>
-		</header>
 		
-		<div class="mui-content">
+		
+		<div class="header-bar">
+
+		<div class="header-left" onclick="mui.back();">
+			<span class="mui-icon mui-icon-arrowleft"></span>
+		</div>
+
+		<div class="header-title">修改密码</div>
+
+		
+
+
+	</div>
+		
+		<div class="has-header">
 			<div class="login_wrap">
 				<div class="row_between item_wrap">
 					<span>原密码</span>
-					<input type="tel" placeholder="请输入原密码" maxlength="11" class="mobile">
+					<input type="password" placeholder="请输入原密码" maxlength="20" class="mobile" id="input1">
 				</div>
 				
 				<div class="row_between item_wrap">
 					<span>新密码</span>
-					<input type="tel" placeholder="请输入新密码" maxlength="11" class="mobile">
+					<input type="password" placeholder="请输入新密码" maxlength="20" class="mobile" id="input2">
 				</div>
 				
 				<div class="row_between item_wrap">
 					<span>确认密码</span>
-					<input type="tel" placeholder="请输入确认密码" maxlength="11" class="mobile">
+					<input type="password" placeholder="请输入确认密码" maxlength="20" class="mobile" id="input3">
 				</div>
 			</div>
 			<div class="info_text">密码需要包含英文+数字+密码长度8~18位字符</div>
 			
-			<button class="button" type="button">保存</button>
+			<button class="button" type="button" ontouchstart="save()">保存</button>
 		</div>
 		
 		
@@ -153,73 +163,53 @@
 		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
 		});
 		
-		function goToForget(){
-			Global.openWindow({
-			    url: 'forget.html',
-			    id: 'forget.html',
-			    waiting: {
-			        autoShow: false
-			    }
-			})
-		}
+
 		
-		
-		function goToRegister(){
-			Global.openWindow({
-			    url: 'register.html',
-			    id: 'register.html',
-			    waiting: {
-			        autoShow: false
-			    }
-			})
-		}
-		
-		function loginAction(){
-			var mobile = $(".mobile").val();
-			if(mobile && mobile.length != 11){
-				mui.toast("请输入正确手机号");
+		function save(){
+			var input1 = $("#input1").val();
+			var input2 = $("#input2").val();
+			var input3 = $("#input3").val();
+			if(input1==""){
+				mui.toast("原密码不能为空");
+				return;
+			}
+			if(input2==""){
+				mui.toast("原密码不能为空");
+				return;
+			}
+			if(input3==""){
+				mui.toast("原密码不能为空");
 				return;
 			}
 			
-			var password = $(".password").val();
-			if(!password){
-				mui.toast("请输入正确的密码");
+
+			if(input2!=input3){
+				mui.toast("新密码和确认密码不一致");
 				return;
 			}
 			
 			
 			var params = {
-				mobile: mobile,
-				password: password
+				old_password: input1,
+				new_password: input2,
+				new_password_confirm:input3
 			}
 			Global.commonAjax({
-				url: 'login',
+				url: 'user/change-password/',
 				method: 'POST',
 				data: params
 			}, function(data){
-				mui.toast("登录成功");
-				console.log(data.token);
-				myStorage.setItem("token", data.token);
-				//发送事件 我的页面刷新
-				sendRefresh();
-				plus.webview.currentWebview().close();
-				
-				
+
+				mui.toast("修改成功");
+				mui.back();
+
 			}, function(err){
 				mui.toast(err);
 			});
 		}
 		
-		function closeLogin(){
-			console.log("colse")
-			plus.webview.currentWebview().close();
-		}
-		
-		function sendRefresh(){
-			console.log("sendRefresh")
-			var h = plus.webview.getWebviewById("html/my.html");
-			mui.fire(h,'loginRefresh',{loginRefresh: "loginRefresh"});
-		}
+
+
 		
 	</script>
 </html>
