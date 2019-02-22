@@ -35,7 +35,7 @@
 
 		<div class="header-title">
 			本周总览
-			<p>新增9258个评论</p>
+			<p>新增<span id="pinglun"></span>个评论</p>
 		</div>
 
 		<div class="header-right" onclick="search()">
@@ -189,6 +189,8 @@
 				spaceBetween: 16
 
 			});
+			
+			
 
 			mui("#list").on('tap','li',function(event){
 
@@ -199,7 +201,7 @@
 						autoShow: false
 					}
 				})
-
+				
 
 			});
 
@@ -209,11 +211,11 @@
 				
 				var _self;
 				mui.plusReady(function() {
+
 					_self = plus.webview.currentWebview();
 					preload();
-
 					commonEvent();
-
+					httpRequest();
 					plus.navigator.setStatusBarBackground('transparent');
 					
 
@@ -338,8 +340,7 @@
 				window.addEventListener("menu:close", closeMenu);
 			
 				
-				
-				//初始化，并预加载webview模式的选项卡			
+				//初始化，并预加载webview模式的选项卡
 				function preload() {
 				
 					var menu_style = {
@@ -371,9 +372,22 @@
 				
 				function httpRequest()
 				{
-					
-						
-						
+
+					Global.commonAjax({
+						url: '/app/dashboard/get-attitude-count',
+						method: 'GET'
+					}, function(data){
+
+						mui.toast("本周新增总平价点数");
+
+						console.log(JSON.stringify(data));
+
+
+
+					}, function(err){
+						mui.toast(err);
+						console.log("本周新增总平价点数失败");
+					});
 					
 					
 				}

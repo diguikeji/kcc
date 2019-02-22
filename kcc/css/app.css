@@ -215,6 +215,7 @@ header h1{
 	width: 60px;
 	height: 60px;
 	margin-right: 20px;
+	border-radius: 50%;
 }
 
 .modal-menu .menu_item{

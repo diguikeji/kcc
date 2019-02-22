@@ -24,6 +24,22 @@
 .header-tab span{color:#9f9f9f;margin:0 0.03rem;line-height: 0.42rem;display: inline-block;}
 .header-tab span.active{color:#404040;border-bottom:1px solid #5962b2;}
 
+.chanpin-list{background: #fff;}
+.chanpin-list li{position: relative;padding:0 0 0 0.15rem;font-size:0.17rem;height:0.48rem;line-height: 0.48rem;}
+.chanpin-list li .right{position: absolute;right:0.15rem;top:0;}
+.chanpin-list li .right span{color:#999;}
+.chanpin-list li .left{position: absolute;left:0.15rem;top:0.05rem;width:0.4rem;height:0.4rem;border-radius: 50%;}
+.chanpin-list li .middle{border-bottom:1px solid #F2F2F2;}
+.chanpin-list li .middle{padding:0 0 0 0.5rem;position: relative;}
+
+.shoucang-col-title{padding:0.2rem 0.05rem 0.1rem 0.15rem;font-size:0.17rem;color:#333333;}
+.shoucang-small-title{background: #f1f1f1;font-size:0.12rem;padding:0 0.15rem;line-height: 0.3rem;}
+
+
+
+
+
+
 
 
 
