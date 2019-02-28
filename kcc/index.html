@@ -29,7 +29,7 @@
 
 	<div class="header-bar tab-header">
 
-		<div class="header-left" onclick="showLeftMenu();">
+		<div class="header-left" ontouchstart="showLeftMenu();">
 			<img id="portrait" src="images/default_head.png">
 		</div>
 
@@ -49,46 +49,9 @@
 	<div class="banner-col">
 
 			<div class="swiper-container swiper-banner">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<div class="row">
-						<div class="slide-detail flex_one">
-							8624
-							<div>好评</div>
-						</div>
+				<div class="swiper-wrapper" id="swiperList">
 
-						<div class="slide-detail slide-middle">
-							<img src="images/firstPage/proImg.jpg">
-						</div>
-
-						<div class="slide-detail flex_one">
-							8624
-							<div>好评</div>
-						</div>
-
-						</div>
-					</div>
-
-					<div class="swiper-slide">
-						<div class="row">
-							<div class="slide-detail flex_one">
-								8624
-								<div>好评</div>
-							</div>
-
-							<div class="slide-detail slide-middle">
-								<img src="images/firstPage/proImg.jpg">
-							</div>
-
-							<div class="slide-detail flex_one">
-								8624
-								<div>好评</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="swiper-slide">
+					<!--<div class="swiper-slide">
 						<div class="row blue-bg">
 							<div class="slide-detail flex_one">
 								8624
@@ -124,7 +87,7 @@
 							</div>
 
 						</div>
-					</div>
+					</div>-->
 
 
 				</div>
@@ -135,18 +98,8 @@
 
 
 	<ul class="home-list" id="list">
-		<li>
-			<img src="images/firstPage/home_07.jpg" />
-			<div class="right-col">
-			<div>好奇心好奇心好奇心</div>
-			<p>测试测试测试测试测试测试</p>
-				<div class="right-text">
-					<div>17:25</div>
-					<span class="quan"></span>
-				</div>
-			</div>
-		</li>
-		<li>
+
+		<!--<li>
 			<img src="images/firstPage/home_07.jpg" />
 			<div class="right-col">
 				<div>好奇心好奇心好奇心</div>
@@ -156,69 +109,36 @@
 					<span class="quan"></span>
 				</div>
 			</div>
-		</li>
-		<li>
-			<img src="images/firstPage/home_07.jpg" />
-			<div class="right-col">
-				<div>好奇心好奇心好奇心</div>
-				<p>测试测试测试测试测试测试</p>
-				<div class="right-text">
-					<div>17:25</div>
-					<span class="quan"></span>
-				</div>
-			</div>
-		</li>
+		</li>-->
 	</ul>
 
 
 	</div>
 
+		<div class="tab-border" style="height:51px;"></div>
 
 		<script src="js/util.js"></script>
 		<script src="js/jquery-2.1.1.min.js"></script>
 	   <script src="lib/swiper.min.js"></script>
 		<script src="js/app.js"></script>
 		<script src="js/myStorage.js"></script>
+	    <script src="js/menu.js"></script>
 		<script type="text/javascript">
 
-			
-			var swiper = new Swiper('.swiper-banner', {
-				slidesPerView: 1.2,
-				loop : true,
-				centeredSlides: true,
-				spaceBetween: 16
 
-			});
-			
-			
-
-			mui("#list").on('tap','li',function(event){
-
-				Global.openWindow({
-					url:"html/jingpin.html",
-					id: "jingpin.html",
-					waiting: {
-						autoShow: false
-					}
-				})
-				
-
-			});
 
 				mui.init({
 					swipeBack: true //启用右滑关闭功能
 				});
 				
-				var _self;
 				mui.plusReady(function() {
 
-					_self = plus.webview.currentWebview();
+
 					preload();
 					commonEvent();
 					httpRequest();
 					plus.navigator.setStatusBarBackground('transparent');
 					
-
 					// 创建子webview窗口 并初始化
 					var aniShow = {};
 					util.initSubpage(aniShow);
@@ -276,76 +196,22 @@
 						
 					});
 				});
-				
-				function showLeftMenu(){
-					var _left = parseInt(_self.getStyle().left);
-					if(_left > 0) { //处于显示状态
-						closeMenu();
-					} else {
-						openMenu();
-					}
-				}
-				
-				/**
-				 * 显示侧滑菜单
-				 */
-				function openMenu() {
-					plus.webview.startAnimation({
-							'view': _self,
-							'styles': {
-								'fromLeft': '0',
-								'toLeft': "70%"
-							},
-							'action': 'show'
-						}, {
-							'view': menu,
-							'styles': {
-								'fromLeft': "-70%",
-								'toLeft': '0'
-							},
-							'action': 'show'
-						},
-						function(e) {
-							//console.log(JSON.stringify(e));
-							if(e.id == menu.id) { //侧滑菜单打开
-							}
-						}.bind(this)
-					)
-				};
-				/**
-				 * 关闭菜单
-				 */
-				function closeMenu() {
-					plus.webview.startAnimation({
-							'view': _self,
-							'styles': {
-								'fromLeft': '70%',
-								'toLeft': "0"
-							},
-							'action': 'show'
-						}, {
-							'view': menu,
-							'styles': {
-								'fromLeft': "0",
-								'toLeft': '-70%'
-							},
-							'action': 'show'
-						},
-						function(e) {
-							console.log(JSON.stringify(e));
-							if(e.id == _self.id) {}
-						}.bind(this)
-					)
-				};
-				window.addEventListener("menu:close", closeMenu);
-			
+
+
+
+				var ws=plus.webview.getWebviewById(plus.runtime.appid);
+				ws.addEventListener("maskClick",function(){
+					closeMenu();
+				},false);
+
+
 				
 				//初始化，并预加载webview模式的选项卡
 				function preload() {
 				
 					var menu_style = {
-						left: "-70%",
-						width: '70%',
+						left: "-85%",
+						width: '85%',
 						popGesture: "none",
 						render:"always"
 					};
@@ -369,28 +235,214 @@
 				}
 				
 
-				
+				var swiper;
 				function httpRequest()
 				{
 
 					Global.commonAjax({
-						url: '/app/dashboard/get-attitude-count',
-						method: 'GET'
-					}, function(data){
+						url: 'app/dashboard/get-attitude-count'
+					}, function(data)
+					{
 
-						mui.toast("本周新增总平价点数");
+						console.log("本周品牌正负评平价点数");
 
 						console.log(JSON.stringify(data));
-
-
+						$("#pinglun").text(data.attitude_count);
 
 					}, function(err){
 						mui.toast(err);
-						console.log("本周新增总平价点数失败");
+						console.log("本周品牌正负评平价点数失败");
 					});
-					
-					
+
+
+					Global.commonAjax({
+						url: 'app/brand/get-brands/'
+					}, function(data)
+					{
+
+						console.log("品牌列表数据");
+						console.log(JSON.stringify(data));
+
+						var pingpaiList=data.brands;
+
+						if(pingpaiList.length>0)
+						{
+
+							Global.commonAjax({
+								url: 'app/dashboard/get-brand-count'
+							}, function(data){
+
+								console.log("本周新增总平价点数");
+
+								console.log(JSON.stringify(data));
+								$("#swiperList").empty();
+								for(var i=0;i<data.brand_count.length;i++)
+								{
+									var icon;
+									for(var j=0;j<pingpaiList.length;j++)
+									{
+										if(data.brand_count[i].brand_id==pingpaiList[j].brand_id)
+										{
+											icon=pingpaiList[j].brand_icon1;
+											break;
+										}
+									}
+
+									$("#swiperList").append('<div class="swiper-slide">'+
+											'<div class="row">'+
+											'<div class="slide-detail flex_one">'+data.brand_count[i].praise_total+' <div>好评</div></div>'+
+											'<div class="slide-detail slide-middle"><img class="logo'+i+'" src="'+baseServerUrl+icon+'"></div>'+
+											'<div class="slide-detail flex_one">'+data.brand_count[i].bad_total+'<div>负评</div>'+
+											'</div>'+
+											'</div>'+
+											'</div>');
+								}
+
+								if(swiper)
+								{
+									swiper.destroy();
+								}
+								swiper = new Swiper('.swiper-banner', {
+									slidesPerView: 1.2,
+									loop : true,
+									centeredSlides: true,
+									spaceBetween: 16
+
+								});
+
+							}, function(err){
+								mui.toast(err);
+								console.log("本周新增总平价点数失败");
+							});
+
+						}
+
+					}, function(err){
+
+						console.log("err"+err);
+
+					});
+
+					Global.commonAjax({
+						url: 'app/brand/get-brands/',
+						method: 'GET'
+					}, function(data)
+					{
+
+						$("#list").empty();
+						console.log("首页品牌列表");
+						console.log(JSON.stringify(data));
+						data=data.brands;
+						
+						for(var i=0;i<data.length;i++)
+						{
+							yujingList(data[i].brand_id,data[i].brand_icon1);
+						}
+
+					},function(err){
+
+					console.log("err"+err);
+
+				   });
+
+
+
 				}
+
+
+			function yujingList(brand_id,icon)
+			{
+
+				Global.commonAjax({
+					url: 'app/dashboard/get-alert-messages',
+					data:{brand_id:brand_id}
+				}, function(data)
+				{
+
+					console.log("获取预警消息");
+					console.log(JSON.stringify(data));
+					data=data.alert_messages;
+					for(var i=0;i<data.length;i++)
+					{
+
+						var quan='<span class="quan"></span>';
+
+						if(data[i].message_status)
+						{
+							quan="";
+						}
+
+						$("#list").append('<li data-id="'+data[i].product_line_id+'" data-message_id="'+data[i].message_id+'">'+
+								'<img src="'+baseServerUrl+icon+'" />'+
+								'<div class="right-col">'+
+								'<div>'+data[i].product_line_name+'</div>'+
+								'<p>'+data[i].message+'</p>'+
+								'<div class="right-text">'+
+								'<div>'+data[i].stats_time+'</div>'+quan+
+								'</div>'+
+								'</div>'+
+								'</li>');
+					}
+
+
+
+
+				}, function(err){
+
+					console.log("err"+err);
+
+				});
+
+			}
+
+
+				mui("#list").on('tap','li',function(event){
+
+					var product_line_id=$(this).attr("data-id");
+
+					var message_id=$(this).attr("data-message_id");
+
+
+					Global.openWindow({
+						url: 'html/jingpin.html?product_line_id='+product_line_id+"&message_id="+message_id,
+						id: 'jingpin.html',
+						waiting: {
+							autoShow: false
+						}
+					})
+
+
+				});
+
+			function updateStatus(message_id)
+			{
+				
+				Global.commonAjax({
+					url: 'app/dashboard/update-alert-message-status/',
+					method:"POST",
+					data:{message_id:message_id}
+				}, function(data)
+				{
+
+					console.log("更新预警消息状态");
+					console.log(JSON.stringify(data));
+
+					httpRequest();
+
+
+				}, function(err){
+
+					console.log("err"+err);
+
+				});
+
+			}
+
+
+			window.addEventListener('loginTabRefresh',function(e){
+				console.log("首页loginTabRefresh");
+				httpRequest();
+			});
 				
 				
 				window.addEventListener('loginRefresh',function(e){

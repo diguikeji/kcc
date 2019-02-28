@@ -1,5 +1,8 @@
 var Global = {};
 
+var baseServerUrl = "http://mpvpn.3322.org:9090";
+
+
 (function() {
 
     Global = {
@@ -70,6 +73,27 @@ var Global = {};
             $(".mui-table-view-condensed").html('<div class="error-col"><img src="../images/error/xiaoxi.png"/></div>');
 
         },
+        getBrandImg:function(brand_id)
+        {
+        	var brandsList=myStorage.getItem("brandsList");
+        	
+        	var brandsObj={};
+        	if(brandsList)
+        	{
+        		for(var i=0;i<brandsList.length;i++)
+        		{
+        			if(brand_id==brandsList[i].brand_id)
+        			{
+        				brandsObj=brandsList[i];
+        				break;
+        				
+        			}
+        		}
+        	}
+        	
+        	return brandsObj.brand_icon1;
+        	
+        },
         showModal: function(title, reload, callback) {
             if ($('.global-modal').length == 0 || reload) {
 
@@ -131,7 +155,7 @@ var Global = {};
                 dataType: "json",
                 type: params.method,
                 data: params.data,
-                timeout: 10000,
+                timeout: 30000,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -163,34 +187,31 @@ var Global = {};
                 },
                 error: function(data) {
 					
-
+					//console.log(data.responseText);
+					
                 },
                 complete: function(xhr, status) {
                     console.log(xhr.status);
 
-                    console.log(JSON.stringify(xhr));
+                    console.log(status);
 
 					waiting.close();
 					if(xhr.status == 401){
 						//重新登录
-   						if(params.url.indexOf("profile") != -1){
-   							
-   							errorback("");
-   						}else{
-   							Global.goToLogin();
-   						}
    						
 						setTimeout(function()
 						{
 							Global.goToLogin();	
-						},1000)
+						},3000)
 						
 						
 					}else if(xhr.status == 200){
 						
 					}
                     else if(xhr.status == 400){
-                        mui.toast();
+                       console.log(xhr.responseText);
+                       var responseText=JSON.parse(xhr.responseText);
+                       mui.toast(responseText.msg);
                     }
                     else{
 						errorback("请求出错");

@@ -4,7 +4,7 @@
 .jingpin-title{position: relative;padding-left:0.1rem;font-weight: bold;font-size:0.16rem;padding-top:0.2rem;}
 .jingpin-title:before{content: " ";display: inline-block;position: absolute;width:0.03rem;height:0.14rem;background: #ea002a;left:0;top:0.22rem;}
 
-.chart-tab-col{border-radius:4px;}
+.chart-tab-col{border-radius:4px;white-space: nowrap;max-width:100;overflow: auto;}
 .chart-tab{margin-top:0.2rem;}
 
 .jingpin-col .jingpin-top{font-size:0.12rem;text-align: center;}
@@ -15,8 +15,8 @@
 .jingpin-col .jingpin-row.last .line-col span{width:25%;background: #fff!important;color:#999;position: relative;left:-0.1rem;}
 
 .jingpin-chart{position: relative;}
-.jingpin-chart .jingpin-top{position: absolute;width:100%;left:0;top:1.5rem;z-index:10000;}
-.jingpin-chart .chart-tab-col div{float:left;width:25%;text-align: center;border:1px solid #ea002a;border-left:0;line-height: 0.3rem;box-sizing: border-box;color:#ea002a;}
+.jingpin-chart .jingpin-top{position: absolute;width:100%;left:0;top:1.5rem;z-index:10000;white-space: nowrap;overflow: auto;}
+.jingpin-chart .chart-tab-col div{display:inline-block;padding:0 0.1rem;text-align: center;border:1px solid #ea002a;border-left:0;line-height: 0.3rem;box-sizing: border-box;color:#ea002a;}
 .jingpin-chart .chart-tab-col div:first-child{border-left:1px solid #ea002a;border-radius: 4px 0 0 4px;}
 .jingpin-chart .chart-tab-col div:last-child{border-radius: 0 4px 4px 0;}
 .jingpin-chart .chart-tab-col div.active{background: #ea002a;color:#fff;}
@@ -51,21 +51,22 @@
 .jingpin-bottom .right div{width:25%;float:left;position: relative;text-align: center;font-size:0.14rem;}
 .jingpin-bottom .right div.active{color:#ea002a;}
 
-.jingpin-chart-tab{padding:0 0.15rem;background: #fff;border-bottom:1px solid #e6e6e6;}
-.jingpin-chart-tab div{line-height: 0.44rem;position: relative;float:left;width:16.6666%;text-align: center;}
+.jingpin-chart-tab{padding:0 0.15rem;background: #fff;border-bottom:1px solid #e6e6e6;white-space: nowrap;width:100%;overflow: auto;}
+.jingpin-chart-tab div{line-height: 0.44rem;position: relative;text-align: center;display: inline-block;padding:0 0.1rem;}
 .jingpin-chart-tab div.active:after{height:2px;width:100%;background: #ea002a;position: absolute;bottom:0;left:0;content: " ";}
 .jingpin-pro{padding:0.2rem 0.4rem 0.2rem 1rem;position: relative;font-size:0.15rem;color:#000;line-height: normal;}
 .jingpin-pro img{width:0.79rem;height:0.79rem;border-radius: 0.06rem;position: absolute;left:0.1rem;top:0.2rem;}
 .jingpin-pro .right div{margin-top:0.02rem;padding-bottom:0.1rem;}
 .jingpin-pro .shoucang img{position: absolute;right:0.15rem;left:auto;top:0.4rem;width:0.22rem;height:0.22rem;}
-
-
+.jingpin-pro .shoucang img:last-child{display: none;}
+.jingpin-pro .shoucang.active img:first-child{display: none;}
+.jingpin-pro .shoucang.active img:last-child{display: block;}
 .jingpin-chart-main{padding:0 15px;box-sizing: border-box;background: #fff;}
 .jingpin-chart-col{width:100%;height:3rem;background: #fff;}
 
 .pinglun-col{height:3.25rem;background: #fff;position: fixed;bottom:0.48rem;width:100%;left:0;z-index:10000;padding:15px 15px 15px 15px;}
 
-.pinglun-list{list-style: none;padding:0;margin:0;font-size:0.12rem;background: #f5f5f5;border-radius: 0.1rem;margin-top:0.15rem;padding:0.15rem;}
+.pinglun-list{list-style: none;padding:0;margin:0;font-size:0.12rem;max-height:2.3rem;overflow:auto;background: #f5f5f5;border-radius: 0.1rem;margin-top:0.15rem;padding:0.15rem;}
 .pinglun-title{font-weight: bold;padding:0.13rem 0;border-bottom:1px solid #ddd;position: relative;}
 .pinglun-title .right{position: absolute;right:0;font-weight: normal;color:#999;}
 .pinglun-list .tag-list{padding:0.05rem 0;}
@@ -83,28 +84,6 @@
 .pinglun-list li .img-list img{width:0.4rem;height:0.4rem;margin:0.02rem;}
 
 
-.right-modal{width:100%;position: fixed;height:100%;z-index:10000;left:0;top:0;}
-
-.right-modal-col{position: absolute;width:3rem;right:0;top:0;height:100%;background: #fff;padding-top:0.06rem;box-sizing: border-box;z-index:10002;}
-
-.right-modal-col .modal-row{font-size:0.13rem;padding:0.23rem 0.1rem 0 0.1rem;}
-.right-modal-col .modal-row .tag-list{font-size:0;}
-.right-modal-col .modal-row .tag-list span{background: #f5f5f5;border-radius:0.04rem;border:1px solid #f5f5f5;box-sizing:border-box;font-size:0.13rem;margin-right:0.06rem;margin-bottom:0.06rem;color:#707070;display: inline-block;height:0.31rem;width:0.88rem;text-align: center;line-height: 0.3rem;}
-.right-modal-col .modal-row .tag-list span:nth-child(3n+3){margin-right:0;}
-.right-modal-col .modal-row .modal-title{padding-bottom:0.06rem;}
-.right-modal-col .modal-row .tag-list span.active{background: #dee0f0;border:1px solid #8d90d5;color:#8d90d5;box-sizing: border-box;}
-
-.right-modal-col .date-main{padding:0.1rem 0.1rem;}
-
-.right-modal-col .date-main .date-col{float:left;width:1.16rem;line-height:0.25rem;height:0.25rem;background: #f5f5f5;
-    text-align: center;border-radius: 0.16rem;color:#999;font-size:0.12rem;}
-
-.right-modal-col .date-main .line{width:0.26rem;height:1px;background: #ddd;float:left;margin:0 0.05rem;position: relative;top:0.12rem;}
-
-.right-modal-col .modal-bottom{font-size:0;position: absolute;right:0.15rem;bottom:0.15rem;}
-.right-modal-col .modal-bottom span{font-size:0.16rem;color:#fff;width:0.89rem;text-align: center;line-height:0.44rem;display: inline-block;}
-.right-modal-col .modal-bottom span:last-child{background: #5962b2;border-radius: 0 0.3rem 0.3rem 0;}
-.right-modal-col .modal-bottom span:first-child{background: #b0b2f3;border-radius: 0.3rem 0 0 0.3rem;}
 
 
 

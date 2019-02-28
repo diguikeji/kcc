@@ -5,10 +5,12 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
 		<title>品牌</title>
 		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/page.css">
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
 		<link rel="stylesheet" href="../css/app.css">
 		<style type="text/css">
 			body{
-				background: #fff;;
+				background: #f1f1f1;;
 			}
 			.head_right{
 				float: right;
@@ -25,12 +27,17 @@
 				width: 100%;
 				box-sizing: border-box;
 				border-bottom: 1px solid #E9E9E9;
+				top:0.44rem;
+				z-index:1000;
 			}
-			
-			.active{
+			.select_type .item .active_line{display: none;}
+
+			.select_type .item.active{
 				color: #000;
 				font-weight: bold;
 			}
+
+			.select_type .item.active .active_line{display: block;}
 			
 			
 			.active_line{
@@ -45,19 +52,19 @@
 			}
 			
 			.select_type .item{
-				height: 47px;
+				height: 0.45rem;
 				position: relative;
+				font-size:0.13rem;
 			}
 			
 			.content_wrap{
-				padding: 0.15rem;
-				margin-top: 0.46rem;
+				padding:1.05rem 0.15rem 0.15rem 0.15rem;
 			}
 			
 			.content_head{
-				border-radius: 0.1rem;
-				height: 1.5rem;
-				padding: 0.2rem 0.3rem;
+				border-radius: 0.05rem;
+				height: 1.1rem;
+				padding: 0.12rem 0.3rem;
 				box-sizing: border-box;
 				background-color: #fff;
 			}
@@ -67,7 +74,6 @@
                 height: 1rem;
                 position: relative;
                 border-radius: 50%;
-                background: #9DA1E7;
             }
                  
             .clip_left,.clip_right{
@@ -102,13 +108,15 @@
             *当top和left取值为auto时，相当于0
             *当bottom和right取值为auto时，相当于100%
             */
+
+			.huan{margin-top:0.1rem;}
+
             .mask {
                 width: 0.75rem;
                 height: 0.75rem;
                 border-radius: 50%;
                 left: 0.12rem;
                 top: 0.12rem;
-                background: #fff;
                 position: absolute;
                 font-size: 16px;
 				display: flex;
@@ -120,23 +128,24 @@
 			
 			.percent_num{
 				color: #9DA1E7;
-				font-size: 0.2rem;
+				font-size: 0.16rem;
 			}
 			
 			.percent{
 				color: #9DA1E7;
-				font-size: 0.16rem;
+				font-size: 0.13rem;
 			}
 			
 			.contain {
 				width: 0.1rem;
-				margin: 0 auto 0.05rem;
+				margin-right:0.02rem;
+				position: relative;top:-0.02rem;
 			}
 			
 			.corner {
 				width: 0px;                 /*  宽高设置为0，很重要，否则达不到效果 */
 				height: 0px;
-				border: 0.05rem solid #CD1632;
+				border: 0.05rem solid #333;
 				border-top-color: transparent;    /* 设置透明背景色 */
 				border-left-color: transparent;
 				border-right-color: transparent;
@@ -144,22 +153,25 @@
 			
 			.recommand_text{
 				color: #9B9B9B;
+				font-size:0.11rem;
 			}
 			
 			
 			.head_wrap{
 				height: 100%;
 				padding: 0.1rem 0rem;
+				align-items:baseline;
 			}
 			
 			.head_name{
-				font-size: 0.18rem;
+				font-size: 0.16rem;
 				font-weight: bold;
 				color: #000;
 			}
 			
 			.head_left_wrap .item{
-				width: 1.2rem;
+				width: 1.1rem;
+				font-size:0.12rem;
 			}
 			
 			.head_left_wrap .item span:nth-child(1){
@@ -187,6 +199,10 @@
 				flex-direction: column;
 				justify-content: space-between;
 			}
+
+			.left_wrap .second-text{font-size:0.11rem;color:#333;}
+
+			.left_wrap .third-text{font-size:0.11rem;color:#999;}
 			
 			.right_wrap{
 				width: 10%;
@@ -208,62 +224,65 @@
 			  background-color: #9DA1E7;
 			  border-radius: 0.2rem;
 			  position: relative;
-			  height: 0.25rem;
+			  height: 0.2rem;
+			  font-size:0.09rem;
+			  margin-top:-0.05rem;
 			}
 			
 			.container .right{
 				position: absolute;
 				right: 0.1rem;
-				top: 50%;
-				margin-top: -0.1rem;
+				top: 0;
 				color: #fff;
 			}
 
 			.skills {
 			  text-align: right;
-			  padding-right: 0.2rem;
-			  padding-top: 0.03rem;
+			  padding-left: 0.1rem;
 			  color: white;
 			  border-top-left-radius: 0.2rem;
 			  border-bottom-left-radius: 0.2rem;
-			  height: 0.25rem;
+			  height: 0.2rem;
 			}
 			
-			.left {width: 60%; background-color: #5A64B0;}
+			.left {width: 60%; background-color: #5A64B0;text-align: left;}
 			
 			.add_num{
 				color: #FC595C;
+				font-size:0.12rem;
 			}
 			.reduce_num{
 				color: #5ABE68;
+				font-size:0.12rem;
 			}
 			
 		</style>
 	</head>
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">品类选择</h1>
-			<img src="../images/app.png" class="head_right">
-		</header>
+
+
+	<div class="header-bar">
+
+		<div class="header-left" onclick="mui.back();">
+			<span class="mui-icon mui-icon-arrowleft"></span>
+		</div>
+
+		<div class="header-title">品类选择</div>
+
+
+		<div class="header-right" ontouchstart="showCondition();" >
+			<img s src="../images/icon/tab_menu_filter@2x.png"/>
+		</div>
+
+
+	</div>
 		
 		
 		<div class="mui-content" style="text-align: center; background: #F1F1F1;">
 			<div class="row select_type">
-				<div class="col_center item" onclick="changeType(0)">
-					<span class="titleType active" >好奇止尿裤</span>
-					<span class="active_line"></span>
-				</div>
-				
-				<div class="col_center item" onclick="changeType(1)">
-					<span class="titleType" >好奇成长裤</span>
-					<span class=""></span>
-				</div>
-				
-				<div class="col_center item" onclick="changeType(2)">
-					<span class="titleType" >好奇湿巾</span>
-					<span class=""></span>
-				</div>
+
+
+
 				
 			</div>
 			
@@ -271,11 +290,11 @@
 				
 				<div class="row_between content_head">
 					<div class="col_between head_wrap">
-						<span class="head_name">好奇纸尿裤</span>
+						<div class="head_name" id="head_name"></div>
 						<div class="head_left_wrap">
 							<div class="row_between item">
 								<span>高出行业</span>
-								<span>5%</span>
+								<span><span  id="competition_praise_ratio"></span>%</span>
 							</div>
 							<div class="row_between item">
 								<span>当月环比</span>
@@ -283,26 +302,19 @@
 									<div class="contain">
 										<div class="corner"></div>
 									</div>
-									<div>2%</div>
+									<div><span id="ring_praise_ratio"></span>%</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!--背景圆-->
 					<div class="circle">
-						<!--左半边圆-->
-						<div class="circle_left">
-							<div class="clip_left">
-								 
-							</div>
-						</div>
-						<!--右半边圆-->
-						<div class="circle_right">
-							<div class="clip_right"></div>
-						</div>
+
+						<div class="huan" id="praise_ratio"></div>
+
 						<div class="mask">
 							<div>
-								<span class="percent_num">75</span>
+								<span class="percent_num"></span>
 								<span class="percent">%</span>
 							</div>
 							
@@ -315,15 +327,16 @@
 				
 			</div>
 			
-			<div>
-				<div class="wrap">
+			<div class="brand-list">
+
+				<!--<div class="wrap">
 					<div class="item_wrap">
 						<div class="left_wrap">
 							<div class="head_title">
 								<span class="head_name">好奇心钻纸尿裤</span>
 							</div>
 							
-							<div class="row_between">
+							<div class="row_between second-text">
 								<span>好评600</span>
 								<span>差评400</span>
 							</div>
@@ -333,7 +346,7 @@
 							  <span class="right">40%</span>
 							</div>
 							
-							<div class="row_between">
+							<div class="row_between third-text">
 								<div>
 									<span>环比增长</span>
 									<span class="add_num">+12%</span>
@@ -350,80 +363,8 @@
 							<img src="../images/load_more.png" >
 						</div>
 					</div>
-				</div>
-				
-				<div class="wrap">
-					<div class="item_wrap">
-						<div class="left_wrap">
-							<div class="head_title">
-								<span class="head_name">好奇心钻纸尿裤</span>
-							</div>
-							
-							<div class="row_between">
-								<span>好评600</span>
-								<span>差评400</span>
-							</div>
-							
-							<div class="container">
-							  <div class="skills left">60%</div>
-							  <span class="right">40%</span>
-							</div>
-							
-							<div class="row_between">
-								<div>
-									<span>环比增长</span>
-									<span>12%</span>
-								</div>
-								<div>
-									<span>环比增长</span>
-									<span>12%</span>
-								</div>
-							</div>
-							
-						</div>
-						
-						<div class="row_center right_wrap">
-							<img src="../images/load_more.png" >
-						</div>
-					</div>
-				</div>
-				
-				<div class="wrap">
-					<div class="item_wrap">
-						<div class="left_wrap">
-							<div class="head_title">
-								<span class="head_name">好奇心钻纸尿裤</span>
-							</div>
-							
-							<div class="row_between">
-								<span>好评600</span>
-								<span>差评400</span>
-							</div>
-							
-							<div class="container">
-							  <div class="skills left">60%</div>
-							  <span class="right">40%</span>
-							</div>
-							
-							<div class="row_between">
-								<div>
-									<span>环比增长</span>
-									<span>12%</span>
-								</div>
-								<div>
-									<span>环比增长</span>
-									<span>12%</span>
-								</div>
-							</div>
-							
-						</div>
-						
-						<div class="row_center right_wrap">
-							<img src="../images/load_more.png" >
-						</div>
-					</div>
-				</div>
-				
+				</div>-->
+
 			</div>
 			
 			
@@ -436,115 +377,184 @@
 	<script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../js/app.js"></script>
 	<script src="../js/myStorage.js"></script>
+	<script src="../js/moment.min.js"></script>
+	<script src="../js/condition.js"></script>
+	<script src="../js/mui.picker.min.js"></script>
+	<script src="../js/circleChart.min.js"></script>
 	<script type="text/javascript">
 		
 		mui.init();
 		
 		mui.plusReady(function() {
-			
+
+			httpRequest()
+
 		});
-		
-		$(function(){
-			console.log($('.percent_num').text());
-				if( $('.percent_num').text() <= 50 ){
-					$('.circle_right').css('transform','rotate('+($('.percent_num').text()*3.6)+'deg)');
-				}else{
-					$('.circle_right').css({
-						'transform':'rotate(0deg)',
-						"background":"#9DA1E7"
-					});
-					$('.circle_left').css('transform','rotate('+(($('.percent_num').text()-50)*3.6)+'deg)');
+
+		mui(".brand-list").on('tap','.wrap',function(event){
+
+			var product_line_id=$(this).attr("data-id");
+
+			Global.openWindow({
+				url: 'jingpin.html?product_line_id='+product_line_id,
+				id: 'jingpin.html',
+				waiting: {
+					autoShow: false
 				}
 			})
-		
-		function changeType(index){
-			$(".titleType").each(function(ind){
-				$(this).removeClass("active");
-				$(this).next().removeClass("active_line");
-				
-				if(index == ind){
-					$(this).addClass("active");
-					$(this).next().addClass("active_line");
-					
-				}
-			})
-		}	
-		
-		$("input").focus(function(){
-		  $(this).parent().css("border-bottom","1px solid #107EFF");
+
+
 		});
-		
-		$("input").blur(function(){
-		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
+
+
+		mui("body").on('tap','.select_type .item',function(event){
+
+			$(".select_type .item").removeClass("active");
+			$(this).addClass("active");
+			$("#head_name").text($(".select_type .active").find(".titleType").text());
+			firstInitData();
+
+
 		});
-		
-		function goToForget(){
-			Global.openWindow({
-			    url: 'forget.html',
-			    id: 'forget.html',
-			    waiting: {
-			        autoShow: false
-			    }
-			})
-		}
-		
-		
-		function goToRegister(){
-			Global.openWindow({
-			    url: 'register.html',
-			    id: 'register.html',
-			    waiting: {
-			        autoShow: false
-			    }
-			})
-		}
-		
-		function loginAction(){
-			var mobile = $(".mobile").val();
-			if(mobile && mobile.length != 11){
-				mui.toast("请输入正确手机号");
-				return;
-			}
-			
-			var password = $(".password").val();
-			if(!password){
-				mui.toast("请输入正确的密码");
-				return;
-			}
-			
-			
-			var params = {
-				mobile: mobile,
-				password: password
-			}
+
+
+		function firstInitData()
+		{
+			$(".brand-list").empty();
+
+			$("#rightModal").hide();
+
+			var param={};
+			param.category_id=$(".select_type .active").attr("data-id");
+
+			var platform_id="";
+			$(".platforms-list .active").each(function(index)
+			{
+				platform_id=platform_id+","+$(this).attr("data-id");
+			});
+
+			platform_id=platform_id.slice(1);
+
+			param.platform_id=platform_id
+			param.start_date=$("#startTime").text();
+			param.end_date=$("#endTime").text();
+
+			console.log("获取品类好评率条件");
+			console.log(JSON.stringify(param));
+
 			Global.commonAjax({
-				url: 'login',
-				method: 'POST',
-				data: params
+				url: 'app/brand/get-category-praise-ratio/',
+				data:param,
+				method: 'GET'
 			}, function(data){
-				mui.toast("登录成功");
-				console.log(data.token);
-				myStorage.setItem("token", data.token);
-				//发送事件 我的页面刷新
-				sendRefresh();
-				plus.webview.currentWebview().close();
-				
-				
+
+				console.log("获取品类好评率返回数据");
+				console.log(JSON.stringify(data));
+
+				data=data.category_praise_ratio;
+				var praise_ratio=parseFloat(data.praise_ratio*100).toFixed(2);
+				$(".percent_num").text(praise_ratio);
+
+				$(".huan").circleChart({
+					size: 80,
+					value: praise_ratio,
+					text: "",
+					color:"#9D9FE9",
+					onDraw: function(el, circle) {
+						//circle.text(Math.round(circle.value) + "%");
+					}
+				});
+
+				$("#competition_praise_ratio").text(parseFloat(data.competition_praise_ratio*100).toFixed(2));
+				$("#ring_praise_ratio").text(parseFloat(data.ring_praise_ratio*100).toFixed(2));
+
+
+			},function(err)
+			{
+				console.log("品牌条件返回数据失败"+err);
+			});
+
+
+			Global.commonAjax({
+				url: 'app/brand/get-product-line-praise-ratio/',
+				data:param,
+				method: 'GET'
+			}, function(data){
+
+				console.log("获取产品线好评率返回数据");
+				console.log(JSON.stringify(data));
+
+				data=data.product_line_praise_ratio;
+
+				for(var i=0;i<data.length;i++)
+				{
+					var ring_praise_ratio=(data[i].ring_praise_ratio*100).toFixed(2);
+					var ring_bad_ratio=(data[i].ring_bad_ratio*100).toFixed(2);
+
+					var praise_ratio=(data[i].praise_ratio*100).toFixed(2);
+					var bad_ratio=(data[i].bad_ratio*100).toFixed(2);
+
+					$(".brand-list").append('<div class="wrap" data-id="'+data[i].product_line_id+'"><div class="item_wrap">' +
+							'<div class="left_wrap"><div class="head_title">' +
+							'<span class="head_name">'+data[i].product_line_name+'</span></div> ' +
+							'<div class="row_between second-text"><span>好评'+data[i].praise_total+'</span><span>差评'+data[i].bad_total+'</span>' +
+							'</div><div class="container">' +
+							'<div class="skills left">'+praise_ratio+'%</div><span class="right">'+bad_ratio+'%</span></div>' +
+							'<div class="row_between third-text"><div>' +
+							'<span>环比增长</span>' +
+							'<span class="add_num">'+ring_praise_ratio+'%</span>' +
+							'</div><div><span>环比增长</span><span class="reduce_num">'+ring_bad_ratio+'%</span>' +
+							'</div></div></div>' +
+							'<div class="row_center right_wrap">' +
+							'<img src="../images/load_more.png">' +
+							'</div></div></div>');
+				}
+
+
+
+			},function(err)
+			{
+				console.log("品牌条件返回数据失败"+err);
+			});
+
+
+		}
+
+		var brand_id=GetQueryString("brand_id");
+
+		function httpRequest()
+		{
+			Global.commonAjax({
+				url: 'app/brand/get-categorys/',
+				data: {brand_id:brand_id}
+			}, function(data){
+
+				console.log("收藏品牌列表");
+				for(var i=0;i<data.categorys.length;i++)
+				{
+					$(".select_type").append('<div  data-id="'+data.categorys[i].category_id+'" class="col_center item">'+
+							'<span class="titleType" >'+data.categorys[i].category_name+'</span>'+
+							'<span class="active_line"></span>'+
+							'</div>');
+				}
+
+				$(".select_type div").eq(0).addClass("active");
+				$("#head_name").text($(".select_type .active").find(".titleType").text());
+
+				getCondition();
+
+
 			}, function(err){
-				mui.toast(err);
+				console.log("收藏品牌列表失败"+err);
 			});
 		}
+
+
+
 		
-		function closeLogin(){
-			console.log("colse")
-			plus.webview.currentWebview().close();
-		}
+
 		
-		function sendRefresh(){
-			console.log("sendRefresh")
-			var h = plus.webview.getWebviewById("html/my.html");
-			mui.fire(h,'loginRefresh',{loginRefresh: "loginRefresh"});
-		}
+
 		
 	</script>
 </html>

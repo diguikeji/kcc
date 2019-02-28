@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="../css/app.css">
 		<link rel="stylesheet" href="../css/swiper.min.css">
 		<link rel="stylesheet" href="../css/page.css">
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
 		<link rel="stylesheet" href="../css/firstPage.css">
 		<style type="text/css">
 			body{
@@ -19,7 +20,7 @@
 	</head>
 	<body>
 		<div class="header-bar tab-header" >
-		    <div class="header-left">
+		    <div class="header-left" ontouchstart="showChildLeftMenu();">
 		    	<img id="portrait" src="../images/default_head.png">
 		    </div>
 			
@@ -221,11 +222,15 @@
 
 		</div>
 
+		<div class="tab-border"></div>
+
 	</body>
 	<script type="text/javascript" src="../js/mui.min.js"></script>
 	<script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../js/app.js"></script>
 	<script src="../js/myStorage.js"></script>
+	<script src="../js/menu.js"></script>
+	<script src="../js/mui.picker.min.js"></script>
 	<script type="text/javascript">
 
 		$(".header-tab span").on("touchstart",function()
@@ -246,6 +251,10 @@
 
 		});
 
+		window.addEventListener('loginTabRefresh',function(e){
+			console.log("收藏loginTabRefresh");
+			httpRequest();
+		});
 
 		function  httpRequest()
 		{
@@ -260,22 +269,23 @@
 				console.log(JSON.stringify(data));
 
 				var baifenbi1=100*(data.my_brand.praise_total/data.my_brand.total);
-
+				$("#shoucangList1").empty();
 				$("#shoucangList1").append('<li style="border-left: 5px solid '+data.my_brand.brand_color1+';">' +
-						'<div class="left"> <img src="'+data.my_brand.brand_icon1+'"/> <div class="text" style="color: '+data.my_brand.brand_color1+';"> '+data.my_brand.week_praise_total+' <p>本周好评</p> </div> </div>' +
+						'<div class="left"> <img src="'+baseServerUrl+data.my_brand.brand_icon1+'"/> <div class="text" style="color: '+data.my_brand.brand_color1+';"> '+data.my_brand.week_praise_total+' <p>本周好评</p> </div> </div>' +
 						'<div class="right"><div class="hengtiao">' +
 						'<div style="width:'+baifenbi1+'%;" style="background: -webkit-linear-gradient(left, #fff , #cf102d);"><span style="background:  '+data.my_brand.brand_color1+';"><img src="../images/icon/dianzan.png"/></span> </div>' +
 						'</div>' +
 						'<div class="bottom-text clearfix"><div>累计好评 <span>'+data.my_brand.praise_total+'</span></div>' +
 						'<div>总评 <span>'+data.my_brand.total+'</span> </div></div></div></li>');
 
+				$("#shoucangList2").empty();
 				for(var i=0;i<data.collect_brands.length;i++)
 				{
 
 					var baifenbi2=100*(data.collect_brands[i].praise_total/data.collect_brands[i].total);
 
 					$("#shoucangList2").append('<li style="border-left: 5px solid '+data.my_brand.brand_color1+';">' +
-							'<div class="left"> <img src="'+data.collect_brands[i].brand_icon1+'"/>' +
+							'<div class="left"> <img src="'+baseServerUrl+data.collect_brands[i].brand_icon1+'"/>' +
 							'<div class="text" style="color: '+data.my_brand.brand_color1+';"> '+data.collect_brands[i].week_praise_total+' <p>本周好评</p> </div> </div>' +
 							'<div class="right"><div class="hengtiao">' +
 							'<div style="width:'+baifenbi2+'%;" style="background: -webkit-linear-gradient(left, #fff , #cf102d);"><span style="background:  '+data.my_brand.brand_color1+';"><img src="../images/icon/dianzan.png"/></span> </div>' +
@@ -302,7 +312,7 @@
 				console.log(JSON.stringify(data));
 
 					$("#chanpinList1").append('<li data-id="'+data.my_product_line.product_line_id+'">'+
-							'<img class="left" src="'+data.my_product_line.product_line_icon+'"/>'+
+							'<img class="left" src="'+baseServerUrl+data.my_product_line.product_line_icon+'"/>'+
 							'<div class="middle">'+data.my_product_line.product_line_name+'</div>'+
 							'<div class="right">'+
 							'<span class="mui-icon mui-icon-arrowright"></span>'+
@@ -313,7 +323,7 @@
 				for(var i=0;i<data.collect_product_lines.length;i++)
 				{
 					$("#chanpinList2").append('<li data-id="'+data.collect_product_lines[i].product_line_id+'">'+
-							'<img class="left" src="'+data.collect_product_lines[i].product_line_icon+'"/>'+
+							'<img class="left" src="'+baseServerUrl+data.collect_product_lines[i].product_line_icon+'"/>'+
 							'<div class="middle">'+data.collect_product_lines[i].product_line_name+'</div>'+
 							'<div class="right">'+
 							'<span class="mui-icon mui-icon-arrowright"></span>'+

@@ -117,7 +117,6 @@
         "launchwebview" : {
             "bottom" : "0px",
             "background" : "#fff",
-            "border" : "1px solid #999",
             "subNViews" : [
                 {
                     "id" : "tabBarColView",
@@ -126,7 +125,6 @@
                         "left" : "0",
                         "height" : "50px",
                         "width" : "100%",
-                        "border" : "1px solid #999",
                         "backgroundColor" : "#fff"
                     },
                     "tags" : [
@@ -229,26 +227,7 @@
                 //Android应用打包使用密钥库中证书的密码
                 "aliasname" : "",
                 //Android应用打包使用密钥库中证书的别名
-                "permissions" : [
-                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
-                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
-                    "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
-                    "<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>",
-                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
-                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
-                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
-                    "<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>",
-                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
-                    "<uses-permission android:name=\"android.permission.SEND_SMS\"/>",
-                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
-                    "<uses-feature android:name=\"android.hardware.camera\"/>",
-                    "<uses-permission android:name=\"android.permission.WRITE_SMS\"/>",
-                    "<uses-permission android:name=\"android.permission.READ_SMS\"/>"
-                ]
+                "permissions" : ["<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>","<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.SEND_SMS\"/>","<uses-permission android:name=\"android.permission.INTERNET\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"android.permission.WRITE_SMS\"/>","<uses-permission android:name=\"android.permission.READ_SMS\"/>"]
             },
             "orientation" : [ "portrait-primary" ],
             "icons" : {
@@ -315,15 +294,15 @@
                         //iPhone3启动图片选，分辨率：320x480
                         "retina35" : "",
                         //3.5英寸设备(iPhone4)启动图片，分辨率：640x960
-                        "retina40" : "E:/self/word/kcc/APP端/KCC效果图、切图/icon切图/闪屏启动页/启动页640-1136.png",
+                        "retina40" : "D:/MyFile/项目/KCC/app端/KCC效果图、切图/icon切图/闪屏启动页/启动页828-1792.png",
                         //4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136
-                        "retina47" : "E:/self/word/kcc/APP端/KCC效果图、切图/icon切图/闪屏启动页/splash_screen@2x.png",
+                        "retina47" : "D:/MyFile/项目/KCC/app端/KCC效果图、切图/icon切图/闪屏启动页/splash_screen@2x.png",
                         //4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334
-                        "retina55" : "E:/self/word/kcc/APP端/KCC效果图、切图/icon切图/闪屏启动页/启动页1242-2208.png",
+                        "retina55" : "D:/MyFile/项目/KCC/app端/KCC效果图、切图/icon切图/闪屏启动页/splash_screen@1x.png",
                         //5.5 英寸设备(iPhone6 Plus)启动图片，分辨率：1242x2208
                         "retina55l" : "",
                         //5.5 英寸设备(iPhone6 Plus)横屏启动图片，分辨率：2208x1242
-                        "iphonex" : "E:/self/word/kcc/APP端/KCC效果图、切图/icon切图/闪屏启动页/启动页1125-2436.png",
+                        "iphonex" : "D:/MyFile/项目/KCC/app端/KCC效果图、切图/icon切图/闪屏启动页/启动页1125-2436.png",
                         //iPhoneX启动图片，分辨率：1125x2436
                         "iphonexl" : "",
                         "portrait-896h@2x" : "E:/self/word/kcc/APP端/KCC效果图、切图/icon切图/闪屏启动页/启动页828-1792.png",
@@ -354,11 +333,11 @@
                     //普通屏启动图片，分辨率：240x282
                     "ldpi" : "",
                     //大屏启动图片，分辨率：320x442
-                    "hdpi" : "",
+                    "hdpi" : "D:/MyFile/项目/KCC/app端/KCC效果图、切图/icon切图/闪屏启动页/splash_screen@1x.png",
                     //高分屏启动图片，分辨率：480x762
-                    "xhdpi" : "",
+                    "xhdpi" : "D:/MyFile/项目/KCC/app端/KCC效果图、切图/icon切图/闪屏启动页/splash_screen@2x.png",
                     //720P高分屏启动图片，分辨率：720x1242
-                    "xxhdpi" : ""
+                    "xxhdpi" : "D:/MyFile/项目/KCC/app端/KCC效果图、切图/icon切图/闪屏启动页/splash_screen@3x.png"
                 }
             },
             //1080P高分屏启动图片，分辨率：1080x1882

@@ -201,6 +201,19 @@
 			console.log("sendRefresh")
 			var h = plus.webview.getWebviewById("index-menu.html");
 			mui.fire(h,'loginRefresh',{loginRefresh: "loginRefresh"});
+
+			//刷新三个tab页面数据
+			var h0 = plus.webview.getWebviewById("html/brand.html");
+			mui.fire(h0,'loginTabRefresh');
+
+			var h1 = plus.webview.getWebviewById(plus.runtime.appid);
+			mui.fire(h1,'loginTabRefresh');
+
+
+			var h2 = plus.webview.getWebviewById("html/shoucang.html");
+			mui.fire(h2,'loginTabRefresh');
+
+
 		}
 		
 	</script>
