@@ -9,10 +9,14 @@
       "html/express.html",
       "html/service.html",
       "html/complain.html",
-      "html/login.html"
+      "html/login.html",
+      "index-menu.html",
+      "html/shoucang.html",
+      "html/jingpin.html"
     ],
     "resources": [
-      "html/service.html"
+      "html/service.html",
+      "html/brand.html"
     ]
   },
   "template.html": {
@@ -54,13 +58,33 @@
   "html/service.html": {
     "refer": [
       "html/login.html"
-    ]
+    ],
+    "resources": []
   },
   "html/express.html": {
     "refer": [
       "html/expressSearch.html",
       "html/test.html",
       "html/expressDetail.html"
-    ]
+    ],
+    "resources": []
+  },
+  "html/brand.html": {
+    "refer": [
+      "html/brand_list.html"
+    ],
+    "resources": []
+  },
+  "html/brand_list.html": {
+    "refer": [
+      "html/jingpin.html"
+    ],
+    "resources": []
+  },
+  "index-menu.html": {
+    "refer": [
+      "html/login.html"
+    ],
+    "resources": []
   }
 }

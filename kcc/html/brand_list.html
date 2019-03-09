@@ -7,10 +7,12 @@
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<link rel="stylesheet" href="../css/page.css">
 		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+		<link rel="stylesheet" href="../css/swiper.min.css">
 		<link rel="stylesheet" href="../css/app.css">
 		<style type="text/css">
+			
 			body{
-				background: #f1f1f1;;
+				background: #f1f1f1;
 			}
 			.head_right{
 				float: right;
@@ -59,6 +61,13 @@
 			
 			.content_wrap{
 				padding:1.05rem 0.15rem 0.15rem 0.15rem;
+
+			}
+
+			.swiper-detail{
+				width:100%;
+				height:100%;
+				overflow: auto;
 			}
 			
 			.content_head{
@@ -279,93 +288,24 @@
 		
 		
 		<div class="mui-content" style="text-align: center; background: #F1F1F1;">
+
 			<div class="row select_type">
 
 
-
-				
 			</div>
-			
-			<div class="content_wrap">
-				
-				<div class="row_between content_head">
-					<div class="col_between head_wrap">
-						<div class="head_name" id="head_name"></div>
-						<div class="head_left_wrap">
-							<div class="row_between item">
-								<span>高出行业</span>
-								<span><span  id="competition_praise_ratio"></span>%</span>
-							</div>
-							<div class="row_between item">
-								<span>当月环比</span>
-								<div class="row_center">
-									<div class="contain">
-										<div class="corner"></div>
-									</div>
-									<div><span id="ring_praise_ratio"></span>%</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--背景圆-->
-					<div class="circle">
 
-						<div class="huan" id="praise_ratio"></div>
 
-						<div class="mask">
-							<div>
-								<span class="percent_num"></span>
-								<span class="percent">%</span>
-							</div>
-							
-							<span class="recommand_text">好评率</span>
-						</div>
-					</div>
-					
+			<div class="swiper-container swiper-banner">
+				<div class="swiper-wrapper" id="allList">
+
+
+
+
 				</div>
-				
-				
 			</div>
-			
-			<div class="brand-list">
 
-				<!--<div class="wrap">
-					<div class="item_wrap">
-						<div class="left_wrap">
-							<div class="head_title">
-								<span class="head_name">好奇心钻纸尿裤</span>
-							</div>
-							
-							<div class="row_between second-text">
-								<span>好评600</span>
-								<span>差评400</span>
-							</div>
-							
-							<div class="container">
-							  <div class="skills left">60%</div>
-							  <span class="right">40%</span>
-							</div>
-							
-							<div class="row_between third-text">
-								<div>
-									<span>环比增长</span>
-									<span class="add_num">+12%</span>
-								</div>
-								<div>
-									<span>环比增长</span>
-									<span class="reduce_num">-10%</span>
-								</div>
-							</div>
-							
-						</div>
-						
-						<div class="row_center right_wrap">
-							<img src="../images/load_more.png" >
-						</div>
-					</div>
-				</div>-->
 
-			</div>
+
 			
 			
 		</div>
@@ -381,6 +321,7 @@
 	<script src="../js/condition.js"></script>
 	<script src="../js/mui.picker.min.js"></script>
 	<script src="../js/circleChart.min.js"></script>
+	<script src="../lib/swiper.min.js"></script>
 	<script type="text/javascript">
 		
 		mui.init();
@@ -391,7 +332,7 @@
 
 		});
 
-		mui(".brand-list").on('tap','.wrap',function(event){
+		mui("body").on('tap','.wrap',function(event){
 
 			var product_line_id=$(this).attr("data-id");
 
@@ -411,21 +352,35 @@
 
 			$(".select_type .item").removeClass("active");
 			$(this).addClass("active");
-			$("#head_name").text($(".select_type .active").find(".titleType").text());
-			firstInitData();
+
+			swiper.slideTo($(this).index(), 500, false);
 
 
 		});
 
-
-		function firstInitData()
+		function  firstInitData()
 		{
-			$(".brand-list").empty();
+			
+			$("#allList .swiper-slide").each(function(index)
+			{
+				xunhuan($(this));
+			});
+		}
+
+		var waitingLoading;
+		function xunhuan($obj)
+		{
+			if(!waitingLoading)
+			{
+				waitingLoading = plus.nativeUI.showWaiting("加载中...");
+			}
+
+			$obj.find(".brand-list").empty();
 
 			$("#rightModal").hide();
 
 			var param={};
-			param.category_id=$(".select_type .active").attr("data-id");
+			param.category_id=$obj.attr("data-id");
 
 			var platform_id="";
 			$(".platforms-list .active").each(function(index)
@@ -438,6 +393,7 @@
 			param.platform_id=platform_id
 			param.start_date=$("#startTime").text();
 			param.end_date=$("#endTime").text();
+			param.brand_id=brand_id;
 
 			console.log("获取品类好评率条件");
 			console.log(JSON.stringify(param));
@@ -453,26 +409,40 @@
 
 				data=data.category_praise_ratio;
 				var praise_ratio=parseFloat(data.praise_ratio*100).toFixed(2);
-				$(".percent_num").text(praise_ratio);
+				//$(".percent_num").text(praise_ratio);
 
-				$(".huan").circleChart({
+				$obj.find(".huan").circleChart({
 					size: 80,
 					value: praise_ratio,
 					text: "",
 					color:"#9D9FE9",
 					onDraw: function(el, circle) {
-						//circle.text(Math.round(circle.value) + "%");
+
+						var timeId=setInterval(function() {
+							var percent_num=parseInt($obj.find(".percent_num").text());
+							if(percent_num>=praise_ratio)
+							{
+								clearInterval(timeId);
+							}
+							else {
+								percent_num++
+								$obj.find(".percent_num").text(percent_num);
+							}
+
+						}, 500);
+
 					}
 				});
 
-				$("#competition_praise_ratio").text(parseFloat(data.competition_praise_ratio*100).toFixed(2));
-				$("#ring_praise_ratio").text(parseFloat(data.ring_praise_ratio*100).toFixed(2));
+				$obj.find(".competition_praise_ratio").text(parseFloat(data.competition_praise_ratio*100).toFixed(2));
+				$obj.find(".ring_praise_ratio").text(parseFloat(data.ring_praise_ratio*100).toFixed(2));
 
 
 			},function(err)
 			{
 				console.log("品牌条件返回数据失败"+err);
 			});
+
 
 
 			Global.commonAjax({
@@ -484,6 +454,12 @@
 				console.log("获取产品线好评率返回数据");
 				console.log(JSON.stringify(data));
 
+
+				if($obj.index()==$(".select_type .item").length-1)
+				{
+					waitingLoading.close();
+				}
+
 				data=data.product_line_praise_ratio;
 
 				for(var i=0;i<data.length;i++)
@@ -494,16 +470,33 @@
 					var praise_ratio=(data[i].praise_ratio*100).toFixed(2);
 					var bad_ratio=(data[i].bad_ratio*100).toFixed(2);
 
-					$(".brand-list").append('<div class="wrap" data-id="'+data[i].product_line_id+'"><div class="item_wrap">' +
+					var ring_praise_ratioHtml="";
+					if(ring_praise_ratio>0)
+					{
+						ring_praise_ratioHtml='<span class="add_num ">+'+ring_praise_ratio+'%</span>';
+					}
+					else {
+						ring_praise_ratioHtml='<span class="reduce_num">'+ring_praise_ratio+'%</span>';
+					}
+
+					var ring_bad_ratioHtml="";
+					if(ring_bad_ratio>0)
+					{
+						ring_bad_ratioHtml='<span class="add_num">+'+ring_bad_ratio+'%</span>';
+					}
+					else {
+						ring_bad_ratioHtml='<span class="reduce_num">'+ring_bad_ratio+'%</span>';
+					}
+
+					$obj.find(".brand-list").append('<div class="wrap" data-id="'+data[i].product_line_id+'"><div class="item_wrap">' +
 							'<div class="left_wrap"><div class="head_title">' +
 							'<span class="head_name">'+data[i].product_line_name+'</span></div> ' +
 							'<div class="row_between second-text"><span>好评'+data[i].praise_total+'</span><span>差评'+data[i].bad_total+'</span>' +
 							'</div><div class="container">' +
 							'<div class="skills left">'+praise_ratio+'%</div><span class="right">'+bad_ratio+'%</span></div>' +
 							'<div class="row_between third-text"><div>' +
-							'<span>环比增长</span>' +
-							'<span class="add_num">'+ring_praise_ratio+'%</span>' +
-							'</div><div><span>环比增长</span><span class="reduce_num">'+ring_bad_ratio+'%</span>' +
+							'<span>环比增长</span>' +ring_praise_ratioHtml+
+							'</div><div><span>环比增长</span>'+ring_bad_ratioHtml+
 							'</div></div></div>' +
 							'<div class="row_center right_wrap">' +
 							'<img src="../images/load_more.png">' +
@@ -520,7 +513,20 @@
 
 		}
 
+		function slideChange()
+		{
+			var index=swiper.activeIndex;
+
+			$(".select_type .item").removeClass("active");
+			$(".select_type .item").eq(index).addClass("active");
+
+
+		}
+
+
 		var brand_id=GetQueryString("brand_id");
+
+		var swiper;
 
 		function httpRequest()
 		{
@@ -532,14 +538,71 @@
 				console.log("收藏品牌列表");
 				for(var i=0;i<data.categorys.length;i++)
 				{
+
 					$(".select_type").append('<div  data-id="'+data.categorys[i].category_id+'" class="col_center item">'+
 							'<span class="titleType" >'+data.categorys[i].category_name+'</span>'+
 							'<span class="active_line"></span>'+
 							'</div>');
+
+					$("#allList").append('' +
+					'<div class="swiper-slide" data-id="'+data.categorys[i].category_id+'">'+
+						'<div class="swiper-detail" >' +
+
+							'<div class="content_wrap">'+
+
+							'<div class="row_between content_head">'+
+								'<div class="col_between head_wrap">'+
+									'<div class="head_name head_name_top">'+data.categorys[i].category_name+'</div>'+
+									'<div class="head_left_wrap">'+
+										'<div class="row_between item">'+
+											'<span>高出行业</span><span><span  class="competition_praise_ratio">0</span>%</span>'+
+										'</div>'+
+
+										'<div class="row_between item">'+
+											'<span>当月环比</span>'+
+											'<div class="row_center">'+
+													'<div class="contain">'+
+													'<div class="corner"></div>'+
+													'</div>'+
+													'<div><span class="ring_praise_ratio">0</span>%</div>'+
+											'</div>'+
+										'</div>'+
+
+										'</div>'+
+									'</div>'+
+
+								'<div class="circle">'+
+									'<div class="huan"></div>'+
+									'<div class="mask">'+
+										'<div><span class="percent_num">0</span><span class="percent">%</span></div>'+
+										'<span class="recommand_text">好评率</span>'+
+									'</div>'+
+								'</div>'+
+
+							'</div>' +
+
+							'</div>'+
+							'<div class="brand-list"></div>' +
+
+						'</div>'+
+					'</div>');
+
 				}
 
+				$(".swiper-detail").height($(window).height());
+
 				$(".select_type div").eq(0).addClass("active");
-				$("#head_name").text($(".select_type .active").find(".titleType").text());
+
+
+				swiper = new Swiper('.swiper-banner', {
+					on:{
+						slideChange: function()
+						{
+							slideChange();
+						}
+					}
+
+				});
 
 				getCondition();
 

@@ -155,7 +155,7 @@ var baseServerUrl = "http://mpvpn.3322.org:9090";
                 dataType: "json",
                 type: params.method,
                 data: params.data,
-                timeout: 30000,
+                timeout: 20000,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -188,21 +188,28 @@ var baseServerUrl = "http://mpvpn.3322.org:9090";
                 error: function(data) {
 					
 					//console.log(data.responseText);
+					if(window.location.href.indexOf("brand_list.html")==-1||plus.os.name=="Android")
+					{
+						waiting.close();
+					}
 					
                 },
                 complete: function(xhr, status) {
                     console.log(xhr.status);
 
                     console.log(status);
-
-					waiting.close();
+					if(window.location.href.indexOf("brand_list.html")==-1||plus.os.name=="Android")
+					{
+						waiting.close();
+					}
+					
 					if(xhr.status == 401){
 						//重新登录
    						
 						setTimeout(function()
 						{
 							Global.goToLogin();	
-						},3000)
+						},2000)
 						
 						
 					}else if(xhr.status == 200){
@@ -338,6 +345,28 @@ var baseServerUrl = "http://mpvpn.3322.org:9090";
 	}
 }());
 
+//颜色转化
+var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+String.prototype.colorRgb = function(){
+    var sColor = this.toLowerCase();
+    if(sColor && reg.test(sColor)){
+        if(sColor.length === 4){
+            var sColorNew = "#";
+            for(var i=1; i<4; i+=1){
+                sColorNew += sColor.slice(i,i+1).concat(sColor.slice(i,i+1));
+            }
+            sColor = sColorNew;
+        }
+        //处理六位的颜色值
+        var sColorChange = [];
+        for(var i=1; i<7; i+=2){
+            sColorChange.push(parseInt("0x"+sColor.slice(i,i+2)));
+        }
+        return "rgba(" + sColorChange.join(",") + ",0.5)";
+    }else{
+        return sColor;
+    }
+};
 
 //数据配置文件
 var Config={};

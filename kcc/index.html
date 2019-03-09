@@ -133,11 +133,52 @@
 				
 				mui.plusReady(function() {
 
+					var version=plus.os.version.split(".")[0];
+
+
+					if(plus.os.name=="Android")
+					{
+						
+						plus.io.resolveLocalFileSystemURL( "/system/bin/su", function( entry ) {
+
+							plus.runtime.quit();
+
+						}, function ( e ) {
+
+							
+						});
+						
+					}
+
+					if(plus.os.name=="Android"&&version<5)
+					{
+
+						plus.runtime.quit();
+
+					}
+
+					if(plus.os.name=="iOS"&&version<9)
+					{
+						function  showAlert()
+						{
+							mui.alert('ios版本需要9.0以上', '提示信息', function() {
+								showAlert();
+							});
+						}
+
+						showAlert();
+					}
+
 
 					preload();
 					commonEvent();
 					httpRequest();
 					plus.navigator.setStatusBarBackground('transparent');
+					
+					var ws=plus.webview.getWebviewById(plus.runtime.appid);
+					ws.addEventListener("maskClick",function(){
+						closeMenu();
+					},false);
 					
 					// 创建子webview窗口 并初始化
 					var aniShow = {};
@@ -162,6 +203,11 @@
 							
 						} else if(clientX > parseInt(pageW * 0.33) && clientX <= parseInt(pageW * 0.66)) {
 							currIndex = 1;
+							
+							var h = plus.webview.getWebviewById("html/brand.html");
+							mui.fire(h,'brandAnimate');
+							
+							
 						} 
 						else if(clientX > parseInt(pageW * 0.66) && clientX <= parseInt(pageW * 0.99)) {
 							currIndex = 2;
@@ -197,15 +243,13 @@
 					});
 				});
 
+				function filter()
+				{
+					var dataId=$("#swiperList .swiper-slide-active .slide-middle").attr("data-id");
+					var icon=$("#swiperList .swiper-slide-active img").attr("src");
+					yujingList(dataId,icon);
+				}
 
-
-				var ws=plus.webview.getWebviewById(plus.runtime.appid);
-				ws.addEventListener("maskClick",function(){
-					closeMenu();
-				},false);
-
-
-				
 				//初始化，并预加载webview模式的选项卡
 				function preload() {
 				
@@ -291,13 +335,12 @@
 									$("#swiperList").append('<div class="swiper-slide">'+
 											'<div class="row">'+
 											'<div class="slide-detail flex_one">'+data.brand_count[i].praise_total+' <div>好评</div></div>'+
-											'<div class="slide-detail slide-middle"><img class="logo'+i+'" src="'+baseServerUrl+icon+'"></div>'+
+											'<div class="slide-detail slide-middle" data-id="'+data.brand_count[i].brand_id+'"><img class="logo'+i+'" src="'+baseServerUrl+icon+'"></div>'+
 											'<div class="slide-detail flex_one">'+data.brand_count[i].bad_total+'<div>负评</div>'+
 											'</div>'+
 											'</div>'+
 											'</div>');
 								}
-
 								if(swiper)
 								{
 									swiper.destroy();
@@ -306,9 +349,18 @@
 									slidesPerView: 1.2,
 									loop : true,
 									centeredSlides: true,
-									spaceBetween: 16
+									spaceBetween: 16,
+									on:{
+										slideChange: function()
+										{
+											filter();
+										}
+									}
 
 								});
+
+								filter();
+
 
 							}, function(err){
 								mui.toast(err);
@@ -322,29 +374,6 @@
 						console.log("err"+err);
 
 					});
-
-					Global.commonAjax({
-						url: 'app/brand/get-brands/',
-						method: 'GET'
-					}, function(data)
-					{
-
-						$("#list").empty();
-						console.log("首页品牌列表");
-						console.log(JSON.stringify(data));
-						data=data.brands;
-						
-						for(var i=0;i<data.length;i++)
-						{
-							yujingList(data[i].brand_id,data[i].brand_icon1);
-						}
-
-					},function(err){
-
-					console.log("err"+err);
-
-				   });
-
 
 
 				}
@@ -362,6 +391,7 @@
 					console.log("获取预警消息");
 					console.log(JSON.stringify(data));
 					data=data.alert_messages;
+					$("#list").empty();
 					for(var i=0;i<data.length;i++)
 					{
 
@@ -373,7 +403,7 @@
 						}
 
 						$("#list").append('<li data-id="'+data[i].product_line_id+'" data-message_id="'+data[i].message_id+'">'+
-								'<img src="'+baseServerUrl+icon+'" />'+
+								'<img src="'+icon+'" />'+
 								'<div class="right-col">'+
 								'<div>'+data[i].product_line_name+'</div>'+
 								'<p>'+data[i].message+'</p>'+

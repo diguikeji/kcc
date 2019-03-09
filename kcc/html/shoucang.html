@@ -337,6 +337,37 @@
 			});
 		}
 		
+		mui("#chanpinList1").on('tap','li',function(event){
+
+			var product_line_id=$(this).attr("data-id");
+
+			Global.openWindow({
+				url: 'jingpin.html?product_line_id='+product_line_id,
+				id: 'jingpin.html',
+				waiting: {
+					autoShow: false
+				}
+			})
+
+
+		});
+		
+		mui("#chanpinList2").on('tap','li',function(event){
+
+			var product_line_id=$(this).attr("data-id");
+
+			Global.openWindow({
+				url: 'jingpin.html?product_line_id='+product_line_id,
+				id: 'jingpin.html',
+				waiting: {
+					autoShow: false
+				}
+			})
+
+
+		});
+		
+		
 		window.addEventListener('loginRefresh',function(e){
 				var user=myStorage.getItem("user");
 				$('#portrait').attr("src", user.info.portrait);

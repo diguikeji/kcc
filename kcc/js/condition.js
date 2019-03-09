@@ -1,7 +1,7 @@
 
 function dateCol($obj)
 {
-    var options = {"type":"date"};
+    var options = {"type":"date","value":$($obj).text()};
 
     var picker = new mui.DtPicker(options);
     picker.show(function(rs) {
@@ -85,15 +85,12 @@ function  getCondition()
             ' </div>'+
             ' <div class="modal-bottom">'+
             ' <span ontouchstart="reset();">重置</span>'+
-            ' <span ontouchstart="firstInitData()">确定</span>'+
+            ' <span ontouchstart="modalConfirm()">确定</span>'+
             '</div>'+
             ' </div>'+
             '</div>');
 
-
-            firstInitData();
-
-
+        modalConfirm();
 
 
     },function(err)
@@ -101,7 +98,32 @@ function  getCondition()
         console.log("平台搜索条件失败"+err);
     });
 
-    mui("body").on('tap','.platforms span',function(event){
+    
+
+
+}
+
+
+
+    function modalConfirm()
+    {
+        if($(".platforms .active").length==0)
+        {
+            mui.toast("请选择平台");
+            return;
+        }
+
+        if($(".platforms-list .active").length==0)
+        {
+            mui.toast("请选择店铺");
+            return;
+        }
+
+        firstInitData();
+    }
+
+
+mui("body").on('tap','.platforms span',function(event){
 
         $(this).toggleClass("active");
         var dataId=$(this).attr("data-pid");
@@ -118,6 +140,7 @@ function  getCondition()
     mui("body").on('tap','.platforms-list span',function(event){
 
         $(this).toggleClass("active");
+
 
     });
 
@@ -182,12 +205,6 @@ function  getCondition()
         }
 
     });
-
-
-
-}
-
-
 
 
 

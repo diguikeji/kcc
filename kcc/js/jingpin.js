@@ -21,8 +21,7 @@ if(message_id)
 
 $(".shoucang").on("touchstart",function()
 {
-    if(!$(this).hasClass("active"))
-    {
+
 
         Global.commonAjax({
             url: 'app/collect/add-product-line/',
@@ -32,9 +31,15 @@ $(".shoucang").on("touchstart",function()
 
             console.log("收藏产品线返回数据");
             console.log(JSON.stringify(data));
-            $(".shoucang").addClass("active");
-            mui.toast("收藏成功");
-
+            if($(".shoucang").hasClass("active"))
+            {
+                $(".shoucang").removeClass("active")
+                mui.toast("取消收藏成功");
+            }
+            else {
+                $(".shoucang").addClass("active")
+                mui.toast("收藏成功");
+            }
 
         },function(err)
         {
@@ -42,7 +47,6 @@ $(".shoucang").on("touchstart",function()
         });
 
 
-    }
 });
 
 
@@ -66,6 +70,7 @@ function httpRequest()
         console.log("获取产品线信息返回数据");
         console.log(JSON.stringify(data));
         data=data.product_line_info;
+        $("#sizes").empty();
         for(var i=0;i<data.sizes.length;i++)
         {
 			$("#sizes").append("<div>"+data.sizes[i]+"</div>");
@@ -93,15 +98,34 @@ function httpRequest()
     });
 }
 
+
+function clearAll()
+{
+
+    echarts.init(document.getElementById('jingpinRow1')).clear()
+    echarts.init(document.getElementById('jingpinRow2')).clear()
+    echarts.init(document.getElementById('main')).clear()
+
+}
+
 var sizesList=[];
 function firstInitData()
 {
-
+	//alert($("#jingpinRow2").html());
+	
+    sizesList=[];
     $("#rightModal").hide();
     huanIndex=0;
+    //clearAll();
+
+    $("#jingpinTop").empty();
+    
+    
+
     if($("#bottomCol .active").text()=="尺码对比")
     {
 
+		
         for(var i=0;i<sizes.length;i++)
         {
             var obj={};
@@ -122,6 +146,7 @@ function firstInitData()
 
     if($("#bottomCol .active").text()=="竞品对比")
     {
+    	 
         for(var i=0;i<competing_product_lines.length;i++)
         {
             var colorValue=getRandomColor();
@@ -130,6 +155,7 @@ function firstInitData()
             $("#jingpinTop").append('<span class="jingpin-top-detail">' +
                 '<span class="quan2 quan" style="background: '+colorValue+';">' +
                 '</span>'+competing_product_lines[i].product_line_name+'</span>');
+                
 
             huaxian(competing_product_lines[i].product_line_id,i,competing_product_lines.length-1,1);
 
@@ -161,6 +187,7 @@ function firstInitData()
 var huanIndex=0;
 function  huaxian(product_line_id_value,indexValue,indexLength,typeValue)
 {
+	
 
     var param={};
     param.product_line_id=product_line_id_value;
@@ -191,8 +218,8 @@ function  huaxian(product_line_id_value,indexValue,indexLength,typeValue)
     $("#endTimeStr").text(param.end_date);
     $("#startTimeStr").text(param.start_date);
 
-    console.log("获取产品线竞品对比数据");
-    console.log(JSON.stringify(param));
+    //console.log("获取产品线竞品对比数据");
+    //console.log(JSON.stringify(param));
 
     if(typeValue==1)
     {
@@ -214,8 +241,8 @@ function  huaxian(product_line_id_value,indexValue,indexLength,typeValue)
         method: 'GET'
     }, function(data){
 
-        console.log("获取产品线竞品对比数据返回数据");
-        console.log(JSON.stringify(data));
+        //console.log("获取产品线竞品对比数据返回数据");
+        //console.log(JSON.stringify(data));
 
         if(typeValue==1)
         {
@@ -232,17 +259,18 @@ function  huaxian(product_line_id_value,indexValue,indexLength,typeValue)
 
         huanIndex++;
 
-        if(data.totals.length>0)
-        {
+
             if(indexValue==0)
             {
                 var html="";
                 var html1="";
-                for(var i=0;i<data.totals.length;i++)
-                {
-                    data.totals[i].color=getRandomColor();
-                    html=html+'<div>'+data.totals[i].attr+'</div>';
-                    html1=html1+'<span class="jingpin-top-detail"><span class="quan2 quan" style="background: '+data.totals[i].color+';"></span>'+data.totals[i].attr+'</span>';
+
+                for(var i in data.trends) {
+
+                    data.trends[i].color=getRandomColor();
+                    html=html+'<div>'+i+'</div>';
+                    html1=html1+'<span class="jingpin-top-detail"><span class="quan2 quan" style="background: '+data.trends[i].color+';"></span>'+i+'</span>';
+
                 }
 
                 $(".chart-tab-col").html(html);
@@ -257,7 +285,6 @@ function  huaxian(product_line_id_value,indexValue,indexLength,typeValue)
                 myChart();
             }
 
-        }
 
 
     },function(err)
@@ -298,6 +325,8 @@ function getPinglun()
         console.log("获取产品线评论返回数据");
         console.log(JSON.stringify(data));
         $("#pinglunCount").text(data.comments.length);
+        $(".pinglun-list").empty();
+
         for(var i=0;i<data.comments.length;i++)
         {
             var html="";
@@ -357,8 +386,22 @@ $("#chakanPinglun").click(function()
 
 });
 
+//数组求最大值
+Array.prototype.max = function() {
+    var max = this[0];
+    var len = this.length;
+    for (var i = 1; i < len; i++){
+        if (this[i] > max) {
+            max = this[i];
+        }
+    }
+    return max;
+}
+
+
 function myChart()
 {
+	
     var allData;
     if($("#bottomCol .active").text()=="竞品对比")
     {
@@ -373,62 +416,130 @@ function myChart()
         allData=sizesList;
     }
 
-	    console.log("结果结果"+JSON.stringify(allData));
+    console.log("结果结果"+JSON.stringify(allData));
 
     var series=[];
     var key=$(".chart-tab-col .active").text();
-    var jingpinRowHtml2="";
+
+    var series1=[];
+    var ySeries2=[];
+
+    var series2=[];
+
+    var lineHeight=70;
     for(var i=0;i<allData.length;i++)
     {
+        lineHeight=lineHeight+50;
 
         var chartData=allData[i].data.trends[key];
-
-        jingpinRowHtml2=jingpinRowHtml2+'<div class="jingpin-row"><span class="left">'+allData[i].name+'</span>';
-
-        var oneData=[];
-        for(var j=0;j<chartData.length;j++)
-        {
-            oneData.push(chartData[j].total);
-        }
-
-        var lineData=allData[i].data.totals;
-
-        jingpinRowHtml2=jingpinRowHtml2+'<div class="line-col">';
-
-
-
-        for(var j=0;j<lineData.length;j++)
-        {
-            var baifenbi=parseInt(100*lineData[j].total_ratio);
-            jingpinRowHtml2=jingpinRowHtml2+'<span style="width: '+baifenbi+'%;background:'+allData[0].data.totals[j].color+';">'+baifenbi+'%</span>';
-        }
-
-        jingpinRowHtml2=jingpinRowHtml2+'</div></div>';
-
-        var  seriesObj={
-            name:allData[i].name,
-            type:'line',
-            stack: '总量',
-            smooth: true,
-            symbol: 'circle',
-            itemStyle : {
-                normal : {
-                    color:allData[i].color,
-                    lineStyle:{
-                        color:allData[i].color
-                    }
-                }
-            },
-            data:oneData
-        };
+		
+		if(chartData)
+		{
+			var oneData=[];
+	        for(var j=0;j<chartData.length;j++)
+	        {
+	            oneData.push(chartData[j].total);
+	        }
+	
+	        var  seriesObj={
+	            name:allData[i].name,
+	            type:'line',
+	            stack: '总量',
+	            smooth: true,
+	            symbol: 'circle',
+	            itemStyle : {
+	                normal : {
+	                    color:allData[i].color,
+	                    lineStyle:{
+	                        color:allData[i].color
+	                    }
+	                }
+	            },
+	            data:oneData
+	        };
+	        series.push(seriesObj);
+	
+	        ySeries2.push(allData[i].name);
+		}
 
 
-
-        series.push(seriesObj);
     }
 
-    $("#jingpinRow2").html(jingpinRowHtml2);
+	$(".jingpin-row-list").height(lineHeight);
+    
+    for ( var h in allData[0].data.trends )
+    {
 
+        var oneData1=[];
+        var oneData2=[];
+
+        for(var i=0;i<allData.length;i++)
+        {
+
+            for(var k=0;k<allData[i].data.totals.length;k++)
+            {
+                if(h==allData[0].data.totals[k].attr)
+                {
+                    oneData1.push(allData[i].data.totals[k].total);
+                    oneData2.push((100*allData[i].data.totals[k].total_ratio).toFixed(2));
+                    break;
+                }
+            }
+
+        }
+        
+        var seriesObj1={
+            name:h,
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            itemStyle : {
+                normal : {
+                    color:allData[0].data.trends[h].color
+                }
+            },
+            data: oneData1
+        }
+
+        series1.push(seriesObj1);
+
+		
+        var seriesObj2={
+            name:h,
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            itemStyle : {
+                normal : {
+                    color:allData[0].data.trends[h].color,
+                     label: {
+                        formatter: function (a, b, c) {
+                            return a.data+ "%";
+                        }
+                    }
+                }
+               
+            },
+            data: oneData2
+        }
+
+        series2.push(seriesObj2);
+
+
+    }
+
+
+    
 
     var xAxis=[];
     for(var i=0;i<allData[0].data.trends[key].length;i++)
@@ -446,12 +557,13 @@ function myChart()
         grid: {
             left: '3%',
             right: '4%',
-            bottom: '8%',
+            bottom: '3%',
             containLabel: true
         },
         xAxis: {
             type: 'category',
             boundaryGap: false,
+            show:false,
             data: xAxis
         },
         yAxis: {
@@ -463,6 +575,72 @@ function myChart()
 
     myChart.setOption(option);
 
+
+    var myChart2 = echarts.init(document.getElementById('jingpinRow1'));
+
+    var option1 = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '8%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value'
+        },
+        yAxis: {
+            type: 'category',
+            data: ySeries2
+        },
+        series: series1
+
+    };
+
+    myChart2.setOption(option1);
+
+    var myChart2 = echarts.init(document.getElementById('jingpinRow2'));
+
+    var option2 = {
+        tooltip: {
+            trigger: 'axis',
+            formatter: function (a, b, c) {
+
+                var str=a[0].name+"";
+                for(var i=0;i< a.length;i++)
+                {
+                    str=str+"<br/>"+a[i].marker+ a[i].seriesName+":"+a[i].value+"%";
+                }
+                return str;
+
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '8%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value',
+            show:false,
+            axisLabel : {
+                formatter: function(value){
+                    return value+"%";}
+            }
+        },
+        yAxis: {
+            type: 'category',
+            data: ySeries2
+        },
+        series: series2
+
+    };
+
+    myChart2.setOption(option2);
+    
 }
 
 
@@ -471,6 +649,7 @@ mui(".chart-tab-col").on('tap','div',function(event){
 
     $(".chart-tab-col div").removeClass("active");
     $(this).addClass("active");
+    getPinglun();
     myChart();
 
 })

@@ -260,6 +260,10 @@
 	<script src="../js/condition.js"></script>
 	<script src="../js/mui.picker.min.js"></script>
 	<script src="../js/moment.min.js"></script>
+	<script src="../js/jquery.animateNumber.min.js"></script>
+
+	<script src="../lib/swiper.min.js"></script>
+
 	<script type="text/javascript">
 		
 		mui.init();
@@ -313,9 +317,33 @@
 				console.log(JSON.stringify(data));
 
 				data=data.brand_praise_ratio;
-				$obj.find(".percent_num").text(parseFloat(data.praise_ratio*100).toFixed(2));
+				//$obj.find(".percent_num").text(parseFloat(data.praise_ratio*100).toFixed(2));
 				$obj.find(".hangye").text(parseFloat(data.competition_praise_ratio*100).toFixed(2));
 				$obj.find(".huanbi").text(parseFloat(data.ring_praise_ratio*100).toFixed(2));
+
+					var color=$obj.find(".huan").attr("data-color");
+
+				var value=parseFloat(data.praise_ratio*100).toFixed(2);
+				
+				$obj.find(".huan").attr("data-value",value);
+
+					$obj.find(".huan").circleChart({
+						size: 100,
+						value: value,
+						text: "",
+						color:color,
+						onDraw: function(el, circle) {
+							
+						}
+					});
+
+				$obj.find(".percent_num").animateNumber(
+						{
+							number:value
+						},
+						2000
+				)
+
 
 
 			},function(err)
@@ -324,6 +352,8 @@
 			});
 
 		}
+
+		
 
 		mui("#listCol").on('tap','.brand-detail',function(event){
 
@@ -357,8 +387,9 @@
 				$("#listCol").empty();
 				for(var i=0;i<data.length;i++)
 				{
-					$("#listCol").append('<div class="row item blue brand-detail" data-id="'+data[i].brand_id+'">'+
-							'<div class="item_left_wrap col_center" >'+
+
+					$("#listCol").append('<div class="row item brand-detail" data-id="'+data[i].brand_id+'">'+
+							'<div class="item_left_wrap col_center" style="background: '+data[i].brand_color1.colorRgb()+';">'+
 							'<div class="circle">'+
 							'<div class="huan" data-color="'+data[i].brand_color1+'"></div>'+
 							'<div class="mask">'+
@@ -386,29 +417,12 @@
 						'</div>'+
 						'</div>'+
 					'<div class="item_right_wrap row_center" style="background:'+data[i].brand_color1+';">'+
-					'<img src="'+baseServerUrl+data[i].brand_icon1+'" alt="">'+
+					'<img src="'+baseServerUrl+data[i].brand_icon2+'" alt="">'+
 					'</div>'+
 				'</div>');
 				}
 
 				getCondition();
-
-				$(".huan").each(function()
-				{
-					var color=$(this).attr("data-color");
-
-					$(this).circleChart({
-						size: 100,
-						value: 50,
-						text: "",
-						color:color,
-						onDraw: function(el, circle) {
-							//circle.text(Math.round(circle.value) + "%");
-						}
-					});
-
-				});
-
 
 			}, function(err){
 				console.log("品牌列表失败"+err);
@@ -436,6 +450,14 @@
 	window.addEventListener('loginTabRefresh',function(e){
 		console.log("品牌loginTabRefresh");
 		httpRequest();
+	});
+	
+	
+	window.addEventListener('brandAnimate',function(e){
+		
+				httpRequest();
+					
+					
 	});
 		
 
