@@ -115,7 +115,6 @@ function firstInitData()
 	
     sizesList=[];
     $("#rightModal").hide();
-    huanIndex=0;
     //clearAll();
 
     $("#jingpinTop").empty();
@@ -138,9 +137,9 @@ function firstInitData()
                 '</span>'+sizes[i]+'</span>');
 
             sizesList.push(obj);
-            huaxian(sizes[i],i,sizes.length-1,3);
 
         }
+        huaxian(sizes[i],3);
 
     }
 
@@ -155,11 +154,9 @@ function firstInitData()
             $("#jingpinTop").append('<span class="jingpin-top-detail">' +
                 '<span class="quan2 quan" style="background: '+colorValue+';">' +
                 '</span>'+competing_product_lines[i].product_line_name+'</span>');
-                
-
-            huaxian(competing_product_lines[i].product_line_id,i,competing_product_lines.length-1,1);
-
         }
+
+        huaxian(competing_product_lines,1);
 
     }
 
@@ -174,8 +171,9 @@ function firstInitData()
             $("#jingpinTop").append('<span class="jingpin-top-detail">' +
                 '<span class="quan2 quan" style="background: '+colorValue+';">' +
                 '</span>'+category_product_lines[i].product_line_name+'</span>');
-            huaxian(category_product_lines[i].product_line_id,i,category_product_lines.length-1,2);
         }
+        
+        huaxian(category_product_lines,2);
 
     }
 
@@ -184,13 +182,149 @@ function firstInitData()
 
 }
 
-var huanIndex=0;
-function  huaxian(product_line_id_value,indexValue,indexLength,typeValue)
+//组装数据
+function createChartData()
+{
+	
+	if($("#bottomCol .active").text()=="竞品对比")
+    {
+        var list=competing_product_lines;
+    }
+    else if($("#bottomCol .active").text()=="内部对比")
+    {
+        var list=category_product_lines;
+    }
+    else
+    {
+        var list=sizesList;
+    }
+	
+	        var data=duibiData;
+	
+			var typeStr=$(".chart-tab-col .active").text();
+			
+            var listValue=[];
+	        for(var i=0;i<list.length;i++)
+            {
+                list[i].data=[];
+                list[i].xData=[];
+                list[i].yData=[];
+                list[i].data1=[];
+                
+                list[i].data11=[];
+                list[i].data12=[];
+                list[i].data13=[];
+                
+                
+                
+                
+                for(var j=0;j<data.trends[typeStr].length;j++)
+                {
+                    if(list[i].name==data.trends[typeStr][j].product_line_name)
+                    {
+                        var obj={
+                            x:data.trends[typeStr][j].week,
+                            y:data.trends[typeStr][j].total
+                        };
+                        list[i].xData.push(data.trends[typeStr][j].week);
+                        list[i].yData.push(data.trends[typeStr][j].total);
+                        list[i].data.push(obj);
+                    }
+                }
+                
+                for(var j=0;j<data.totals.length;j++)
+                {
+                	if(list[i].name==data.totals[j].product_line_name)
+                	{
+                		 var obj={
+                		 	attr:data.totals[j].attr,
+                            total:data.totals[j].total,
+                            total_ratio:data.totals[j].total_ratio
+                        };
+                        list[i].data1.push(obj);
+                        
+                        list[i].data11.push(data.totals[j].attr,);
+                        list[i].data12.push(data.totals[j].total);
+                        list[i].data13.push(data.totals[j].total_ratio);
+                        
+                	}
+                }
+
+                listValue.push( list[i].data.length);
+                
+            }
+
+			//图表数据组装
+            var maxIndex=listValue.indexOf(Math.max.apply(Math, listValue));
+            for(var i=0;i<list.length;i++)
+            {
+            	list[i].endData1=trendsList;
+                list[i].endData2=[];
+                list[i].endData3=[];
+            	
+            	for(var key in duibiData.trends)
+            	{
+            		if(list[i].data11.indexOf(key)==-1)
+            		{
+            			list[i].endData2.push(0);
+            			list[i].endData3.push(0);
+            		}
+            		else{
+            			
+            			for(var j=0;j<list[i].data1.length;j++)
+            			{
+            				if(key==list[i].data1[j].attr)
+            				{
+            					list[i].endData2.push(list[i].data1[j].total);
+            					list[i].endData3.push(list[i].data1[j].total_ratio);
+            					break;
+            				}
+            			}
+            		}
+            	}
+            	
+            	
+                list[i].endXData=list[maxIndex].xData;
+                list[i].endYData=[];
+
+                for(var j=0;j<list[i].endXData.length;j++)
+                {
+
+                        if(list[i].xData.indexOf(list[i].endXData[j])==-1)
+                        {
+							list[i].endYData.push(0);
+                        }
+                        else {
+                        	
+							for(var k=0;k<list[i].data.length;k++)
+							{
+								if(list[i].data[k].x==list[i].endXData[j])
+								{
+									list[i].endYData.push(list[i].data[k].y);
+									break;
+								}
+							}
+                        }
+
+                }
+            }
+            
+            
+            console.log("竞品所有数据");
+            console.log(JSON.stringify(list));
+            
+            myChart();
+            
+}
+
+var duibiData;
+var trendsList=[];
+function  huaxian(data,typeValue)
 {
 	
 
     var param={};
-    param.product_line_id=product_line_id_value;
+    param.product_line_id=product_line_id;
 
     var platform_id="";
     $(".platforms-list .active").each(function(index)
@@ -233,7 +367,7 @@ function  huaxian(product_line_id_value,indexValue,indexLength,typeValue)
     {
         var url="app/brand/get-product-line-size/";
     }
-
+	
 
     Global.commonAjax({
         url:url,
@@ -241,50 +375,49 @@ function  huaxian(product_line_id_value,indexValue,indexLength,typeValue)
         method: 'GET'
     }, function(data){
 
-        //console.log("获取产品线竞品对比数据返回数据");
-        //console.log(JSON.stringify(data));
+        console.log("获取产品线竞品对比数据返回数据");
+        console.log(JSON.stringify(data));
+        var html="";
+        var html1="";
 
-        if(typeValue==1)
-        {
-            competing_product_lines[indexValue].data=data;
+        for(var i in data.trends) {
+
+            data.trends[i].color=getRandomColor();
+            html=html+'<div>'+i+'</div>';
+            trendsList.push(i);
+            html1=html1+'<span class="jingpin-top-detail"><span class="quan2 quan" style="background: '+data.trends[i].color+';"></span>'+i+'</span>';
+			
+			if(typeValue==3)
+			{
+				for(var j=0;j<data.trends[i].length;j++)
+				{
+					data.trends[i][j].product_line_name=data.trends[i][j].size;
+				}
+			}
+	
         }
-        else if(typeValue==2)
-        {
-            category_product_lines[indexValue].data=data;
-        }
-        else if(typeValue==3)
-        {
-            sizesList[indexValue].data=data;
-        }
+        
+        if(typeValue==3)
+		{
+			for(var j=0;j<data.totals.length;j++)
+			{
+				data.totals[j].product_line_name=data.totals[j].size;
+			}
+		}
+        
 
-        huanIndex++;
+        $(".chart-tab-col").html(html);
+        $(".jingpin-top-second").html(html1);
 
+        $(".chart-tab-col div").eq(0).addClass("active");
 
-            if(indexValue==0)
-            {
-                var html="";
-                var html1="";
-
-                for(var i in data.trends) {
-
-                    data.trends[i].color=getRandomColor();
-                    html=html+'<div>'+i+'</div>';
-                    html1=html1+'<span class="jingpin-top-detail"><span class="quan2 quan" style="background: '+data.trends[i].color+';"></span>'+i+'</span>';
-
-                }
-
-                $(".chart-tab-col").html(html);
-                $(".jingpin-top-second").html(html1);
-
-                $(".chart-tab-col div").eq(0).addClass("active");
-                getPinglun();
-            }
-
-            if(huanIndex==(indexLength+1))
-            {
-                myChart();
-            }
-
+		duibiData=data;
+		createChartData();
+		
+		if(!$("#pinglunCol").is(':hidden'))
+		{
+			getPinglun();
+		}
 
 
     },function(err)
@@ -383,6 +516,7 @@ $("#chakanPinglun").click(function()
 {
     $(this).toggleClass("active");
     $("#pinglunCol").toggle();
+    getPinglun();
 
 });
 
@@ -421,27 +555,9 @@ function myChart()
     var series=[];
     var key=$(".chart-tab-col .active").text();
 
-    var series1=[];
-    var ySeries2=[];
-
-    var series2=[];
-
-    var lineHeight=70;
-    for(var i=0;i<allData.length;i++)
-    {
-        lineHeight=lineHeight+50;
-
-        var chartData=allData[i].data.trends[key];
-		
-		if(chartData)
-		{
-			var oneData=[];
-	        for(var j=0;j<chartData.length;j++)
-	        {
-	            oneData.push(chartData[j].total);
-	        }
-	
-	        var  seriesObj={
+	for(var i=0;i<allData.length;i++)
+	{
+		var  seriesObj={
 	            name:allData[i].name,
 	            type:'line',
 	            stack: '总量',
@@ -455,98 +571,10 @@ function myChart()
 	                    }
 	                }
 	            },
-	            data:oneData
+	            data:allData[i].endYData
 	        };
 	        series.push(seriesObj);
-	
-	        ySeries2.push(allData[i].name);
-		}
-
-
-    }
-
-	$(".jingpin-row-list").height(lineHeight);
-    
-    for ( var h in allData[0].data.trends )
-    {
-
-        var oneData1=[];
-        var oneData2=[];
-
-        for(var i=0;i<allData.length;i++)
-        {
-
-            for(var k=0;k<allData[i].data.totals.length;k++)
-            {
-                if(h==allData[0].data.totals[k].attr)
-                {
-                    oneData1.push(allData[i].data.totals[k].total);
-                    oneData2.push((100*allData[i].data.totals[k].total_ratio).toFixed(2));
-                    break;
-                }
-            }
-
-        }
-        
-        var seriesObj1={
-            name:h,
-            type: 'bar',
-            stack: '总量',
-            label: {
-                normal: {
-                    show: true,
-                    position: 'insideRight'
-                }
-            },
-            itemStyle : {
-                normal : {
-                    color:allData[0].data.trends[h].color
-                }
-            },
-            data: oneData1
-        }
-
-        series1.push(seriesObj1);
-
-		
-        var seriesObj2={
-            name:h,
-            type: 'bar',
-            stack: '总量',
-            label: {
-                normal: {
-                    show: true,
-                    position: 'insideRight'
-                }
-            },
-            itemStyle : {
-                normal : {
-                    color:allData[0].data.trends[h].color,
-                     label: {
-                        formatter: function (a, b, c) {
-                            return a.data+ "%";
-                        }
-                    }
-                }
-               
-            },
-            data: oneData2
-        }
-
-        series2.push(seriesObj2);
-
-
-    }
-
-
-    
-
-    var xAxis=[];
-    for(var i=0;i<allData[0].data.trends[key].length;i++)
-    {
-        xAxis.push(allData[0].data.trends[key][i].week);
-    }
-
+	}
 
     var myChart = echarts.init(document.getElementById('main'));
 
@@ -564,7 +592,7 @@ function myChart()
             type: 'category',
             boundaryGap: false,
             show:false,
-            data: xAxis
+            data: allData[0].endXData
         },
         yAxis: {
             type: 'value'
@@ -574,6 +602,97 @@ function myChart()
     };
 
     myChart.setOption(option);
+
+	
+    var series1=[];
+    var ySeries2=[];
+    var series2=[];
+
+    var lineHeight=70;
+    for(var i=0;i<allData.length;i++)
+    {
+        lineHeight=lineHeight+50;
+
+		
+		ySeries2.push(allData[i].name);
+
+
+    }
+
+	$(".jingpin-row-list").height(lineHeight);
+    
+    var allTrendsList=[];
+    for (var i=0;i<trendsList.length;i++)
+    {
+		var obj={};
+		obj.name=trendsList[i];
+		obj.total=[];
+		obj.total_ratio=[];
+		
+		
+
+        for(var j=0;j<allData.length;j++)
+        {
+
+            obj.total.push(allData[j].endData2[i]);
+            obj.total_ratio.push(allData[j].endData3[i]);
+
+        }
+        
+        
+        var seriesObj1={
+            name:trendsList[i],
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            itemStyle : {
+                normal : {
+                    color:duibiData.trends[trendsList[i]].color
+                }
+            },
+            data: obj.total
+        }
+
+        series1.push(seriesObj1);
+
+		
+        var seriesObj2={
+            name:trendsList[i],
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            itemStyle : {
+                normal : {
+                    color:duibiData.trends[trendsList[i]].color,
+                     label: {
+                        formatter: function (a, b, c) {
+                            return a.data+ "%";
+                        }
+                    }
+                }
+               
+            },
+            data: obj.total_ratio
+        }
+
+        series2.push(seriesObj2);
+
+
+    }
+
+	console.log("数据");
+	console.log(JSON.stringify(duibiData));
+   
 
 
     var myChart2 = echarts.init(document.getElementById('jingpinRow1'));
@@ -649,17 +768,20 @@ mui(".chart-tab-col").on('tap','div',function(event){
 
     $(".chart-tab-col div").removeClass("active");
     $(this).addClass("active");
-    getPinglun();
-    myChart();
+    createChartData();
 
 })
+
+$("#pinglunCol .shadow-col").on("touchstart",function()
+{
+	$("#pinglunCol").hide();
+});
 
 
 mui(".jingpin-chart-tab").on('tap','div',function(event){
 
     $(".jingpin-chart-tab div").removeClass("active");
     $(this).addClass("active");
-    getPinglun();
     firstInitData();
 
 })

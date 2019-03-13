@@ -20,7 +20,7 @@
 			.swiper-banner .swiper-slide .row.blue-bg .slide-detail div{color:#298fd0;}
 			.swiper-banner .swiper-slide .row.blue-bg{background: -webkit-linear-gradient(bottom, #addcfb , #298fd0);}
 			.swiper-banner .swiper-slide .slide-middle{width:0.62rem;}
-			.swiper-banner .swiper-slide .slide-detail img{border-radius: 50%;width:0.62rem;height:0.62rem;display: block;margin:0 auto;border:1px solid #cf122e;}
+			.swiper-banner .swiper-slide .slide-detail img{border-radius: 50%;width:0.62rem;height:0.62rem;display: block;margin:0 auto;}
 			.swiper-banner .swiper-slide.blue-bg .slide-detail img{border:1px solid #298fd0;}
 		</style>
 	</head>
@@ -34,8 +34,10 @@
 		</div>
 
 		<div class="header-title">
+			<div class="header-title-text">
 			本周总览
-			<p>新增<span id="pinglun"></span>个评论</p>
+			<div class="text">新增<span id="pinglun"></span>个评论</div>
+			</div>
 		</div>
 
 		<div class="header-right" onclick="search()">
@@ -112,8 +114,9 @@
 		</li>-->
 	</ul>
 
-
 	</div>
+
+		
 
 		<div class="tab-border" style="height:51px;"></div>
 
@@ -125,7 +128,16 @@
 	    <script src="js/menu.js"></script>
 		<script type="text/javascript">
 
-
+		/*$(".header-title").click(function()
+			{
+				Global.openWindow({
+				url: 'html/test.html',
+				id: 'test.html',
+				waiting: {
+					autoShow: false
+				}
+			})
+			});*/
 
 				mui.init({
 					swipeBack: true //启用右滑关闭功能
@@ -211,6 +223,8 @@
 						} 
 						else if(clientX > parseInt(pageW * 0.66) && clientX <= parseInt(pageW * 0.99)) {
 							currIndex = 2;
+							var h = plus.webview.getWebviewById("html/shoucang.html");
+							mui.fire(h,'dataRefresh');
 						} 
 
 						
@@ -247,7 +261,10 @@
 				{
 					var dataId=$("#swiperList .swiper-slide-active .slide-middle").attr("data-id");
 					var icon=$("#swiperList .swiper-slide-active img").attr("src");
-					yujingList(dataId,icon);
+					if(dataId)
+					{
+						yujingList(dataId,icon);
+					}
 				}
 
 				//初始化，并预加载webview模式的选项卡
@@ -308,6 +325,7 @@
 						console.log(JSON.stringify(data));
 
 						var pingpaiList=data.brands;
+						myStorage.setItem("brands",data);
 
 						if(pingpaiList.length>0)
 						{
@@ -323,23 +341,26 @@
 								for(var i=0;i<data.brand_count.length;i++)
 								{
 									var icon;
+									var color;
 									for(var j=0;j<pingpaiList.length;j++)
 									{
 										if(data.brand_count[i].brand_id==pingpaiList[j].brand_id)
 										{
 											icon=pingpaiList[j].brand_icon1;
+											color=pingpaiList[j].brand_color1;
 											break;
 										}
 									}
 
 									$("#swiperList").append('<div class="swiper-slide">'+
-											'<div class="row">'+
-											'<div class="slide-detail flex_one">'+data.brand_count[i].praise_total+' <div>好评</div></div>'+
+											'<div class="row" style="background: -webkit-linear-gradient(bottom, '+color.colorRgb()+' , '+color+');">'+
+											'<div class="slide-detail flex_one">'+data.brand_count[i].praise_total+' <div style="color:'+color+'">好评</div></div>'+
 											'<div class="slide-detail slide-middle" data-id="'+data.brand_count[i].brand_id+'"><img class="logo'+i+'" src="'+baseServerUrl+icon+'"></div>'+
-											'<div class="slide-detail flex_one">'+data.brand_count[i].bad_total+'<div>负评</div>'+
+											'<div class="slide-detail flex_one">'+data.brand_count[i].bad_total+'<div style="color:'+color+'">负评</div>'+
 											'</div>'+
 											'</div>'+
 											'</div>');
+											
 								}
 								if(swiper)
 								{
@@ -351,7 +372,7 @@
 									centeredSlides: true,
 									spaceBetween: 16,
 									on:{
-										slideChange: function()
+										slideChangeTransitionEnd: function()
 										{
 											filter();
 										}
@@ -378,10 +399,9 @@
 
 				}
 
-
 			function yujingList(brand_id,icon)
 			{
-
+				$("#list").empty();
 				Global.commonAjax({
 					url: 'app/dashboard/get-alert-messages',
 					data:{brand_id:brand_id}
@@ -391,7 +411,7 @@
 					console.log("获取预警消息");
 					console.log(JSON.stringify(data));
 					data=data.alert_messages;
-					$("#list").empty();
+					
 					for(var i=0;i<data.length;i++)
 					{
 
@@ -407,6 +427,7 @@
 								'<div class="right-col">'+
 								'<div>'+data[i].product_line_name+'</div>'+
 								'<p>'+data[i].message+'</p>'+
+								'<p>'+data[i].sig+'</p>'+
 								'<div class="right-text">'+
 								'<div>'+data[i].stats_time+'</div>'+quan+
 								'</div>'+

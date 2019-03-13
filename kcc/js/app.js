@@ -362,7 +362,7 @@ String.prototype.colorRgb = function(){
         for(var i=1; i<7; i+=2){
             sColorChange.push(parseInt("0x"+sColor.slice(i,i+2)));
         }
-        return "rgba(" + sColorChange.join(",") + ",0.5)";
+        return "rgba(" + sColorChange.join(",") + ",0.4)";
     }else{
         return sColor;
     }

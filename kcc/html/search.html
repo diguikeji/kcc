@@ -106,7 +106,7 @@
 			}, function(data){
 
 				console.log("产品搜索");
-				console.log(JSON.stringify(data));
+				//alert(JSON.stringify(data));
 
 				$("#searchMain").empty();
 				
@@ -155,7 +155,7 @@
 
 				if(data.brands)
 				{
-					$("#searchMain").append('<div class="title-col">品牌</div>><ul class="search-list" id="searchList3"></ul>');
+					$("#searchMain").append('<div class="title-col">品牌</div><ul class="search-list" id="searchList3"></ul>');
 				
 					for(var i=0;i<data.brands.length;i++)
 					{
@@ -203,7 +203,7 @@
 				console.log("语音识别失败：" + e.message);
 				//alert("语音识别失败：" + e.message);
 			});
-			setTimeout(stopRecognize, 10000);
+			setTimeout(stopRecognize, 5000);
 		}
 		//  停止语音输入
 		function stopRecognize() {

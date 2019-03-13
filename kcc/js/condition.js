@@ -1,29 +1,73 @@
 
-function dateCol($obj)
+function dateCol($obj,type)
 {
     var options = {"type":"date","value":$($obj).text()};
+
+    if(type==2)
+    {
+        var picker = new mui.DtPicker(options);
+        picker.show(function(rs) {
+
+            $($obj).text(rs.text);
+
+            picker.dispose();
+
+        });
+    }
+    else{
+
+        var picker = new mui.DtPicker(options);
+        picker.show(function(rs) {
+
+            $($obj).text(rs.text);
+
+            picker.dispose();
+            dateCol2();
+
+        });
+
+    }
+
+
+
+}
+
+function  dateCol2()
+{
+    var options = {"type":"date","value":$("#startTime").text()};
 
     var picker = new mui.DtPicker(options);
     picker.show(function(rs) {
 
-        $($obj).text(rs.text);
+        $("#endTime").text(rs.text);
 
         picker.dispose();
-        
+
     });
 }
 
 
-mui("body").on('tap','#rightModal .shadow-col',function(event){
+mui("body").on('tap','#shadowCol',function(event){
 
-    $("#rightModal").hide();
+	$(".shadow-col").hide();
+	$(".right-modal-col").animate({"right":"-3rem"},function() {
+        
+        $(".right-modal-col").hide();
+        
+    });
 
 });
 
 
+
+
 function  showCondition()
 {
-    $("#rightModal").show();
+	$(".shadow-col").show();
+	$(".right-modal-col").show();
+    $(".right-modal-col").animate({"right":"0"});
+    
+    
 }
 
 function  getCondition()
@@ -41,22 +85,21 @@ function  getCondition()
         var childHtml="";
         for(var i=0;i<data.platforms.length;i++)
         {
-            tagListHtml=tagListHtml+"<span class='active' data-pid='"+i+"'>"+data.platforms[i].parent_name+"</span>";
+            tagListHtml=tagListHtml+"<span class='active pid"+i+"' data-length='"+data.platforms[i].childs.length+"' data-pid='"+i+"'>"+data.platforms[i].parent_name+"</span>";
 
             for(var j=0;j<data.platforms[i].childs.length;j++)
             {
-                childHtml=childHtml+"<span class='active child"+i+"' data-id='"+data.platforms[i].childs[j].platform_id+"'>"+data.platforms[i].childs[j].platform_name+"</span>";;
+                childHtml=childHtml+"<span class='active child"+i+"' data-pid='"+i+"' data-id='"+data.platforms[i].childs[j].platform_id+"'>"+data.platforms[i].childs[j].platform_name+"</span>";;
             }
 
         }
-
         var startTime=moment().subtract(90,"days").format("YYYY-MM-DD");
         var endTime=moment().subtract(1,"days").format("YYYY-MM-DD");
 
-
-        $("body").append('<div id="rightModal" class="right-modal hide">'+
-            ' <div class="shadow-col" ></div>'+
-            ' <div class="right-modal-col">'+
+		$("#shadowCol").remove();
+		$(".right-modal-col").remove();
+        $("body").append('<div class="shadow-col hide" ontouchmove="return false;" id="shadowCol"></div>'+
+            ' <div class="right-modal-col" ontouchmove="return false;">'+
             '  <div class="modal-row">'+
             '<div class="modal-title">平台</div>'+
             ' <div class="tag-list platforms">'+tagListHtml+
@@ -79,15 +122,14 @@ function  getCondition()
             ' </div>'+
             ' </div>'+
             ' <div class="date-main clearfix">'+
-            ' <div class="date-col" id="startTime" onclick="dateCol(this)">'+startTime+'</div>'+
+            ' <div class="date-col" id="startTime" onclick="dateCol(this,1)">'+startTime+'</div>'+
             ' <div class="line"></div>'+
-            ' <div class="date-col" id="endTime" onclick="dateCol(this)">'+endTime+'</div>'+
+            ' <div class="date-col" id="endTime" onclick="dateCol(this,2)">'+endTime+'</div>'+
             ' </div>'+
             ' <div class="modal-bottom">'+
             ' <span ontouchstart="reset();">重置</span>'+
             ' <span ontouchstart="modalConfirm()">确定</span>'+
             '</div>'+
-            ' </div>'+
             '</div>');
 
         modalConfirm();
@@ -140,6 +182,23 @@ mui("body").on('tap','.platforms span',function(event){
     mui("body").on('tap','.platforms-list span',function(event){
 
         $(this).toggleClass("active");
+
+        $(".platforms span").each(function()
+        {
+            var pid=$(this).attr("data-pid");
+            var dLength=$(this).attr("data-length");
+            
+            var activePLength=$(".platforms-list .active.child"+pid).length;
+            
+            if(activePLength==dLength)
+            {
+                $(this).addClass("active");
+            }
+            else if(activePLength==0)
+            {
+                $(this).removeClass("active");
+            }
+        });
 
 
     });

@@ -11,12 +11,13 @@
 		<link rel="stylesheet" href="../css/firstPage.css">
 		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
 		<style type="text/css">
+			
 			body{
-				background: #fff;;
+				background: #fff;
 			}
 			.content_wrap{
 				padding: 0.15rem;
-				margin-top: 0.63rem;
+				margin-top: 0.72rem;
 			}
 			
 			.item_left_wrap{
@@ -370,16 +371,37 @@
 
 		});
 
-
 		function  httpRequest()
 		{
-
-			Global.commonAjax({
+			var data=myStorage.getItem("brands");
+			
+			if(data)
+			{
+				setData(data);
+			}
+			else{
+				
+				Global.commonAjax({
 				url: 'app/brand/get-brands/',
 				method: 'GET'
-			}, function(data){
+				}, function(data){
+					
+						setData(data);
+						
+				}, function(err){
+					console.log("品牌列表失败"+err);
+				});
+			}
+			
+			
 
-				console.log("品牌列表");
+
+
+		}
+		
+		function setData(data)
+		{
+			console.log("品牌列表");
 				console.log(JSON.stringify(data));
 				data=data.brands;
 				myStorage.setItem("brandsList",data);
@@ -423,13 +445,6 @@
 				}
 
 				getCondition();
-
-			}, function(err){
-				console.log("品牌列表失败"+err);
-			});
-
-
-
 		}
 
 

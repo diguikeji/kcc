@@ -180,10 +180,11 @@ header h1{
 .blue{color:#107EFF!important;}
 .pd-bottom{padding-bottom:0.1rem;}
 
+
 #modalMenuCol{position: fixed;left:0;top:0;width:100%;height:100%;z-index:10000;}
 #modalMenuCol .shadowModal{background: rgba(0,0,0,0.6);position: absolute;left:0;top:0;width:100%;height:100%;z-index:20000;}
 
-.shadow-col{width:100%;position: fixed;height:100%;background: rgba(0,0,0,0.6);z-index:10001;left:0;top:0;}
+.shadow-col{width:100%;position: fixed;height:100%;background: rgba(0,0,0,0.6);z-index:29000;left:0;top:0;}
 
 .modal-menu {
 	background:rgba(242,242,242,1);
@@ -262,7 +263,8 @@ header h1{
 
 .right-modal{width:100%;position: fixed;height:100%;z-index:29000;left:0;top:0;}
 
-.right-modal-col{position: absolute;width:3rem;right:0;top:0;height:100%;background: #fff;padding-top:0.06rem;box-sizing: border-box;z-index:10002;}
+
+.right-modal-col{overflow:hidden;display:none;position: absolute;width:3rem;right:-3rem;top:0;height:100%;background: #fff;padding-top:0.06rem;box-sizing: border-box;z-index:30002;}
 
 .right-modal-col .modal-row{font-size:0.13rem;padding:0.23rem 0.1rem 0 0.1rem;}
 .right-modal-col .modal-row .tag-list{font-size:0;}
@@ -282,6 +284,5 @@ header h1{
 .right-modal-col .modal-bottom span{font-size:0.16rem;color:#fff;width:0.89rem;text-align: center;line-height:0.44rem;display: inline-block;}
 .right-modal-col .modal-bottom span:last-child{background: #5962b2;border-radius: 0 0.3rem 0.3rem 0;}
 .right-modal-col .modal-bottom span:first-child{background: #b0b2f3;border-radius: 0.3rem 0 0 0.3rem;}
-
 
 

@@ -319,7 +319,7 @@
 							'</div>'+
 							'</li>');
 
-
+				$("#chanpinList2").empty();
 				for(var i=0;i<data.collect_product_lines.length;i++)
 				{
 					$("#chanpinList2").append('<li data-id="'+data.collect_product_lines[i].product_line_id+'">'+
@@ -372,6 +372,13 @@
 				var user=myStorage.getItem("user");
 				$('#portrait').attr("src", user.info.portrait);
 				});
+				
+		//刷新数据
+		window.addEventListener('dataRefresh',function(e){
+				
+				httpRequest();
+				
+			});
 
 		
 	</script>

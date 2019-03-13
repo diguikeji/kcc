@@ -42,7 +42,7 @@
 .jingpin-row-list .jingpin-row:last-child .line-col:before{width:1px;border-left:1px dashed #ccc;content: " ";display: block;position: absolute;left:50%;bottom:0;}
 .jingpin-row-list .jingpin-row:last-child .line-col:after{width:1px;border-left:1px dashed #ccc;content: " ";display: block;position: absolute;right:0;bottom:0;}
 
-.jingpin-bottom{background: #fff;position: fixed;bottom:0;left:0;height:0.49rem;width:100%;line-height: 0.49rem;z-index:1000;border-top:1px solid #ddd;}
+.jingpin-bottom{background: #fff;position: fixed;bottom:0;left:0;height:0.49rem;width:100%;line-height: 0.49rem;z-index:3000;border-top:1px solid #ddd;}
 .jingpin-bottom .left{float:left;width:25%;text-align: center;font-size:0.12rem;}
 .jingpin-bottom .left span{font-size:0.14rem;}
 .jingpin-bottom .left .mui-icon-arrowdown{display: none;}
@@ -66,7 +66,7 @@
 .jingpin-chart-main{padding:0 15px;box-sizing: border-box;background: #fff;margin-top:-0.4rem;}
 .jingpin-chart-col{width:100%;height:3rem;background: #fff;}
 
-.pinglun-col{height:3.25rem;background: #fff;position: fixed;bottom:0.48rem;width:100%;left:0;z-index:10000;padding:15px 15px 15px 15px;}
+.pinglun-col{height:3.25rem;background: #fff;position: fixed;bottom:0.48rem;width:100%;left:0;z-index:30000;padding:15px 15px 15px 15px;}
 
 .pinglun-list{list-style: none;padding:0;margin:0;font-size:0.12rem;max-height:2.3rem;overflow:auto;background: #f5f5f5;border-radius: 0.1rem;margin-top:0.15rem;padding:0.15rem;}
 .pinglun-title{font-weight: bold;padding:0.13rem 0;border-bottom:1px solid #ddd;position: relative;}

@@ -392,7 +392,8 @@
 					"html/login.html",
 					"index-menu.html",
 					"html/shoucang.html",
-					"html/jingpin.html"
+					"html/jingpin.html",
+					"html/search.html"
 				],
 				"priority": 0
 			},

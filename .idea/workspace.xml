@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="808f33a1-b423-47cd-9c9d-c370abd3741f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kcc/js/jquery.animateNumber.min.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/kcc/unpackage/release/H555E88B1_0227230603.apk" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/kcc/unpackage/release/H555E88B1_0227230805.ipa" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kcc/css/app.css" afterPath="$PROJECT_DIR$/kcc/css/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kcc/css/page.css" afterPath="$PROJECT_DIR$/kcc/css/page.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kcc/css/secondPage.css" afterPath="$PROJECT_DIR$/kcc/css/secondPage.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kcc/html/brand.html" afterPath="$PROJECT_DIR$/kcc/html/brand.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kcc/html/brand_list.html" afterPath="$PROJECT_DIR$/kcc/html/brand_list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kcc/html/jingpin.html" afterPath="$PROJECT_DIR$/kcc/html/jingpin.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kcc/html/search.html" afterPath="$PROJECT_DIR$/kcc/html/search.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kcc/html/shoucang.html" afterPath="$PROJECT_DIR$/kcc/html/shoucang.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kcc/index.html" afterPath="$PROJECT_DIR$/kcc/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kcc/js/app.js" afterPath="$PROJECT_DIR$/kcc/js/app.js" />
@@ -44,24 +41,24 @@
         <entry file="file://$PROJECT_DIR$/kcc/html/jingpin.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+              <caret line="185" column="20" selection-start-line="184" selection-start-column="34" selection-end-line="184" selection-end-column="47" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jingpin.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="jingpin.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kcc/js/jingpin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.43838027">
+              <caret line="309" column="0" selection-start-line="309" selection-start-column="0" selection-end-line="309" selection-end-column="0" />
               <folding>
-                <marker date="1552010114854" expanded="true" signature="2448:2450" placeholder="{...}" />
-                <marker date="1552010114854" expanded="true" signature="14824:14826" placeholder="{...}" />
+                <element signature="e#432#1086#0" expanded="false" />
+                <marker date="1552445421051" expanded="true" signature="2448:2450" placeholder="{...}" />
+                <marker date="1552445421051" expanded="true" signature="2960:2987" placeholder="..." />
+                <marker date="1552445421051" expanded="true" signature="3566:3593" placeholder="..." />
+                <marker date="1552445421051" expanded="true" signature="4179:4206" placeholder="..." />
+                <marker date="1552445421051" expanded="true" signature="9945:9982" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -71,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/kcc/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="64" column="4" selection-start-line="64" selection-start-column="1" selection-end-line="64" selection-end-column="4" />
+              <caret line="285" column="37" selection-start-line="285" selection-start-column="37" selection-end-line="285" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -81,15 +78,15 @@
         <entry file="file://$PROJECT_DIR$/kcc/html/brand.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="296" column="12" selection-start-line="296" selection-start-column="12" selection-end-line="296" selection-end-column="12" />
+              <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1551710226925" expanded="true" signature="9070:9118" placeholder="..." />
-                <marker date="1551710226925" expanded="true" signature="9418:9424" placeholder="..." />
-                <marker date="1551710226925" expanded="true" signature="9555:9561" placeholder="..." />
-                <marker date="1551710226925" expanded="true" signature="9906:9960" placeholder="..." />
-                <marker date="1551710226925" expanded="true" signature="10162:10198" placeholder="..." />
+                <marker date="1552398731729" expanded="true" signature="9319:9367" placeholder="..." />
+                <marker date="1552398731729" expanded="true" signature="9667:9673" placeholder="..." />
+                <marker date="1552398731729" expanded="true" signature="9804:9810" placeholder="..." />
+                <marker date="1552398731729" expanded="true" signature="10155:10209" placeholder="..." />
+                <marker date="1552398731729" expanded="true" signature="10411:10447" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -98,11 +95,11 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kcc/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.678572">
-              <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding>
-                <element signature="e#1971#2743#0" expanded="false" />
-                <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1552443590358" expanded="true" signature="6242:6403" placeholder="{...}" />
+                <marker date="1552443590358" expanded="true" signature="9502:10414" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -112,7 +109,7 @@
         <entry file="file://$PROJECT_DIR$/kcc/css/page.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+              <caret line="15" column="63" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -122,26 +119,29 @@
         <entry file="file://$PROJECT_DIR$/kcc/css/secondPage.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="echarts.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kcc/js/echarts.min.js">
+      <file leaf-file-name="condition.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kcc/js/condition.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="186" selection-start-line="21" selection-start-column="186" selection-end-line="21" selection-end-column="186" />
-              <folding />
+              <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+              <folding>
+                <marker date="1552443554676" expanded="true" signature="784:813" placeholder="{...}" />
+                <marker date="1552443554676" expanded="true" signature="1898:3678" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="brand_list.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="brand_list.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kcc/html/brand_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.83609957">
+            <state vertical-scroll-proportion="0.0">
               <caret line="395" column="36" selection-start-line="395" selection-start-column="36" selection-end-line="395" selection-end-column="36" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -181,10 +181,10 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="180" column="41" selection-start-line="180" selection-start-column="41" selection-end-line="180" selection-end-column="41" />
               <folding>
-                <marker date="1551755308867" expanded="true" signature="551:660" placeholder="..." />
-                <marker date="1551755308867" expanded="true" signature="674:745" placeholder="..." />
-                <marker date="1551755308867" expanded="true" signature="787:813" placeholder="..." />
-                <marker date="1551755308867" expanded="true" signature="6651:6675" placeholder="{...}" />
+                <marker date="1552375841710" expanded="true" signature="551:660" placeholder="..." />
+                <marker date="1552375841710" expanded="true" signature="674:745" placeholder="..." />
+                <marker date="1552375841710" expanded="true" signature="787:813" placeholder="..." />
+                <marker date="1552375841710" expanded="true" signature="6651:6675" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -215,17 +215,17 @@
         <option value="$PROJECT_DIR$/kcc/html/search.html" />
         <option value="$PROJECT_DIR$/kcc/js/menu.js" />
         <option value="$PROJECT_DIR$/kcc/html/change_pwd.html" />
-        <option value="$PROJECT_DIR$/kcc/css/page.css" />
         <option value="$PROJECT_DIR$/kcc/js/app.js" />
+        <option value="$PROJECT_DIR$/kcc/test.html" />
+        <option value="$PROJECT_DIR$/kcc/html/jingpin.html" />
+        <option value="$PROJECT_DIR$/kcc/html/brand_list.html" />
+        <option value="$PROJECT_DIR$/kcc/html/brand.html" />
+        <option value="$PROJECT_DIR$/kcc/index.html" />
+        <option value="$PROJECT_DIR$/kcc/css/secondPage.css" />
+        <option value="$PROJECT_DIR$/kcc/css/page.css" />
         <option value="$PROJECT_DIR$/kcc/css/app.css" />
         <option value="$PROJECT_DIR$/kcc/js/condition.js" />
-        <option value="$PROJECT_DIR$/kcc/test.html" />
-        <option value="$PROJECT_DIR$/kcc/html/brand.html" />
-        <option value="$PROJECT_DIR$/kcc/css/secondPage.css" />
         <option value="$PROJECT_DIR$/kcc/js/jingpin.js" />
-        <option value="$PROJECT_DIR$/kcc/html/jingpin.html" />
-        <option value="$PROJECT_DIR$/kcc/index.html" />
-        <option value="$PROJECT_DIR$/kcc/html/brand_list.html" />
       </list>
     </option>
   </component>
@@ -372,7 +372,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kcc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kcc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kcc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="html" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kcc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kcc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kcc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -385,10 +421,11 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Other File Types" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../jiwei/element-starter-master/src" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="D:\Tool\nodejs\node.exe" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/github/kcc/kcc/css/page.css" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -443,9 +480,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="2" y="0" width="1364" height="728" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27837422" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29677916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -487,10 +524,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="438" column="22" selection-start-line="438" selection-start-column="22" selection-end-line="438" selection-end-column="22" />
           <folding>
-            <marker date="1551755308867" expanded="true" signature="551:660" placeholder="..." />
-            <marker date="1551755308867" expanded="true" signature="674:745" placeholder="..." />
-            <marker date="1551755308867" expanded="true" signature="787:813" placeholder="..." />
-            <marker date="1551755308867" expanded="true" signature="6651:6675" placeholder="{...}" />
+            <marker date="1552375841710" expanded="true" signature="551:660" placeholder="..." />
+            <marker date="1552375841710" expanded="true" signature="674:745" placeholder="..." />
+            <marker date="1552375841710" expanded="true" signature="787:813" placeholder="..." />
+            <marker date="1552375841710" expanded="true" signature="6651:6675" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -509,11 +546,11 @@
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1551710226925" expanded="true" signature="9070:9118" placeholder="..." />
-            <marker date="1551710226925" expanded="true" signature="9418:9424" placeholder="..." />
-            <marker date="1551710226925" expanded="true" signature="9555:9561" placeholder="..." />
-            <marker date="1551710226925" expanded="true" signature="9906:9960" placeholder="..." />
-            <marker date="1551710226925" expanded="true" signature="10162:10198" placeholder="..." />
+            <marker date="1552398731729" expanded="true" signature="9319:9367" placeholder="..." />
+            <marker date="1552398731729" expanded="true" signature="9667:9673" placeholder="..." />
+            <marker date="1552398731729" expanded="true" signature="9804:9810" placeholder="..." />
+            <marker date="1552398731729" expanded="true" signature="10155:10209" placeholder="..." />
+            <marker date="1552398731729" expanded="true" signature="10411:10447" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -522,11 +559,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="450" column="0" selection-start-line="450" selection-start-column="0" selection-end-line="450" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -571,8 +604,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="32" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="32" />
           <folding>
-            <element signature="e#1971#2743#0" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1552443590358" expanded="true" signature="6242:6403" placeholder="{...}" />
+            <marker date="1552443590358" expanded="true" signature="9502:10414" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -582,10 +615,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="332" column="12" selection-start-line="332" selection-start-column="12" selection-end-line="332" selection-end-column="12" />
           <folding>
-            <marker date="1551755308867" expanded="true" signature="551:660" placeholder="..." />
-            <marker date="1551755308867" expanded="true" signature="674:745" placeholder="..." />
-            <marker date="1551755308867" expanded="true" signature="787:813" placeholder="..." />
-            <marker date="1551755308867" expanded="true" signature="6651:6675" placeholder="{...}" />
+            <marker date="1552375841710" expanded="true" signature="551:660" placeholder="..." />
+            <marker date="1552375841710" expanded="true" signature="674:745" placeholder="..." />
+            <marker date="1552375841710" expanded="true" signature="787:813" placeholder="..." />
+            <marker date="1552375841710" expanded="true" signature="6651:6675" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -645,8 +678,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
           <folding>
-            <element signature="e#1971#2743#0" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1552443590358" expanded="true" signature="6242:6403" placeholder="{...}" />
+            <marker date="1552443590358" expanded="true" signature="9502:10414" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -692,8 +725,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="61" column="28" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
           <folding>
-            <element signature="e#1971#2743#0" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1552443590358" expanded="true" signature="6242:6403" placeholder="{...}" />
+            <marker date="1552443590358" expanded="true" signature="9502:10414" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -751,7 +784,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="330" selection-start-line="0" selection-start-column="322" selection-end-line="0" selection-end-column="330" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -797,86 +829,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kcc/js/condition.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
-          <folding>
-            <marker date="1551614767827" expanded="true" signature="1345:2817" placeholder="..." />
-            <marker date="1551614767827" expanded="true" signature="1439:2795" placeholder="..." />
-            <marker date="1551614767827" expanded="true" signature="1677:1837" placeholder="..." />
-            <marker date="1551614767827" expanded="true" signature="1781:1814" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kcc/js/jquery-2.1.1.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45825604">
           <caret line="1" column="1703" selection-start-line="1" selection-start-column="1703" selection-end-line="1" selection-end-column="1703" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kcc/js/jingpin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
-          <folding>
-            <marker date="1552010114854" expanded="true" signature="2448:2450" placeholder="{...}" />
-            <marker date="1552010114854" expanded="true" signature="14824:14826" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kcc/html/jingpin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kcc/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="4" selection-start-line="64" selection-start-column="1" selection-end-line="64" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kcc/html/brand.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="296" column="12" selection-start-line="296" selection-start-column="12" selection-end-line="296" selection-end-column="12" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1551710226925" expanded="true" signature="9070:9118" placeholder="..." />
-            <marker date="1551710226925" expanded="true" signature="9418:9424" placeholder="..." />
-            <marker date="1551710226925" expanded="true" signature="9555:9561" placeholder="..." />
-            <marker date="1551710226925" expanded="true" signature="9906:9960" placeholder="..." />
-            <marker date="1551710226925" expanded="true" signature="10162:10198" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kcc/css/page.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kcc/css/secondPage.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -888,33 +844,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kcc/js/app.js">
+    <entry file="file://$PROJECT_DIR$/kcc/html/jingpin.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="180" column="41" selection-start-line="180" selection-start-column="41" selection-end-line="180" selection-end-column="41" />
+          <caret line="185" column="20" selection-start-line="184" selection-start-column="34" selection-end-line="184" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kcc/js/jingpin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43838027">
+          <caret line="309" column="0" selection-start-line="309" selection-start-column="0" selection-end-line="309" selection-end-column="0" />
           <folding>
-            <marker date="1551755308867" expanded="true" signature="551:660" placeholder="..." />
-            <marker date="1551755308867" expanded="true" signature="674:745" placeholder="..." />
-            <marker date="1551755308867" expanded="true" signature="787:813" placeholder="..." />
-            <marker date="1551755308867" expanded="true" signature="6651:6675" placeholder="{...}" />
+            <element signature="e#432#1086#0" expanded="false" />
+            <marker date="1552445421051" expanded="true" signature="2448:2450" placeholder="{...}" />
+            <marker date="1552445421051" expanded="true" signature="2960:2987" placeholder="..." />
+            <marker date="1552445421051" expanded="true" signature="3566:3593" placeholder="..." />
+            <marker date="1552445421051" expanded="true" signature="4179:4206" placeholder="..." />
+            <marker date="1552445421051" expanded="true" signature="9945:9982" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kcc/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="285" column="37" selection-start-line="285" selection-start-column="37" selection-end-line="285" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kcc/html/brand.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1552398731729" expanded="true" signature="9319:9367" placeholder="..." />
+            <marker date="1552398731729" expanded="true" signature="9667:9673" placeholder="..." />
+            <marker date="1552398731729" expanded="true" signature="9804:9810" placeholder="..." />
+            <marker date="1552398731729" expanded="true" signature="10155:10209" placeholder="..." />
+            <marker date="1552398731729" expanded="true" signature="10411:10447" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kcc/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.678572">
-          <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding>
-            <element signature="e#1971#2743#0" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1552443590358" expanded="true" signature="6242:6403" placeholder="{...}" />
+            <marker date="1552443590358" expanded="true" signature="9502:10414" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kcc/css/page.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="63" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kcc/css/secondPage.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kcc/js/condition.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+          <folding>
+            <marker date="1552443554676" expanded="true" signature="784:813" placeholder="{...}" />
+            <marker date="1552443554676" expanded="true" signature="1898:3678" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kcc/html/brand_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83609957">
+        <state vertical-scroll-proportion="0.0">
           <caret line="395" column="36" selection-start-line="395" selection-start-column="36" selection-end-line="395" selection-end-column="36" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -943,6 +960,19 @@
             <marker date="1552124353840" expanded="false" signature="12343:12852" placeholder="..." />
             <marker date="1552124353840" expanded="false" signature="12904:13151" placeholder="..." />
             <marker date="1552124353840" expanded="true" signature="12972:13133" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kcc/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="180" column="41" selection-start-line="180" selection-start-column="41" selection-end-line="180" selection-end-column="41" />
+          <folding>
+            <marker date="1552375841710" expanded="true" signature="551:660" placeholder="..." />
+            <marker date="1552375841710" expanded="true" signature="674:745" placeholder="..." />
+            <marker date="1552375841710" expanded="true" signature="787:813" placeholder="..." />
+            <marker date="1552375841710" expanded="true" signature="6651:6675" placeholder="{...}" />
           </folding>
         </state>
       </provider>
