@@ -458,6 +458,9 @@ function getPinglun()
         console.log("获取产品线评论返回数据");
         console.log(JSON.stringify(data));
         $("#pinglunCount").text(data.comments.length);
+		if(data.comments.length == 0){
+			$("#pinglunAll").empty();
+		}
         $(".pinglun-list").empty();
 
         for(var i=0;i<data.comments.length;i++)
