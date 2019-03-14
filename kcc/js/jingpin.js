@@ -104,6 +104,7 @@ function httpRequest()
         competing_product_lines=data.competing_product_lines;
 
         sizes=data.sizes;
+        
         category_product_lines=data.category_product_lines;
 
         if(data.is_my_collect)
@@ -124,9 +125,9 @@ function httpRequest()
 function clearAll()
 {
 
-    echarts.init(document.getElementById('jingpinRow1')).clear()
-    echarts.init(document.getElementById('jingpinRow2')).clear()
-    echarts.init(document.getElementById('main')).clear()
+    echarts.init(document.getElementById('jingpinRow1')).clear();
+    echarts.init(document.getElementById('jingpinRow2')).clear();
+    echarts.init(document.getElementById('main')).clear();
 
 }
 
@@ -137,10 +138,9 @@ function firstInitData()
 	
     sizesList=[];
     $("#rightModal").hide();
-    //clearAll();
+    clearAll();
 
     $("#jingpinTop").empty();
-    
     
 
     if($("#bottomCol .active").text()=="尺码对比")
@@ -579,6 +579,7 @@ function myChart()
     var allData;
     if($("#bottomCol .active").text()=="竞品对比")
     {
+    	
         allData=competing_product_lines;
     }
     else if($("#bottomCol .active").text()=="内部对比")
@@ -648,10 +649,10 @@ function myChart()
     var ySeries2=[];
     var series2=[];
 
-    var lineHeight=70;
+    var lineHeight=30;
     for(var i=0;i<allData.length;i++)
     {
-        lineHeight=lineHeight+50;
+        lineHeight=lineHeight+40;
 
 		
 		ySeries2.push(allData[i].name);
@@ -660,6 +661,10 @@ function myChart()
     }
 
 	$(".jingpin-row-list").height(lineHeight);
+	
+	$(".jingpin-row-list div").height(lineHeight);
+	
+	
     
     var allTrendsList=[];
     for (var i=0;i<trendsList.length;i++)
@@ -785,7 +790,7 @@ function myChart()
                 var str=a[0].name+"";
                 for(var i=0;i< a.length;i++)
                 {
-                    str=str+"<br/>"+a[i].marker+ a[i].seriesName+":"+a[i].value*100+"%";
+                    str=str+"<br/>"+a[i].marker+ a[i].seriesName+":"+(a[i].value*100).toFixed(2)+"%";
                 }
                 return str;
 
