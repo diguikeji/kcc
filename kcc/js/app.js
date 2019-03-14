@@ -564,6 +564,19 @@ function loginOut()
 
 }
 
+function getColorById(id){
+	if(myStorage){
+		var brands = myStorage.getItem("brands");
+		brands.map(function(item){
+			if(item.id == id){
+				return item.color;
+			}
+		})
+	}
+	
+	
+}
+
 
 
 	

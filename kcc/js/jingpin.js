@@ -566,14 +566,14 @@ function myChart()
 	            stack: '总量',
 	            smooth: true,
 	            symbol: 'circle',
-	            itemStyle : {
-	                normal : {
-	                    color:allData[i].color,
-	                    lineStyle:{
-	                        color:allData[i].color
-	                    }
-	                }
-	            },
+// 	            itemStyle : {
+// 	                normal : {
+// 	                    color:allData[i].color,
+// 	                    lineStyle:{
+// 	                        color:allData[i].color
+// 	                    }
+// 	                }
+// 	            },
 	            data:allData[i].endYData
 	        };
 	        series.push(seriesObj);
@@ -655,7 +655,17 @@ function myChart()
             },
             itemStyle : {
                 normal : {
-                    color:duibiData.trends[trendsList[i]].color
+                    color:duibiData.trends[trendsList[i]].color,
+					label: {
+						formatter: function(value){
+							console.log(JSON.stringify(value));
+							if(value.data < 50){
+								return '';
+							}else{
+								return value.data;
+							}
+						}
+					}
                 }
             },
             data: obj.total
@@ -679,7 +689,12 @@ function myChart()
                     color:duibiData.trends[trendsList[i]].color,
                      label: {
                         formatter: function (a, b, c) {
-                            return a.data+ "%";
+							if(a.data*100 < 10){
+								return '';
+							}else{
+								return (a.data*100).toFixed(2)+ "%";
+							}
+                            
                         }
                     }
                 }
@@ -733,7 +748,7 @@ function myChart()
                 var str=a[0].name+"";
                 for(var i=0;i< a.length;i++)
                 {
-                    str=str+"<br/>"+a[i].marker+ a[i].seriesName+":"+a[i].value+"%";
+                    str=str+"<br/>"+a[i].marker+ a[i].seriesName+":"+a[i].value*100+"%";
                 }
                 return str;
 
@@ -750,7 +765,8 @@ function myChart()
             show:false,
             axisLabel : {
                 formatter: function(value){
-                    return value+"%";}
+						return value+"%";
+					}
             }
         },
         yAxis: {
