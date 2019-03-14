@@ -542,7 +542,7 @@ function loginOut()
 
     Global.commonAjax({
         url: 'user/logout/',
-        method: 'GET'
+        method: 'POST'
     }, function(data){
 
         console.log("退出"+JSON.stringify(data));

@@ -2,11 +2,29 @@ var product_line_id=GetQueryString("product_line_id");
 
 
 //随机颜色
-function getRandomColor(){ 
-return "#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6); 
-} 
+function getRandomColor(index){ 
+	// return "#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6); 
+	if(index>0){
+		var r = parseInt(brand_color1.substring(1,3)+'', 16); 
+		var g = parseInt(brand_color1.substring(3,5)+'', 16);
+		var b = parseInt(brand_color1.substring(5,7)+'', 16);
+		var temp = (1-index*0.15);
+		if(temp<0 || temp>1){
+			temp = 0.1;
+		} 
+		var a = temp.toFixed(1);
+		return "rgba("+r+","+g+","+b+","+a+")";
+	}else if(index == 0){
+		return brand_color1;
+	}else{
+		return "#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6); 
+	}
+	
+};
 
 mui.plusReady(function() {
+	
+	
 
 httpRequest();
 var message_id=GetQueryString("message_id")
@@ -58,6 +76,7 @@ var category_product_lines;
 //尺寸对比
 var sizes;
 
+var product_line_name;
 
 function httpRequest()
 {
@@ -78,6 +97,9 @@ function httpRequest()
         $("#sizes div").eq(0).addClass("active");
         $("#product_line_icon").attr("src",baseServerUrl+data.product_line_icon);
         $("#product_line_name").text(data.product_line_name);
+		product_line_name = data.product_line_name;
+		brand_color1 = data.brand_color1;
+		console.log(brand_color1);
 
         competing_product_lines=data.competing_product_lines;
 
@@ -128,7 +150,7 @@ function firstInitData()
         for(var i=0;i<sizes.length;i++)
         {
             var obj={};
-            var colorValue=getRandomColor();
+            var colorValue=getRandomColor(i);
             obj.color=colorValue;
             obj.name=sizes[i];
 
@@ -140,7 +162,6 @@ function firstInitData()
 
         }
         huaxian(sizes[i],3);
-
     }
 
     if($("#bottomCol .active").text()=="竞品对比")
@@ -149,7 +170,11 @@ function firstInitData()
         for(var i=0;i<competing_product_lines.length;i++)
         {
             var colorValue=getRandomColor();
+			if(competing_product_lines[i].product_line_name == product_line_name){
+				colorValue = brand_color1;
+			}
             competing_product_lines[i].color=colorValue;
+			console.log(colorValue);
             competing_product_lines[i].name= competing_product_lines[i].product_line_name;
             $("#jingpinTop").append('<span class="jingpin-top-detail">' +
                 '<span class="quan2 quan" style="background: '+colorValue+';">' +
@@ -165,6 +190,9 @@ function firstInitData()
         for(var i=0;i<category_product_lines.length;i++)
         {
             var colorValue=getRandomColor();
+			if(i == category_product_lines.length-1){
+				colorValue = brand_color1;
+			}
             category_product_lines[i].color=colorValue;
             category_product_lines[i].name= category_product_lines[i].product_line_name;
 
@@ -368,7 +396,9 @@ function  huaxian(data,typeValue)
         var url="app/brand/get-product-line-size/";
     }
 	
-
+	
+	var brand_color1;
+	
     Global.commonAjax({
         url:url,
         data:param,
@@ -380,20 +410,27 @@ function  huaxian(data,typeValue)
         var html="";
         var html1="";
 
+		var index = 0;
         for(var i in data.trends) {
 
-            data.trends[i].color=getRandomColor();
+            data.trends[i].color=getRandomColor(++index);
             html=html+'<div>'+i+'</div>';
             trendsList.push(i);
-            html1=html1+'<span class="jingpin-top-detail"><span class="quan2 quan" style="background: '+data.trends[i].color+';"></span>'+i+'</span>';
-			
+            
 			if(typeValue==3)
 			{
 				for(var j=0;j<data.trends[i].length;j++)
 				{
 					data.trends[i][j].product_line_name=data.trends[i][j].size;
+					//当前产品线 颜色
+					if(data.trends[i][j].product_line_name == product_line_name){
+						data.trends[i].color = brand_color1;
+					}
+					
 				}
 			}
+			html1=html1+'<span class="jingpin-top-detail"><span class="quan2 quan" style="background: '+data.trends[i].color+';"></span>'+i+'</span>';
+			
 	
         }
         
@@ -566,14 +603,14 @@ function myChart()
 	            stack: '总量',
 	            smooth: true,
 	            symbol: 'circle',
-// 	            itemStyle : {
-// 	                normal : {
-// 	                    color:allData[i].color,
-// 	                    lineStyle:{
-// 	                        color:allData[i].color
-// 	                    }
-// 	                }
-// 	            },
+	            itemStyle : {
+	                normal : {
+	                    color:allData[i].color,
+	                    lineStyle:{
+	                        color:allData[i].color
+	                    }
+	                }
+	            },
 	            data:allData[i].endYData
 	        };
 	        series.push(seriesObj);
@@ -658,7 +695,7 @@ function myChart()
                     color:duibiData.trends[trendsList[i]].color,
 					label: {
 						formatter: function(value){
-							console.log(JSON.stringify(value));
+							// console.log(JSON.stringify(value));
 							if(value.data < 50){
 								return '';
 							}else{
