@@ -310,7 +310,7 @@
 
 				console.log("收藏列表");
 				console.log(JSON.stringify(data));
-
+					$("#chanpinList1").empty();
 					$("#chanpinList1").append('<li data-id="'+data.my_product_line.product_line_id+'">'+
 							'<img class="left" src="'+baseServerUrl+data.my_product_line.product_line_icon+'"/>'+
 							'<div class="middle">'+data.my_product_line.product_line_name+'</div>'+
