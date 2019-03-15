@@ -326,6 +326,10 @@
 
 				var value=parseFloat(data.praise_ratio*100).toFixed(2);
 				
+				if(!value){
+					value = 0;
+				}
+				
 				$obj.find(".huan").attr("data-value",value);
 
 					$obj.find(".huan").circleChart({
@@ -416,7 +420,7 @@
 							'<div class="huan" data-color="'+data[i].brand_color1+'"></div>'+
 							'<div class="mask">'+
 							'<div>'+
-							'<span class="percent_num"></span>'+
+							'<span class="percent_num">0</span>'+
 							'<span class="percent">%</span>'+
 							'</div>'+
 							'<span class="recommand_text" style="color:'+data[i].brand_color1+'">好评率</span>'+
