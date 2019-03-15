@@ -184,7 +184,8 @@
  				myStorage.setItem("token", data.sessionid);
  				//发送事件 我的页面刷新
  				sendRefresh();
- 				plus.webview.currentWebview().close();
+ 				var wb= plus.webview.getWebviewById("login.html");
+ 				wb.close();
 				
 				
 			}, function(err){
