@@ -259,6 +259,23 @@
 
 
 		}
+		
+		
+		
+var rainPage = 0;
+mui.back = function() {
+	rainPage++;
+	if (rainPage>1) {
+		plus.runtime.quit();
+	} else {
+		plus.nativeUI.toast('再按一次退出应用');
+	}
+	setTimeout(function(){
+		rainPage = 0;
+	}, 1000);
+	return false;
+}
+
 			
 		</script>
 	</body>
