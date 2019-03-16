@@ -27,7 +27,7 @@
 
 	<body>
 
-	<div class="header-bar tab-header">
+	<div class="header-bar tab-header hideClass" id="showIndex">
 
 		<div class="header-left" ontouchstart="showLeftMenu();">
 			<img id="portrait" src="images/default_head.png">
@@ -46,7 +46,7 @@
 
 	</div>
 
-	<div class="has-tab-header">
+	<div class="has-tab-header hideClass" id="showIndexTwo">
 
 	<div class="banner-col">
 
@@ -118,7 +118,7 @@
 
 		
 
-		<div class="tab-border" style="height:51px;"></div>
+		<div class="tab-border hideClass" style="height:51px;" id="showIndexThree"></div>
 
 		<script src="js/util.js"></script>
 		<script src="js/jquery-2.1.1.min.js"></script>
@@ -159,6 +159,14 @@
 						
 						plus.navigator.closeSplashscreen();
 						plus.navigator.setFullscreen(false);
+						
+						$("#showIndex").removeClass("hideClass");
+						$("#showIndexTwo").removeClass("hideClass");
+						$("#showIndexThree").removeClass("hideClass");
+						preload();
+						commonEvent();
+						httpRequest();
+						
 					} else {
 						
 						//显示启动导航
@@ -175,11 +183,13 @@
 								autoShow: false
 							}
 						});
+						return;
 						//延迟的原因：优先打开启动导航页面，避免资源争夺
-						setTimeout(function() {
-							//预加载
-							preload();
-						}, 200);
+// 						setTimeout(function() {
+// 							//预加载
+// 							preload();
+// 						}, 200);
+
 					}
 
 
@@ -220,9 +230,7 @@
 					}
 
 
-					preload();
-					commonEvent();
-					httpRequest();
+					
 					plus.navigator.setStatusBarBackground('transparent');
 					
 					var ws=plus.webview.getWebviewById(plus.runtime.appid);
@@ -295,8 +303,7 @@
 					});
 				});
 
-				function filter()
-				{
+				function filter(){
 					var dataId=$("#swiperList .swiper-slide-active .slide-middle").attr("data-id");
 					var icon=$("#swiperList .swiper-slide-active img").attr("src");
 					if(dataId)
