@@ -206,17 +206,12 @@ var baseServerUrl = "http://mpvpn.3322.org:9090";
 					if(xhr.status == 401){
 						
 						//重新登录
-   						
-						setTimeout(function()
-						{
-							var showGuide = plus.storage.getItem("lauchFlag");
-                            if(window.location.href.indexOf("guide.html")==-1||showGuide==true)
-                            {
-                            	Global.goToLogin();
-                            }
-                            
-
-						},2000);
+							
+								var showGuide = plus.storage.getItem("lauchFlag");
+	                            if(window.location.href.indexOf("guide.html")==-1||showGuide==true)
+	                            {
+	                            		Global.goToLogin();
+	                            }
 						
 						
 					}else if(xhr.status == 200){
@@ -244,7 +239,7 @@ var baseServerUrl = "http://mpvpn.3322.org:9090";
 			var wvs = plus.webview.all();
 			
 			for (var i = 0, len = wvs.length; i < len; i++) {
-			    if (wvs[i].getURL().indexOf("login.html") != -1||(wvs[i].getURL().indexOf("guide.html")> -1)) {
+			    if ((wvs[i].getURL().indexOf("guide.html")> -1)) {
 			        return;
 			    }
 			}
@@ -259,11 +254,12 @@ var baseServerUrl = "http://mpvpn.3322.org:9090";
                 }
             };
 			if(window.location.href.indexOf("index")>-1){
-
-                mui.openWindow('html/login.html','login.html',options);
+                
+                plus.webview.open( 'html/login.html', 'login.html', options.styles,aniShow);
+                
 
 			}else{
-                mui.openWindow('login.html','login.html',options);
+                plus.webview.open( 'login.html', 'login.html', options.styles,aniShow);
 			}
 			
 		},
