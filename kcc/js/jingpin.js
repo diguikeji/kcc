@@ -57,6 +57,9 @@ $(".shoucang").on("touchstart",function()
                 $(".shoucang").addClass("active")
                 mui.toast("收藏成功");
             }
+            
+            var h = plus.webview.getWebviewById("html/shoucang.html");
+			mui.fire(h,'dataRefresh');
 
         },function(err)
         {
@@ -103,6 +106,11 @@ function httpRequest()
         competing_product_lines=data.competing_product_lines;
 
         sizes=data.sizes;
+       
+        if(sizes.length==0)
+        {
+        	$("#bottomCol div").eq(2).hide();
+        }
         
         category_product_lines=data.category_product_lines;
 
@@ -243,21 +251,23 @@ function createChartData()
                 list[i].data13=[];
                 
                 
-                
-                
-                for(var j=0;j<data.trends[typeStr].length;j++)
+                if(data.trends[typeStr])
                 {
-                    if(list[i].name==data.trends[typeStr][j].product_line_name)
-                    {
-                        var obj={
-                            x:data.trends[typeStr][j].week,
-                            y:data.trends[typeStr][j].total
-                        };
-                        list[i].xData.push(data.trends[typeStr][j].week);
-                        list[i].yData.push(data.trends[typeStr][j].total);
-                        list[i].data.push(obj);
-                    }
+                	for(var j=0;j<data.trends[typeStr].length;j++)
+	                {
+	                    if(list[i].name==data.trends[typeStr][j].product_line_name)
+	                    {
+	                        var obj={
+	                            x:data.trends[typeStr][j].week,
+	                            y:data.trends[typeStr][j].total
+	                        };
+	                        list[i].xData.push(data.trends[typeStr][j].week);
+	                        list[i].yData.push(data.trends[typeStr][j].total);
+	                        list[i].data.push(obj);
+	                    }
+	                }
                 }
+                
                 
                 for(var j=0;j<data.totals.length;j++)
                 {
@@ -369,7 +379,11 @@ function  huaxian(data,typeValue)
     if($("#bottomCol .active").text()!="尺码对比")
     {
         var size= $(".jingpin-chart-tab .active").text();
-        param.size=size;
+        if(size)
+        {
+        	param.size=size;
+        }
+        
         $(".jingpin-chart-tab").show();
     }
     else {
@@ -648,7 +662,7 @@ function myChart()
     var ySeries2=[];
     var series2=[];
 
-    var lineHeight=30;
+    var lineHeight=50;
     for(var i=0;i<allData.length;i++)
     {
         lineHeight=lineHeight+40;

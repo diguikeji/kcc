@@ -155,7 +155,7 @@ var baseServerUrl = "http://mpvpn.3322.org:9090";
                 dataType: "json",
                 type: params.method,
                 data: params.data,
-                timeout: 20000,
+                timeout: 10000,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -220,7 +220,7 @@ var baseServerUrl = "http://mpvpn.3322.org:9090";
                     else if(xhr.status == 400){
                        console.log(xhr.responseText);
                        var responseText=JSON.parse(xhr.responseText);
-                       mui.toast(responseText.msg);
+                       mui.toast("服务器错误");
                     }
                     else{
 						errorback("请求出错");

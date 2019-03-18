@@ -48,7 +48,7 @@
 .jingpin-bottom .left .mui-icon-arrowdown{display: none;}
 .jingpin-bottom .left.active .mui-icon-arrowdown{display: inline-block;}
 .jingpin-bottom .left.active .mui-icon-arrowup{display: none;}
-.jingpin-bottom .right div{width:25%;float:left;position: relative;text-align: center;font-size:0.14rem;}
+.jingpin-bottom .right div{position: relative;text-align: center;font-size:0.14rem;flex: 1;}
 .jingpin-bottom .right div.active{color:#ea002a;}
 
 .jingpin-chart-tab{background: #fff;flex-wrap: nowrap;}

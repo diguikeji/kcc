@@ -13,6 +13,10 @@ function dateCol($obj,type)
             picker.dispose();
 
         });
+        
+        $(".mui-dtpicker").prepend("<span style='position:absolute;left:50%;top:10px;margin-left:-20px;color:#666;font-size:14px;'>结束日期</span>");
+  
+        
     }
     else{
 
@@ -25,6 +29,9 @@ function dateCol($obj,type)
             dateCol2();
 
         });
+		
+		$(".mui-dtpicker").prepend("<span style='position:absolute;left:50%;top:10px;margin-left:-20px;color:#666;font-size:14px;'>开始日期</span>");
+  
 
     }
 
@@ -44,13 +51,16 @@ function  dateCol2()
         picker.dispose();
 
     });
+    
+    $(".mui-dtpicker").prepend("<span style='position:absolute;left:50%;top:10px;margin-left:-20px;color:#666;font-size:14px;'>结束日期</span>");
+    
 }
 
 
 mui("body").on('tap','#shadowCol',function(event){
 
 	$(".shadow-col").hide();
-	$(".right-modal-col").animate({"right":"-3rem"},function() {
+	$(".right-modal-col").animate({"right":"-3rem"},300,function() {
         
         $(".right-modal-col").hide();
         
@@ -65,7 +75,7 @@ function  showCondition()
 {
 	$(".shadow-col").show();
 	$(".right-modal-col").show();
-    $(".right-modal-col").animate({"right":"0"});
+    $(".right-modal-col").animate({"right":"0"},300);
     
     
 }
@@ -160,6 +170,13 @@ function  getCondition()
             mui.toast("请选择店铺");
             return;
         }
+
+		$(".shadow-col").hide();
+		$(".right-modal-col").animate({"right":"-3rem"},300,function() {
+	        
+	        $(".right-modal-col").hide();
+	        
+	    });
 
         firstInitData();
     }
