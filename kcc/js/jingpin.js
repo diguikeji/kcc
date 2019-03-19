@@ -280,7 +280,7 @@ function createChartData()
                         };
                         list[i].data1.push(obj);
                         
-                        list[i].data11.push(data.totals[j].attr,);
+                        list[i].data11.push(data.totals[j].attr);
                         list[i].data12.push(data.totals[j].total);
                         list[i].data13.push(data.totals[j].total_ratio);
                         
@@ -568,8 +568,17 @@ $(".jingpin-bottom .right div").click(function()
 $("#chakanPinglun").click(function()
 {
     $(this).toggleClass("active");
-    $("#pinglunCol").toggle();
-    getPinglun();
+	
+	if($(this).hasClass("active")){
+		$("#pinglunCol").removeClass("hideClass");
+		$(".shadow-col").removeClass("hideClass");
+	}else{
+		$(".shadow-col").addClass("hideClass");
+		$("#pinglunCol").addClass("hideClass");
+		
+	}
+	getPinglun();
+    
 
 });
 
@@ -614,7 +623,6 @@ function myChart()
 		var  seriesObj={
 	            name:allData[i].name,
 	            type:'line',
-	            stack: '总量',
 	            smooth: true,
 	            symbol: 'circle',
 	            itemStyle : {
@@ -631,6 +639,7 @@ function myChart()
 	}
 
     var myChart = echarts.init(document.getElementById('main'));
+	
 
     var option = {
         tooltip: {
@@ -654,7 +663,6 @@ function myChart()
         series: series
 
     };
-
     myChart.setOption(option);
 
 	
@@ -666,8 +674,6 @@ function myChart()
     for(var i=0;i<allData.length;i++)
     {
         lineHeight=lineHeight+40;
-
-		
 		ySeries2.push(allData[i].name);
 
 
@@ -680,6 +686,13 @@ function myChart()
 	
     
     var allTrendsList=[];
+	
+	console.log(JSON.stringify(duibiData.trends))
+	for (var i=0;i<trendsList.length;i++){
+		console.log(duibiData.trends[trendsList[i]].color);
+	}
+	
+	
     for (var i=0;i<trendsList.length;i++)
     {
 		var obj={};
@@ -725,7 +738,7 @@ function myChart()
             },
             data: obj.total
         }
-
+		console.log(trendsList[i] + "----"+duibiData.trends[trendsList[i]].color);
         series1.push(seriesObj1);
 
 		
@@ -770,6 +783,9 @@ function myChart()
 
     var myChart2 = echarts.init(document.getElementById('jingpinRow1'));
 
+	series1.map(function(item){
+		item.data.reverse();
+	});
     var option1 = {
         tooltip: {
             trigger: 'axis'
@@ -790,11 +806,18 @@ function myChart()
         series: series1
 
     };
+	
+	// series1.reverse();
+	
+	ySeries2.reverse();
 
     myChart2.setOption(option1);
 
     var myChart2 = echarts.init(document.getElementById('jingpinRow2'));
 
+	series2.map(function(item){
+		item.data.reverse();
+	});
     var option2 = {
         tooltip: {
             trigger: 'axis',
@@ -848,6 +871,7 @@ mui(".chart-tab-col").on('tap','div',function(event){
 
 $("#pinglunCol .shadow-col").on("touchstart",function()
 {
+	console.log("999999999")
 	$("#pinglunCol").hide();
 });
 

@@ -1,11 +1,15 @@
+var picker;
 
 function dateCol($obj,type)
 {
+	if(picker != null){
+		picker.dispose();
+	}
     var options = {"type":"date","value":$($obj).text()};
 
     if(type==2)
     {
-        var picker = new mui.DtPicker(options);
+        picker = new mui.DtPicker(options);
         picker.show(function(rs) {
 
             $($obj).text(rs.text);
@@ -20,7 +24,7 @@ function dateCol($obj,type)
     }
     else{
 
-        var picker = new mui.DtPicker(options);
+        picker = new mui.DtPicker(options);
         picker.show(function(rs) {
 
             $($obj).text(rs.text);
@@ -43,7 +47,7 @@ function  dateCol2()
 {
     var options = {"type":"date","value":$("#startTime").text()};
 
-    var picker = new mui.DtPicker(options);
+    picker = new mui.DtPicker(options);
     picker.show(function(rs) {
 
         $("#endTime").text(rs.text);

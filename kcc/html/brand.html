@@ -331,16 +331,18 @@
 				}
 				
 				$obj.find(".huan").attr("data-value",value);
-
-					$obj.find(".huan").circleChart({
-						size: 100,
-						value: value,
-						text: "",
-						color:color,
-						onDraw: function(el, circle) {
-							
-						}
-					});
+					if(typeof $obj.find(".huan").circleChart === "function"){
+						$obj.find(".huan").circleChart({
+							size: 100,
+							value: value,
+							text: "",
+							color:color,
+							onDraw: function(el, circle) {
+								
+							}
+						});
+					}
+					
 
 				$obj.find(".percent_num").animateNumber(
 						{

@@ -195,9 +195,9 @@ var baseServerUrl = "http://mpvpn.3322.org:9090";
 					
                 },
                 complete: function(xhr, status) {
-                    console.log(xhr.status);
-
-                    console.log(status);
+//                     console.log(xhr.status);
+// 
+//                     console.log(status);
 					if(window.location.href.indexOf("brand_list.html")==-1||plus.os.name=="Android")
 					{
 						waiting.close();
@@ -255,11 +255,11 @@ var baseServerUrl = "http://mpvpn.3322.org:9090";
             };
 			if(window.location.href.indexOf("index")>-1){
                 
-                plus.webview.open( 'html/login.html', 'login.html', options.styles,aniShow);
+                plus.webview.open( 'html/login.html', 'login.html', options.styles);
                 
 
 			}else{
-                plus.webview.open( 'login.html', 'login.html', options.styles,aniShow);
+                plus.webview.open( 'login.html', 'login.html', options.styles);
 			}
 			
 		},
