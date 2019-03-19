@@ -50,7 +50,7 @@
 	</div>
 
 
-	<div class="shuohua" >
+	<div class="shuohua" ontouchstart="startRecognize();">
 		<span><img src="../images/icon/tab_home_voice@2x.png"/></span>
 		<!-- <div>按住说话</div> -->
 	</div>
@@ -67,18 +67,7 @@
 		mui.init();
 
 		mui.plusReady(function() {
-			
-			$(".shuohua").on('touchstart', function(){
-				startRecognize();
-			})
-			
-			$(".shuohua").on('touchmove', function(e){
-				console.log(e)
-			})
-			
-			$(".shuohua").on('touchend', function(){
-				stopRecognize();
-			})
+
 
 		});
 
@@ -97,8 +86,6 @@
 
 
 		});
-		
-		
 
 
 
@@ -218,7 +205,7 @@
 				console.log("语音识别失败：" + e.message);
 				//alert("语音识别失败：" + e.message);
 			});
-			// setTimeout(stopRecognize, 500000);
+			setTimeout(stopRecognize, 500000);
 		}
 		//  停止语音输入
 		function stopRecognize() {
