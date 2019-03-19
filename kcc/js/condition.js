@@ -63,12 +63,14 @@ function  dateCol2()
 
 mui("body").on('tap','#shadowCol',function(event){
 
-	$(".shadow-col").hide();
+	$("#shadowCol").hide();
 	$(".right-modal-col").animate({"right":"-3rem"},300,function() {
         
         $(".right-modal-col").hide();
         
     });
+    
+    hideTip();
 
 });
 
@@ -77,9 +79,10 @@ mui("body").on('tap','#shadowCol',function(event){
 
 function  showCondition()
 {
-	$(".shadow-col").show();
+	$("#shadowCol").show();
 	$(".right-modal-col").show();
     $(".right-modal-col").animate({"right":"0"},300);
+    hideTip();
     
     
 }
@@ -142,7 +145,7 @@ function  getCondition()
             ' </div>'+
             ' <div class="modal-bottom">'+
             ' <span ontouchstart="reset();">重置</span>'+
-            ' <span ontouchstart="modalConfirm()">确定</span>'+
+            ' <span onclick="modalConfirm()">确定</span>'+
             '</div>'+
             '</div>');
 
@@ -175,14 +178,15 @@ function  getCondition()
             return;
         }
 
-		$(".shadow-col").hide();
+		$("#shadowCol").hide();
 		$(".right-modal-col").animate({"right":"-3rem"},300,function() {
 	        
 	        $(".right-modal-col").hide();
 	        
 	    });
-
+	    hideTip();
         firstInitData();
+        
     }
 
 

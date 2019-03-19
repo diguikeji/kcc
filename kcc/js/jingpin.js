@@ -197,7 +197,7 @@ function firstInitData()
         for(var i=0;i<category_product_lines.length;i++)
         {
             var colorValue=getRandomColor();
-			if(i == category_product_lines.length-1){
+			if(i == 0){
 				colorValue = brand_color1;
 			}
             category_product_lines[i].color=colorValue;
@@ -359,7 +359,7 @@ var trendsList=[];
 function  huaxian(data,typeValue)
 {
 	
-
+	trendsList=[];
     var param={};
     param.product_line_id=product_line_id;
 
@@ -426,7 +426,7 @@ function  huaxian(data,typeValue)
 		var index = 0;
         for(var i in data.trends) {
 
-            data.trends[i].color=getRandomColor(++index);
+            data.trends[i][0].color=getRandomColor(++index);
             html=html+'<div>'+i+'</div>';
             trendsList.push(i);
             
@@ -446,6 +446,9 @@ function  huaxian(data,typeValue)
 			
 	
         }
+        
+        console.log("所有数据");
+        console.log(JSON.stringify(data));
         
         if(typeValue==3)
 		{
@@ -565,22 +568,15 @@ $(".jingpin-bottom .right div").click(function()
 
 });
 
-$("#chakanPinglun").click(function()
+$("#chakanPinglun").on("touchstart",function()
 {
     $(this).toggleClass("active");
-	
-	if($(this).hasClass("active")){
-		$("#pinglunCol").removeClass("hideClass");
-		$(".shadow-col").removeClass("hideClass");
-	}else{
-		$(".shadow-col").addClass("hideClass");
-		$("#pinglunCol").addClass("hideClass");
-		
-	}
-	getPinglun();
-    
+    $("#pinglunCol").toggle();
+    getPinglun();
+    hideTip();
 
 });
+
 
 //数组求最大值
 Array.prototype.max = function() {
@@ -670,12 +666,11 @@ function myChart()
     var ySeries2=[];
     var series2=[];
 
-    var lineHeight=50;
+    var lineHeight=60;
     for(var i=0;i<allData.length;i++)
     {
-        lineHeight=lineHeight+40;
+        lineHeight=lineHeight+42;
 		ySeries2.push(allData[i].name);
-
 
     }
 
@@ -686,12 +681,8 @@ function myChart()
 	
     
     var allTrendsList=[];
-	
-	console.log(JSON.stringify(duibiData.trends))
-	for (var i=0;i<trendsList.length;i++){
-		console.log(duibiData.trends[trendsList[i]].color);
-	}
-	
+	console.log("trendsList:");
+	console.log(JSON.stringify(trendsList))
 	
     for (var i=0;i<trendsList.length;i++)
     {
@@ -699,8 +690,6 @@ function myChart()
 		obj.name=trendsList[i];
 		obj.total=[];
 		obj.total_ratio=[];
-		
-		
 
         for(var j=0;j<allData.length;j++)
         {
@@ -709,7 +698,6 @@ function myChart()
             obj.total_ratio.push(allData[j].endData3[i]);
 
         }
-        
         
         var seriesObj1={
             name:trendsList[i],
@@ -723,7 +711,7 @@ function myChart()
             },
             itemStyle : {
                 normal : {
-                    color:duibiData.trends[trendsList[i]].color,
+                    color:duibiData.trends[trendsList[i]][0].color,
 					label: {
 						formatter: function(value){
 							// console.log(JSON.stringify(value));
@@ -738,7 +726,7 @@ function myChart()
             },
             data: obj.total
         }
-		console.log(trendsList[i] + "----"+duibiData.trends[trendsList[i]].color);
+		
         series1.push(seriesObj1);
 
 		
@@ -754,7 +742,7 @@ function myChart()
             },
             itemStyle : {
                 normal : {
-                    color:duibiData.trends[trendsList[i]].color,
+                    color:duibiData.trends[trendsList[i]][0].color,
                      label: {
                         formatter: function (a, b, c) {
 							if(a.data*100 < 10){
@@ -871,7 +859,6 @@ mui(".chart-tab-col").on('tap','div',function(event){
 
 $("#pinglunCol .shadow-col").on("touchstart",function()
 {
-	console.log("999999999")
 	$("#pinglunCol").hide();
 });
 

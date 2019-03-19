@@ -582,6 +582,14 @@ function getColorById(id){
 }
 
 
+function hideTip()
+{
+	$("#main div").eq(1).hide();
+    $("#jingpinRow1 div").eq(1).hide();
+    $("#jingpinRow2 div").eq(1).hide();
+}
+
+
 
 	
 

@@ -264,7 +264,7 @@ header h1{
 .right-modal{width:100%;position: fixed;height:100%;z-index:29000;left:0;top:0;}
 
 
-.right-modal-col{overflow:hidden;display:none;position: fixed;width:3rem;right:-3rem;top:0;height:100%;background: #fff;padding-top:0.06rem;box-sizing: border-box;z-index:30002;}
+.right-modal-col{overflow:hidden;display:none;position: fixed;width:3rem;right:-3rem;top:0;height:100%;background: #fff;padding-top:0.06rem;box-sizing: border-box;z-index:30052;}
 
 .right-modal-col .modal-row{font-size:0.13rem;padding:0.23rem 0.1rem 0 0.1rem;}
 .right-modal-col .modal-row .tag-list{font-size:0;}
