@@ -1,7 +1,7 @@
 var Global = {};
 
 var baseServerUrl = "http://mpvpn.3322.org:9090";
-
+var isOpenLogin = false;
 
 (function() {
 
@@ -232,6 +232,7 @@ var baseServerUrl = "http://mpvpn.3322.org:9090";
 
         },
 		
+		
 		goToLogin: function(){
 			
 			var path = plus.webview.currentWebview();
@@ -253,14 +254,26 @@ var baseServerUrl = "http://mpvpn.3322.org:9090";
 					            }
                 }
             };
+			
+			
 			if(window.location.href.indexOf("index")>-1){
-                
-                plus.webview.open( 'html/login.html', 'login.html', options.styles);
-                
-
+                if(!isOpenLogin){
+					isOpenLogin = true;
+					// alert("1111");
+					plus.webview.open( 'html/login.html', 'login.html', options.styles);
+				}
 			}else{
-                plus.webview.open( 'login.html', 'login.html', options.styles);
+				if(!isOpenLogin){
+					isOpenLogin = true;
+					// alert("2222");
+					plus.webview.open( 'login.html', 'login.html', options.styles);
+				}
+                
 			}
+			
+			setTimeout(function(){
+				isOpenLogin = false;
+			}, 10000);
 			
 		},
 
