@@ -702,6 +702,7 @@ function myChart()
         var seriesObj1={
             name:trendsList[i],
             type: 'bar',
+			barWidth: 18,
             stack: '总量',
             label: {
                 normal: {
@@ -734,6 +735,7 @@ function myChart()
             name:trendsList[i],
             type: 'bar',
             stack: '总量',
+			barWidth: 18,
             label: {
                 normal: {
                     show: true,
