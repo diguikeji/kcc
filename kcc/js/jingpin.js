@@ -721,6 +721,10 @@ function myChart()
 							}else{
 								return value.data;
 							}
+						},
+						textStyle:{
+							fontSize:11,
+							color:'#FFF'
 						}
 					}
                 }
@@ -753,7 +757,11 @@ function myChart()
 								return (a.data*100).toFixed(2)+ "%";
 							}
                             
-                        }
+                        },
+						textStyle:{
+							fontSize:11,
+							color:'#FFF'
+						}
                     }
                 }
                
