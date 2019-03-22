@@ -130,11 +130,11 @@
 			}
 			
 			.corner {
-				width: 0px;                 /*  宽高设置为0，很重要，否则达不到效果 */
+				/* width: 0px;                 
 				height: 0px;
 				border-left:0.04rem solid transparent;
 				border-right:0.04rem solid transparent;
-				border-bottom:0.06rem solid #CD1632;
+				border-bottom:0.06rem solid #CD1632; */
 				position: relative;
 				top:0.02rem;
 				margin-right:0.02rem;
@@ -321,6 +321,12 @@
 				//$obj.find(".percent_num").text(parseFloat(data.praise_ratio*100).toFixed(2));
 				$obj.find(".hangye").text(parseFloat(data.competition_praise_ratio*100).toFixed(2));
 				$obj.find(".huanbi").text(parseFloat(data.ring_praise_ratio*100).toFixed(2));
+				
+				if(parseFloat(data.ring_praise_ratio*100) <0){
+					$(".corner").text("-");
+				}else{
+					$(".corner").text("+");
+				}
 
 					var color=$obj.find(".huan").attr("data-color");
 
@@ -331,16 +337,18 @@
 				}
 				
 				$obj.find(".huan").attr("data-value",value);
-
-					$obj.find(".huan").circleChart({
-						size: 100,
-						value: value,
-						text: "",
-						color:color,
-						onDraw: function(el, circle) {
-							
-						}
-					});
+					if(typeof $obj.find(".huan").circleChart === "function"){
+						$obj.find(".huan").circleChart({
+							size: 100,
+							value: value,
+							text: "",
+							color:color,
+							onDraw: function(el, circle) {
+								
+							}
+						});
+					}
+					
 
 				$obj.find(".percent_num").animateNumber(
 						{
@@ -377,6 +385,9 @@
 
 		function  httpRequest()
 		{
+			var user=myStorage.getItem("user");
+			$('#portrait').attr("src", user.info.portrait);
+			
 			var data=myStorage.getItem("brands");
 			
 			if(data)
@@ -435,7 +446,7 @@
 							'<span>当月环比</span>'+
 							'<div class="row_center">'+
 								'<div class="container">'+
-									'<div class="corner" style="border-bottom: 0.06rem solid '+data[i].brand_color1+';"></div>'+
+									'<div class="corner" style="color: '+data[i].brand_color1+';">+</div>'+
 									'</div>'+
 								'<div><span class="huanbi"></span>%</div>'+
 								'</div>'+
@@ -461,7 +472,7 @@
 
 
 	window.addEventListener('loginRefresh',function(e){
-				console.log("品牌更新头像");
+				
 				var user=myStorage.getItem("user");
 				$('#portrait').attr("src", user.info.portrait);
 	});

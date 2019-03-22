@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="css/page.css">
 		<link rel="stylesheet" href="css/firstPage.css">
 		<style>
-	 		body{background-color: #fff!important;}
+	 		html, body{background-color: #fff!important; height: 100%;}
 			.swiper-banner img{display: block;width:100%;}
 			.swiper-banner .swiper-slide{height:1.37rem;}
 			.swiper-banner .swiper-slide .row{height:1.37rem;background: -webkit-linear-gradient(bottom, #faa9b7 , #cf122e);text-align: center;color:#fff;font-size:0.21rem;}
@@ -22,12 +22,15 @@
 			.swiper-banner .swiper-slide .slide-middle{width:0.62rem;}
 			.swiper-banner .swiper-slide .slide-detail img{border-radius: 50%;width:0.62rem;height:0.62rem;display: block;margin:0 auto;}
 			.swiper-banner .swiper-slide.blue-bg .slide-detail img{border:1px solid #298fd0;}
+			.empty_wrap{height: 100%; margin-top: -0.65rem; }
+			.empty_wrap img{width: 1.34rem; height: 1.67rem;}
+			.has-tab-header{height: 100%;}
 		</style>
 	</head>
 
 	<body>
 
-	<div class="header-bar tab-header hideClass" id="showIndex">
+	<div class="header-bar tab-header " id="showIndex">
 
 		<div class="header-left" ontouchstart="showLeftMenu();">
 			<img id="portrait" src="images/default_head.png">
@@ -46,50 +49,12 @@
 
 	</div>
 
-	<div class="has-tab-header hideClass" id="showIndexTwo">
+	<div class="has-tab-header col" id="showIndexTwo">
 
 	<div class="banner-col">
 
 			<div class="swiper-container swiper-banner">
 				<div class="swiper-wrapper" id="swiperList">
-
-					<!--<div class="swiper-slide">
-						<div class="row blue-bg">
-							<div class="slide-detail flex_one">
-								8624
-								<div>好评</div>
-							</div>
-
-							<div class="slide-detail slide-middle">
-								<img src="images/firstPage/proImg.jpg">
-							</div>
-
-							<div class="slide-detail flex_one">
-								8624
-								<div>好评</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="swiper-slide">
-						<div class="row blue-bg">
-							<div class="slide-detail flex_one">
-								8624
-								<div>好评</div>
-							</div>
-
-							<div class="slide-detail slide-middle">
-								<img src="images/firstPage/proImg.jpg">
-							</div>
-
-							<div class="slide-detail flex_one">
-								8624
-								<div>好评</div>
-							</div>
-
-						</div>
-					</div>-->
 
 
 				</div>
@@ -100,25 +65,21 @@
 
 
 	<ul class="home-list" id="list">
-
-		<!--<li>
-			<img src="images/firstPage/home_07.jpg" />
-			<div class="right-col">
-				<div>好奇心好奇心好奇心</div>
-				<p>测试测试测试测试测试测试</p>
-				<div class="right-text">
-					<div>17:25</div>
-					<span class="quan"></span>
-				</div>
-			</div>
-		</li>-->
+		
+		
 	</ul>
+	
+	<div class="row_center empty_wrap hideClass" >
+		<img src="images/home_empty.png" >
+	</div>
+	
+	
 
 	</div>
 
 		
 
-		<div class="tab-border hideClass" style="height:51px;" id="showIndexThree"></div>
+		<div class="tab-border" style="height:51px;" id="showIndexThree"></div>
 
 		<script src="js/util.js"></script>
 		<script src="js/jquery-2.1.1.min.js"></script>
@@ -146,26 +107,22 @@
 				mui.plusReady(function() {
 
 					//plus.storage.removeItem("lauchFlag");
-
+					
+					isAppIn = true;
+					
 					//读取本地存储，检查是否为首次启动
 					var showGuide = plus.storage.getItem("lauchFlag");
-					
 					//仅支持竖屏显示
 					plus.screen.lockOrientation("portrait-primary");
-					
 					
 					if(showGuide) {
 						
 						plus.navigator.closeSplashscreen();
 						plus.navigator.setFullscreen(false);
 						
-						$("#showIndex").removeClass("hideClass");
-						$("#showIndexTwo").removeClass("hideClass");
-						$("#showIndexThree").removeClass("hideClass");
 						preload();
 						commonEvent();
 						httpRequest();
-						
 					} else {
 						
 						//显示启动导航
@@ -182,12 +139,11 @@
 								autoShow: false
 							}
 						});
-						return;
 						//延迟的原因：优先打开启动导航页面，避免资源争夺
-// 						setTimeout(function() {
-// 							//预加载
-// 							preload();
-// 						}, 200);
+						setTimeout(function() {
+							//预加载
+							preload();
+						}, 200);
 
 					}
 
@@ -231,7 +187,7 @@
 						showAlert();
 					}
 
-
+					
 					
 					plus.navigator.setStatusBarBackground('transparent');
 					
@@ -459,6 +415,12 @@
 					console.log(JSON.stringify(data));
 					data=data.alert_messages;
 					
+					if(data.length == 0){
+						$(".empty_wrap").removeClass('hideClass');
+					}else{
+						$(".empty_wrap").addClass('hideClass');
+					}
+					
 					for(var i=0;i<data.length;i++)
 					{
 
@@ -538,7 +500,7 @@
 
 
 			window.addEventListener('loginTabRefresh',function(e){
-				console.log("首页loginTabRefresh");
+				
 				httpRequest();
 			});
 				

@@ -223,7 +223,16 @@
 			document.getElementById("close").addEventListener('tap', function(event) {
 				plus.storage.setItem("lauchFlag", "true");
 				
-				sendRefresh();
+				// sendRefresh();
+				var options = {
+				    styles:{
+				    	popGesture: "none",
+				    	"statusbar":{
+						                background: "#ffffff"
+						            }
+				    }
+				};
+				plus.webview.open( 'login.html', 'login.html', options.styles);
 				
 				plus.navigator.setFullscreen(false);
 				plus.webview.currentWebview().close();
@@ -234,7 +243,7 @@
 			 	var index = event.detail.slideNumber+1;
 			 	if(index==2||index==3){
 			 		var item = document.getElementById("tips-"+index);
-			 		if(item.classList.contains("mui-hidden")){
+			 		if(item && item.classList.contains("mui-hidden")){
 			 			item.classList.remove("mui-hidden");
 			 			item.classList.add("guide-show");
 			 		}

@@ -3,7 +3,7 @@ var product_line_id=GetQueryString("product_line_id");
 //随机颜色
 function getRandomColor(index){ 
 	// return "#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6); 
-	if(index>0){
+	if((index>0) && brand_color1){
 		var r = parseInt(brand_color1.substring(1,3)+'', 16); 
 		var g = parseInt(brand_color1.substring(3,5)+'', 16);
 		var b = parseInt(brand_color1.substring(5,7)+'', 16);
@@ -131,10 +131,18 @@ function httpRequest()
 
 function clearAll()
 {
-
-    echarts.init(document.getElementById('jingpinRow1')).clear();
-    echarts.init(document.getElementById('jingpinRow2')).clear();
-    echarts.init(document.getElementById('main')).clear();
+	if(myChart0)
+	{
+		myChart0.dispose();
+	}
+	if(myChart1)
+	{
+		myChart1.dispose();
+	}
+	if(myChart2)
+	{
+		myChart2.dispose();
+	}
 
 }
 
@@ -197,7 +205,7 @@ function firstInitData()
         for(var i=0;i<category_product_lines.length;i++)
         {
             var colorValue=getRandomColor();
-			if(i == category_product_lines.length-1){
+			if(i == 0){
 				colorValue = brand_color1;
 			}
             category_product_lines[i].color=colorValue;
@@ -280,7 +288,7 @@ function createChartData()
                         };
                         list[i].data1.push(obj);
                         
-                        list[i].data11.push(data.totals[j].attr,);
+                        list[i].data11.push(data.totals[j].attr);
                         list[i].data12.push(data.totals[j].total);
                         list[i].data13.push(data.totals[j].total_ratio);
                         
@@ -359,7 +367,7 @@ var trendsList=[];
 function  huaxian(data,typeValue)
 {
 	
-
+	trendsList=[];
     var param={};
     param.product_line_id=product_line_id;
 
@@ -426,7 +434,7 @@ function  huaxian(data,typeValue)
 		var index = 0;
         for(var i in data.trends) {
 
-            data.trends[i].color=getRandomColor(++index);
+            data.trends[i][0].color=getRandomColor(++index);
             html=html+'<div>'+i+'</div>';
             trendsList.push(i);
             
@@ -442,10 +450,13 @@ function  huaxian(data,typeValue)
 					
 				}
 			}
-			html1=html1+'<span class="jingpin-top-detail"><span class="quan2 quan" style="background: '+data.trends[i].color+';"></span>'+i+'</span>';
+			html1=html1+'<span class="jingpin-top-detail"><span class="quan2 quan" style="background: '+data.trends[i][0].color+';"></span>'+i+'</span>';
 			
 	
         }
+        
+        console.log("所有数据");
+        console.log(JSON.stringify(data));
         
         if(typeValue==3)
 		{
@@ -510,6 +521,11 @@ function getPinglun()
         $("#pinglunCount").text(data.comments.length);
 		if(data.comments.length == 0){
 			$("#pinglunAll").empty();
+			$(".pinglun-list").addClass("hideClass");
+			$(".command_empty").removeClass("hideClass");
+		}else{
+			$(".pinglun-list").removeClass("hideClass");
+			$(".command_empty").addClass("hideClass");
 		}
         $(".pinglun-list").empty();
 
@@ -565,13 +581,15 @@ $(".jingpin-bottom .right div").click(function()
 
 });
 
-$("#chakanPinglun").click(function()
+$("#chakanPinglun").on("touchstart",function()
 {
     $(this).toggleClass("active");
     $("#pinglunCol").toggle();
     getPinglun();
+    hideTip();
 
 });
+
 
 //数组求最大值
 Array.prototype.max = function() {
@@ -585,7 +603,9 @@ Array.prototype.max = function() {
     return max;
 }
 
-
+var myChart0;
+var myChart1;
+var myChart2;
 function myChart()
 {
 	
@@ -614,7 +634,6 @@ function myChart()
 		var  seriesObj={
 	            name:allData[i].name,
 	            type:'line',
-	            stack: '总量',
 	            smooth: true,
 	            symbol: 'circle',
 	            itemStyle : {
@@ -630,7 +649,8 @@ function myChart()
 	        series.push(seriesObj);
 	}
 
-    var myChart = echarts.init(document.getElementById('main'));
+    myChart0 = echarts.init(document.getElementById('main'));
+	
 
     var option = {
         tooltip: {
@@ -654,22 +674,18 @@ function myChart()
         series: series
 
     };
-
-    myChart.setOption(option);
+    myChart0.setOption(option);
 
 	
     var series1=[];
     var ySeries2=[];
     var series2=[];
 
-    var lineHeight=50;
+    var lineHeight=30;
     for(var i=0;i<allData.length;i++)
     {
         lineHeight=lineHeight+40;
-
-		
 		ySeries2.push(allData[i].name);
-
 
     }
 
@@ -680,27 +696,31 @@ function myChart()
 	
     
     var allTrendsList=[];
+	console.log("trendsList:");
+	console.log(JSON.stringify(trendsList))
+	
+	var maxValue = 0;
     for (var i=0;i<trendsList.length;i++)
     {
 		var obj={};
 		obj.name=trendsList[i];
 		obj.total=[];
 		obj.total_ratio=[];
-		
-		
 
         for(var j=0;j<allData.length;j++)
         {
 
             obj.total.push(allData[j].endData2[i]);
             obj.total_ratio.push(allData[j].endData3[i]);
-
+			if(maxValue < allData[j].endData2[i]){
+				maxValue = allData[j].endData2[i];
+			}
         }
-        
         
         var seriesObj1={
             name:trendsList[i],
             type: 'bar',
+			barWidth: 18,
             stack: '总量',
             label: {
                 normal: {
@@ -710,22 +730,26 @@ function myChart()
             },
             itemStyle : {
                 normal : {
-                    color:duibiData.trends[trendsList[i]].color,
+                    color:duibiData.trends[trendsList[i]][0].color,
 					label: {
 						formatter: function(value){
-							// console.log(JSON.stringify(value));
-							if(value.data < 50){
+							console.log(maxValue);
+							if(value.data < maxValue/10){
 								return '';
 							}else{
 								return value.data;
 							}
+						},
+						textStyle:{
+							fontSize:11,
+							color:'#FFF'
 						}
 					}
                 }
             },
             data: obj.total
         }
-
+		
         series1.push(seriesObj1);
 
 		
@@ -733,6 +757,7 @@ function myChart()
             name:trendsList[i],
             type: 'bar',
             stack: '总量',
+			barWidth: 18,
             label: {
                 normal: {
                     show: true,
@@ -741,7 +766,7 @@ function myChart()
             },
             itemStyle : {
                 normal : {
-                    color:duibiData.trends[trendsList[i]].color,
+                    color:duibiData.trends[trendsList[i]][0].color,
                      label: {
                         formatter: function (a, b, c) {
 							if(a.data*100 < 10){
@@ -750,7 +775,11 @@ function myChart()
 								return (a.data*100).toFixed(2)+ "%";
 							}
                             
-                        }
+                        },
+						textStyle:{
+							fontSize:11,
+							color:'#FFF'
+						}
                     }
                 }
                
@@ -768,8 +797,11 @@ function myChart()
    
 
 
-    var myChart2 = echarts.init(document.getElementById('jingpinRow1'));
+    myChart1 = echarts.init(document.getElementById('jingpinRow1'));
 
+	series1.map(function(item){
+		item.data.reverse();
+	});
     var option1 = {
         tooltip: {
             trigger: 'axis'
@@ -790,11 +822,18 @@ function myChart()
         series: series1
 
     };
+	
+	// series1.reverse();
+	
+	ySeries2.reverse();
 
-    myChart2.setOption(option1);
+    myChart1.setOption(option1);
 
-    var myChart2 = echarts.init(document.getElementById('jingpinRow2'));
+    myChart2 = echarts.init(document.getElementById('jingpinRow2'));
 
+	series2.map(function(item){
+		item.data.reverse();
+	});
     var option2 = {
         tooltip: {
             trigger: 'axis',
