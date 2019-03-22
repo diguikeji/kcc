@@ -97,12 +97,12 @@
 		<div class="login_wrap">
 			<div class="row_between">
 				<img src="../images/login/login_phone.png">
-				<input type="text" placeholder="请输入手机号码" maxlength="11" value="test1" class="mobile">
+				<input type="text" placeholder="请输入手机号码" maxlength="40" class="mobile">
 			</div>
 			
 			<div class="row_between">
 				<img src="../images/login/login_pwd.png">
-				<input type="password" placeholder="请输入密码" value="1A2b3c4d5e" class="password">
+				<input type="password" placeholder="请输入密码"  class="password">
 			</div>
 
 
@@ -119,11 +119,15 @@
 	<script src="../js/app.js"></script>
 	<script src="../js/myStorage.js"></script>
 	<script type="text/javascript">
-		
+		// test1 1A2b3c4d5e
 		mui.init();
 		
 		mui.plusReady(function() {
 			
+			var mobile = myStorage.getItem("mobile");
+			var password = myStorage.getItem("password");
+			$(".mobile").val(mobile);
+			$(".password").val(password);
 		});
 		
 		$("input").focus(function(){
@@ -180,8 +184,12 @@
 				data: params
 			}, function(data){
 				mui.toast("登录成功");
+				plus.storage.setItem("lauchFlag", "true");
+				
 				
  				myStorage.setItem("token", data.sessionid);
+ 				myStorage.setItem("mobile", mobile);
+ 				myStorage.setItem("password", password);
  				//发送事件 我的页面刷新
  				
 				sendRefresh();
@@ -190,7 +198,7 @@
 				
 				
 			}, function(err){
-				mui.toast(err);
+				mui.toast("用户名或者密码错误");
 			});
 		}
 		

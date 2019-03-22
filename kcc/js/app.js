@@ -2,6 +2,7 @@ var Global = {};
 
 var baseServerUrl = "http://mpvpn.3322.org:9090";
 var isOpenLogin = false;
+var isAppIn = false;
 
 (function() {
 
@@ -168,7 +169,24 @@ var isOpenLogin = false;
                     
                     if (token) {
                         xhr.setRequestHeader("Cookie", "sessionid=" + token);
-                    };
+                    }else{
+						if(isAppIn){
+							isAppIn = false;
+							mui.openWindow({
+								id: 'guide',
+								url: 'html/guide.html',
+								styles: {
+									popGesture: "none"
+								},
+								show: {
+									aniShow: 'none'
+								},
+								waiting: {
+									autoShow: false
+								}
+							});
+						}
+					}
 
                     //Global.showLoading();
                     waiting = plus.nativeUI.showWaiting("加载中...");
@@ -207,11 +225,11 @@ var isOpenLogin = false;
 						
 						//重新登录
 							
-								var showGuide = plus.storage.getItem("lauchFlag");
-	                            if(window.location.href.indexOf("guide.html")==-1||showGuide==true)
-	                            {
-	                            		Global.goToLogin();
-	                            }
+						var showGuide = plus.storage.getItem("lauchFlag");
+						if(window.location.href.indexOf("guide.html")==-1||showGuide==true)
+						{
+								Global.goToLogin();
+						}
 						
 						
 					}else if(xhr.status == 200){
@@ -219,8 +237,9 @@ var isOpenLogin = false;
 					}
                     else if(xhr.status == 400){
                        console.log(xhr.responseText);
-                       var responseText=JSON.parse(xhr.responseText);
-                       mui.toast("服务器错误");
+                       var responseText=JSON.parse(xhr.responseText).msg;
+                       mui.toast(responseText);
+                       // mui.toast("服务器错误");
                     }
                     else{
 						errorback("请求出错");
@@ -260,12 +279,16 @@ var isOpenLogin = false;
                 if(!isOpenLogin){
 					isOpenLogin = true;
 					// alert("1111");
+					//下次开启引导页
+					plus.storage.setItem("lauchFlag", "false");
 					plus.webview.open( 'html/login.html', 'login.html', options.styles);
 				}
 			}else{
 				if(!isOpenLogin){
 					isOpenLogin = true;
 					// alert("2222");
+					//下次开启引导页
+					plus.storage.setItem("lauchFlag", "false");
 					plus.webview.open( 'login.html', 'login.html', options.styles);
 				}
                 
@@ -563,6 +586,7 @@ function loginOut()
     }, function(data){
 
         console.log("退出"+JSON.stringify(data));
+		plus.storage.setItem("lauchFlag", "false");
         myStorage.removeItem("token");
         mui.toast("退出成功");
         Global.openWindow({

@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="css/page.css">
 		<link rel="stylesheet" href="css/firstPage.css">
 		<style>
-	 		body{background-color: #fff!important;}
+	 		html, body{background-color: #fff!important; height: 100%;}
 			.swiper-banner img{display: block;width:100%;}
 			.swiper-banner .swiper-slide{height:1.37rem;}
 			.swiper-banner .swiper-slide .row{height:1.37rem;background: -webkit-linear-gradient(bottom, #faa9b7 , #cf122e);text-align: center;color:#fff;font-size:0.21rem;}
@@ -22,6 +22,9 @@
 			.swiper-banner .swiper-slide .slide-middle{width:0.62rem;}
 			.swiper-banner .swiper-slide .slide-detail img{border-radius: 50%;width:0.62rem;height:0.62rem;display: block;margin:0 auto;}
 			.swiper-banner .swiper-slide.blue-bg .slide-detail img{border:1px solid #298fd0;}
+			.empty_wrap{height: 100%; margin-top: -0.65rem; }
+			.empty_wrap img{width: 1.34rem; height: 1.67rem;}
+			.has-tab-header{height: 100%;}
 		</style>
 	</head>
 
@@ -46,50 +49,12 @@
 
 	</div>
 
-	<div class="has-tab-header " id="showIndexTwo">
+	<div class="has-tab-header col" id="showIndexTwo">
 
 	<div class="banner-col">
 
 			<div class="swiper-container swiper-banner">
 				<div class="swiper-wrapper" id="swiperList">
-
-					<!--<div class="swiper-slide">
-						<div class="row blue-bg">
-							<div class="slide-detail flex_one">
-								8624
-								<div>好评</div>
-							</div>
-
-							<div class="slide-detail slide-middle">
-								<img src="images/firstPage/proImg.jpg">
-							</div>
-
-							<div class="slide-detail flex_one">
-								8624
-								<div>好评</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="swiper-slide">
-						<div class="row blue-bg">
-							<div class="slide-detail flex_one">
-								8624
-								<div>好评</div>
-							</div>
-
-							<div class="slide-detail slide-middle">
-								<img src="images/firstPage/proImg.jpg">
-							</div>
-
-							<div class="slide-detail flex_one">
-								8624
-								<div>好评</div>
-							</div>
-
-						</div>
-					</div>-->
 
 
 				</div>
@@ -100,19 +65,15 @@
 
 
 	<ul class="home-list" id="list">
-
-		<!--<li>
-			<img src="images/firstPage/home_07.jpg" />
-			<div class="right-col">
-				<div>好奇心好奇心好奇心</div>
-				<p>测试测试测试测试测试测试</p>
-				<div class="right-text">
-					<div>17:25</div>
-					<span class="quan"></span>
-				</div>
-			</div>
-		</li>-->
+		
+		
 	</ul>
+	
+	<div class="row_center empty_wrap hideClass" >
+		<img src="images/home_empty.png" >
+	</div>
+	
+	
 
 	</div>
 
@@ -146,13 +107,13 @@
 				mui.plusReady(function() {
 
 					//plus.storage.removeItem("lauchFlag");
-
+					
+					isAppIn = true;
+					
 					//读取本地存储，检查是否为首次启动
 					var showGuide = plus.storage.getItem("lauchFlag");
-					
 					//仅支持竖屏显示
 					plus.screen.lockOrientation("portrait-primary");
-					
 					
 					if(showGuide) {
 						
@@ -453,6 +414,12 @@
 					console.log("获取预警消息");
 					console.log(JSON.stringify(data));
 					data=data.alert_messages;
+					
+					if(data.length == 0){
+						$(".empty_wrap").removeClass('hideClass');
+					}else{
+						$(".empty_wrap").addClass('hideClass');
+					}
 					
 					for(var i=0;i<data.length;i++)
 					{

@@ -3,7 +3,7 @@ var product_line_id=GetQueryString("product_line_id");
 //随机颜色
 function getRandomColor(index){ 
 	// return "#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6); 
-	if(index>0){
+	if((index>0) && brand_color1){
 		var r = parseInt(brand_color1.substring(1,3)+'', 16); 
 		var g = parseInt(brand_color1.substring(3,5)+'', 16);
 		var b = parseInt(brand_color1.substring(5,7)+'', 16);
@@ -684,6 +684,7 @@ function myChart()
 	console.log("trendsList:");
 	console.log(JSON.stringify(trendsList))
 	
+	var maxValue = 0;
     for (var i=0;i<trendsList.length;i++)
     {
 		var obj={};
@@ -696,7 +697,9 @@ function myChart()
 
             obj.total.push(allData[j].endData2[i]);
             obj.total_ratio.push(allData[j].endData3[i]);
-
+			if(maxValue < allData[j].endData2[i]){
+				maxValue = allData[j].endData2[i];
+			}
         }
         
         var seriesObj1={
@@ -715,8 +718,8 @@ function myChart()
                     color:duibiData.trends[trendsList[i]][0].color,
 					label: {
 						formatter: function(value){
-							// console.log(JSON.stringify(value));
-							if(value.data < 50){
+							console.log(maxValue);
+							if(value.data < maxValue/10){
 								return '';
 							}else{
 								return value.data;

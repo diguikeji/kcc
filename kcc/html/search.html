@@ -200,12 +200,15 @@
 				console.log(s);
 				text += s;
 				document.getElementById('searchText').value = text;
-
+				if(text!="")
+				{
+				  httpRequest(text);
+				}
 			}, function(e) {
 				console.log("语音识别失败：" + e.message);
 				//alert("语音识别失败：" + e.message);
 			});
-			setTimeout(stopRecognize, 500000);
+			setTimeout(stopRecognize, 50000);
 		}
 		//  停止语音输入
 		function stopRecognize() {

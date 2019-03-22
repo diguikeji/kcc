@@ -62,15 +62,18 @@ function  dateCol2()
 
 
 mui("body").on('tap','#shadowCol',function(event){
-
+	
+	if(picker != null){
+		picker.dispose();
+	}
 	$("#shadowCol").hide();
 	$(".right-modal-col").animate({"right":"-3rem"},300,function() {
         
         $(".right-modal-col").hide();
         
     });
-    
     hideTip();
+    
 
 });
 
@@ -272,25 +275,52 @@ mui("body").on('tap','.platforms span',function(event){
         }
         else if(id==5)
         {
-            if(currentQuarter<=2)
-            {
-                $("#startTime").text(moment(currentYear + '-01-01').format("YYYY-MM-DD"));
-                $("#endTime").text(moment(currentYear + '-06-30').format("YYYY-MM-DD"));
-            }
-            else {
-                $("#startTime").text(moment(currentYear + '-07-01').format("YYYY-MM-DD"));
-                $("#endTime").text(moment().year(moment().year()).endOf('year').format("YYYY-MM-DD"));
-            }
+			$("#startTime").text(moment(getDay(0)).format("YYYY-MM-DD"));
+			$("#endTime").text(moment(getDay(-180)).format("YYYY-MM-DD"));
+			
+//             if(currentQuarter<=2)
+//             {
+//                 $("#startTime").text(moment(currentYear + '-01-01').format("YYYY-MM-DD"));
+//                 $("#endTime").text(moment(currentYear + '-06-30').format("YYYY-MM-DD"));
+//             }
+//             else {
+//                 $("#startTime").text(moment(currentYear + '-07-01').format("YYYY-MM-DD"));
+//                 $("#endTime").text(moment().year(moment().year()).endOf('year').format("YYYY-MM-DD"));
+//             }
         }
         else if(id==6)
         {
-            $("#startTime").text(moment().year(moment().year()).startOf('year').format("YYYY-MM-DD"));
-            $("#endTime").text(moment().year(moment().year()).endOf('year').format("YYYY-MM-DD"));
+			$("#startTime").text(moment(getDay(0)).format("YYYY-MM-DD"));
+			$("#endTime").text(moment(getDay(-360)).format("YYYY-MM-DD")); 
+			
+//             $("#startTime").text(moment().year(moment().year()).startOf('year').format("YYYY-MM-DD"));
+//             $("#endTime").text(moment().year(moment().year()).endOf('year').format("YYYY-MM-DD"));
         }
 
     });
 
+/**
+ * 
+ * 得到几 day 天前的日期
+ */
+function getDay(day) {　
+    var today = new Date();　
+    var targetday_milliseconds = today.getTime() + 1000 * 60 * 60 * 24 * day;　　
+    today.setTime(targetday_milliseconds); //注意，这行是关键代码
+    　　
+    var tYear = today.getFullYear();　　
+    var tMonth = today.getMonth();　　
+    var tDate = today.getDate();　　
+    tMonth = doHandleMonth(tMonth + 1);　　
+    tDate = doHandleMonth(tDate);　　
+    return tYear + "-" + tMonth + "-" + tDate;
+}
 
+function doHandleMonth(month) {　　
+    var m = month　　
+    if (month.toString().length == 1) {　　　　 m = "0" + month　　 }　　
+    return m
+}
 
 function reset()
 {
