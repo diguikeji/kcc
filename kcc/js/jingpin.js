@@ -671,17 +671,17 @@ function myChart()
     var ySeries2=[];
     var series2=[];
 
-    var lineHeight=30;
-    for(var i=0;i<allData.length;i++)
-    {
-        lineHeight=lineHeight+62;
-		ySeries2.push(allData[i].name);
-
-    }
-
-	$(".jingpin-row-list").height(lineHeight);
-	
-	$(".jingpin-row-list div").height(lineHeight);
+//     var lineHeight=30;
+//     for(var i=0;i<allData.length;i++)
+//     {
+//         lineHeight=lineHeight+62;
+// 		ySeries2.push(allData[i].name);
+// 
+//     }
+// 
+// 	$(".jingpin-row-list").height(lineHeight);
+// 	
+// 	$(".jingpin-row-list div").height(lineHeight);
 	
 	
     
