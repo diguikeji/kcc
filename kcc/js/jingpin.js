@@ -669,7 +669,7 @@ function myChart()
     var lineHeight=60;
     for(var i=0;i<allData.length;i++)
     {
-        lineHeight=lineHeight+42;
+        lineHeight=lineHeight+30;
 		ySeries2.push(allData[i].name);
 
     }
