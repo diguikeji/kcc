@@ -131,10 +131,18 @@ function httpRequest()
 
 function clearAll()
 {
-
-    echarts.init(document.getElementById('jingpinRow1')).clear();
-    echarts.init(document.getElementById('jingpinRow2')).clear();
-    echarts.init(document.getElementById('main')).clear();
+	if(myChart0)
+	{
+		myChart0.dispose();
+	}
+	if(myChart1)
+	{
+		myChart1.dispose();
+	}
+	if(myChart2)
+	{
+		myChart2.dispose();
+	}
 
 }
 
@@ -595,7 +603,9 @@ Array.prototype.max = function() {
     return max;
 }
 
-
+var myChart0;
+var myChart1;
+var myChart2;
 function myChart()
 {
 	
@@ -639,7 +649,7 @@ function myChart()
 	        series.push(seriesObj);
 	}
 
-    var myChart = echarts.init(document.getElementById('main'));
+    myChart0 = echarts.init(document.getElementById('main'));
 	
 
     var option = {
@@ -664,24 +674,24 @@ function myChart()
         series: series
 
     };
-    myChart.setOption(option);
+    myChart0.setOption(option);
 
 	
     var series1=[];
     var ySeries2=[];
     var series2=[];
 
-//     var lineHeight=30;
-//     for(var i=0;i<allData.length;i++)
-//     {
-//         lineHeight=lineHeight+62;
-// 		ySeries2.push(allData[i].name);
-// 
-//     }
-// 
-// 	$(".jingpin-row-list").height(lineHeight);
-// 	
-// 	$(".jingpin-row-list div").height(lineHeight);
+    var lineHeight=30;
+    for(var i=0;i<allData.length;i++)
+    {
+        lineHeight=lineHeight+40;
+		ySeries2.push(allData[i].name);
+
+    }
+
+	$(".jingpin-row-list").height(lineHeight);
+	
+	$(".jingpin-row-list div").height(lineHeight);
 	
 	
     
@@ -787,7 +797,7 @@ function myChart()
    
 
 
-    var myChart2 = echarts.init(document.getElementById('jingpinRow1'));
+    myChart1 = echarts.init(document.getElementById('jingpinRow1'));
 
 	series1.map(function(item){
 		item.data.reverse();
@@ -817,9 +827,9 @@ function myChart()
 	
 	ySeries2.reverse();
 
-    myChart2.setOption(option1);
+    myChart1.setOption(option1);
 
-    var myChart2 = echarts.init(document.getElementById('jingpinRow2'));
+    myChart2 = echarts.init(document.getElementById('jingpinRow2'));
 
 	series2.map(function(item){
 		item.data.reverse();
