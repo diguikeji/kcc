@@ -442,7 +442,7 @@ function  huaxian(data,typeValue)
 					
 				}
 			}
-			html1=html1+'<span class="jingpin-top-detail"><span class="quan2 quan" style="background: '+data.trends[i].color+';"></span>'+i+'</span>';
+			html1=html1+'<span class="jingpin-top-detail"><span class="quan2 quan" style="background: '+data.trends[i][0].color+';"></span>'+i+'</span>';
 			
 	
         }
@@ -513,6 +513,11 @@ function getPinglun()
         $("#pinglunCount").text(data.comments.length);
 		if(data.comments.length == 0){
 			$("#pinglunAll").empty();
+			$(".pinglun-list").addClass("hideClass");
+			$(".command_empty").removeClass("hideClass");
+		}else{
+			$(".pinglun-list").removeClass("hideClass");
+			$(".command_empty").addClass("hideClass");
 		}
         $(".pinglun-list").empty();
 
@@ -666,10 +671,10 @@ function myChart()
     var ySeries2=[];
     var series2=[];
 
-    var lineHeight=60;
+    var lineHeight=30;
     for(var i=0;i<allData.length;i++)
     {
-        lineHeight=lineHeight+30;
+        lineHeight=lineHeight+62;
 		ySeries2.push(allData[i].name);
 
     }
