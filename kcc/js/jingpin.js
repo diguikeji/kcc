@@ -503,6 +503,7 @@ function getPinglun()
     });
 
     platform_id=platform_id.slice(1);
+	alert(platform_id)
 
     param.platform_id=platform_id
     param.start_date=$("#startTime").text();
