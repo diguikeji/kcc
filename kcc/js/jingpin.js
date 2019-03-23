@@ -503,7 +503,6 @@ function getPinglun()
     });
 
     platform_id=platform_id.slice(1);
-	alert(platform_id)
 
     param.platform_id=platform_id
     param.start_date=$("#startTime").text();
@@ -799,7 +798,7 @@ function myChart()
 
 
     myChart1 = echarts.init(document.getElementById('jingpinRow1'));
-
+	
 	series1.map(function(item){
 		item.data.reverse();
 	});
@@ -814,7 +813,10 @@ function myChart()
             containLabel: true
         },
         xAxis: {
-            type: 'value'
+            type: 'value',
+			axisLabel: {
+				clickable: true
+			}
         },
         yAxis: {
             type: 'category',
@@ -823,6 +825,9 @@ function myChart()
         series: series1
 
     };
+// 	myChart1.on('click', function(params){
+// 		alert(JSON.stringify(params));
+// 	});
 	
 	// series1.reverse();
 	
@@ -861,7 +866,8 @@ function myChart()
             axisLabel : {
                 formatter: function(value){
 						return value+"%";
-					}
+				},
+				clickable: true
             }
         },
         yAxis: {
@@ -873,7 +879,9 @@ function myChart()
     };
 
     myChart2.setOption(option2);
-    
+//     myChart2.on('click', function(params){
+//     	alert(JSON.stringify(params));
+//     });
 }
 
 
