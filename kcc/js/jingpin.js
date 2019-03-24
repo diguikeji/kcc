@@ -889,6 +889,7 @@ function myChart()
         xAxis: {
             type: 'value',
             show:false,
+            clickable: true,
             axisLabel : {
                 formatter: function(value){
 						return value+"%";
