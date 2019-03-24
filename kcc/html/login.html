@@ -97,7 +97,7 @@
 		<div class="login_wrap">
 			<div class="row_between">
 				<img src="../images/login/login_phone.png">
-				<input type="text" placeholder="请输入手机号码" maxlength="40" class="mobile">
+				<input type="text" placeholder="请输入企业邮箱" maxlength="40" class="mobile">
 			</div>
 			
 			<div class="row_between">
@@ -223,6 +223,8 @@
 			var h2 = plus.webview.getWebviewById("html/shoucang.html");
 			mui.fire(h2,'loginTabRefresh');
 
+			var h3 = plus.webview.getWebviewById("html/shoucang.html");
+			mui.fire(h3,'loginRefresh',{loginRefresh: "loginRefresh"});
 
 		}
 		

@@ -48,70 +48,6 @@
 
 					<ul class="shoucang-list" id="shoucangList1">
 
-						<!--<li>
-
-							<div class="left">
-								<img src="../images/firstPage/proImg.jpg"/>
-								<div class="text">
-									2,589
-									<p>本周好评</p>
-								</div>
-							</div>
-							<div class="right">
-
-								<div class="hengtiao">
-									<div style="width:70%;">
-										<span>
-											<img src="../images/icon/dianzan.png"/>
-										</span>
-									</div>
-								</div>
-
-								<div class="bottom-text clearfix">
-									<div>
-										累计好评 <span>58，458</span>
-									</div>
-									<div>
-										总评 <span>58，458</span>
-									</div>
-								</div>
-
-							</div>
-
-						</li>-->
-						<!--
-                                                <li class="blue">
-
-                                                    <div class="left">
-                                                        <img src="../images/firstPage/proImg.jpg"/>
-                                                        <div class="text">
-                                                            2,589
-                                                            <p>本周好评</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right">
-
-                                                        <div class="hengtiao">
-                                                            <div style="width:70%;">
-                                                                <span>
-                                                                    <img src="../images/icon/dianzan.png"/>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="bottom-text clearfix">
-                                                            <div>
-                                                                累计好评 <span>58，458</span>
-                                                            </div>
-                                                            <div>
-                                                                总评 <span>58，458</span>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                </li>-->
-
 					</ul>
 
 					<div class="shoucang-title">
@@ -120,69 +56,6 @@
 
 					<ul class="shoucang-list" id="shoucangList2">
 
-						<!--<li>
-
-							<div class="left">
-								<img src="../images/firstPage/proImg.jpg"/>
-								<div class="text">
-									2,589
-									<p>本周好评</p>
-								</div>
-							</div>
-							<div class="right">
-
-								<div class="hengtiao">
-									<div style="width:70%;">
-										<span>
-											<img src="../images/icon/dianzan.png"/>
-										</span>
-									</div>
-								</div>
-
-								<div class="bottom-text clearfix">
-									<div>
-										累计好评 <span>58，458</span>
-									</div>
-									<div>
-										总评 <span>58，458</span>
-									</div>
-								</div>
-
-							</div>
-
-						</li>
-
-						<li class="blue">
-
-							<div class="left">
-								<img src="../images/firstPage/proImg.jpg"/>
-								<div class="text">
-									2,589
-									<p>本周好评</p>
-								</div>
-							</div>
-							<div class="right">
-
-								<div class="hengtiao">
-									<div style="width:70%;">
-										<span>
-											<img src="../images/icon/dianzan.png"/>
-										</span>
-									</div>
-								</div>
-
-								<div class="bottom-text clearfix">
-									<div>
-										累计好评 <span>58，458</span>
-									</div>
-									<div>
-										总评 <span>58，458</span>
-									</div>
-								</div>
-
-							</div>
-
-						</li>-->
 
 					</ul>
 
@@ -371,11 +244,12 @@
 		window.addEventListener('loginRefresh',function(e){
 				var user=myStorage.getItem("user");
 				$('#portrait').attr("src", user.info.portrait);
-				});
+		});
 				
 		//刷新数据
 		window.addEventListener('dataRefresh',function(e){
-				
+				var user=myStorage.getItem("user");
+				$('#portrait').attr("src", user.info.portrait);
 				httpRequest();
 				
 			});

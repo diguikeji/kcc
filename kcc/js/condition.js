@@ -275,8 +275,8 @@ mui("body").on('tap','.platforms span',function(event){
         }
         else if(id==5)
         {
-			$("#startTime").text(moment(getDay(0)).format("YYYY-MM-DD"));
-			$("#endTime").text(moment(getDay(-180)).format("YYYY-MM-DD"));
+			$("#startTime").text(moment(getDay(-180)).format("YYYY-MM-DD"));
+			$("#endTime").text(moment(getDay(0)).format("YYYY-MM-DD"));
 			
 //             if(currentQuarter<=2)
 //             {
@@ -290,8 +290,8 @@ mui("body").on('tap','.platforms span',function(event){
         }
         else if(id==6)
         {
-			$("#startTime").text(moment(getDay(0)).format("YYYY-MM-DD"));
-			$("#endTime").text(moment(getDay(-360)).format("YYYY-MM-DD")); 
+			$("#startTime").text(moment(getDay(-360)).format("YYYY-MM-DD"));
+			$("#endTime").text(moment(getDay(0)).format("YYYY-MM-DD")); 
 			
 //             $("#startTime").text(moment().year(moment().year()).startOf('year').format("YYYY-MM-DD"));
 //             $("#endTime").text(moment().year(moment().year()).endOf('year').format("YYYY-MM-DD"));
