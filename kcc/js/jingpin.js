@@ -858,6 +858,7 @@ function myChart()
             type: 'value',
             show:false,
             axisLabel : {
+            	clickable:true,
                 formatter: function(value){
 						return value+"%";
 					}
@@ -870,7 +871,7 @@ function myChart()
         series: series2
 
     };
-
+    
     myChart2.setOption(option2);
     
 }
