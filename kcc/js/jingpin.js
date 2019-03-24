@@ -474,11 +474,6 @@ function  huaxian(data,typeValue)
 
 		duibiData=data;
 		createChartData();
-		
-		if(!$("#pinglunCol").is(':hidden'))
-		{
-			getPinglun();
-		}
 
 
     },function(err)
@@ -490,11 +485,28 @@ function  huaxian(data,typeValue)
 }
 
 
-function getPinglun()
+function getPinglun(pIdSize)
 {
 
     var param={};
-    param.product_line_id=product_line_id;
+    
+    if(pIdSize)
+    {
+    	
+    	if($("#bottomCol .active").text()=="竞品对比"||$("#bottomCol .active").text()=="内部对比")
+	    {
+	    	
+	        param.product_line_id=pIdSize;
+	    }
+	    else
+	    {
+	        param.size=pIdSize;
+	    }
+    	
+    }
+    else{
+    	param.product_line_id=product_line_id;
+    }
 
     var platform_id="";
     $(".platforms-list .active").each(function(index)
@@ -507,7 +519,8 @@ function getPinglun()
     param.platform_id=platform_id
     param.start_date=$("#startTime").text();
     param.end_date=$("#endTime").text();
-    param.size=$(".jingpin-chart-tab .active").text();
+    
+    
     param.attr=$(".chart-tab-col .active").text();
 
     Global.commonAjax({
@@ -585,7 +598,6 @@ $("#chakanPinglun").on("touchstart",function()
 {
     $(this).toggleClass("active");
     $("#pinglunCol").toggle();
-    getPinglun();
     hideTip();
 
 });
@@ -825,9 +837,22 @@ function myChart()
         series: series1
 
     };
-// 	myChart1.on('click', function(params){
-// 		alert(JSON.stringify(params));
-// 	});
+    
+ 	myChart1.on('click', function(params){
+ 		var pId=findPId(params.name);
+ 		
+ 		 if($("#bottomCol .active").text()=="竞品对比"||$("#bottomCol .active").text()=="内部对比")
+	    {
+	    	
+	        getPinglun(pId);
+	    }
+	   	else{
+	   		getPinglun(params.name);
+	   	}
+ 		
+ 		
+       		
+ 	});
 	
 	// series1.reverse();
 	
@@ -853,6 +878,7 @@ function myChart()
                 return str;
 
             }
+            
         },
         grid: {
             left: '3%',
@@ -864,11 +890,10 @@ function myChart()
             type: 'value',
             show:false,
             axisLabel : {
-            	clickable:true,
                 formatter: function(value){
 						return value+"%";
-				},
-				clickable: true
+				}
+				
             }
         },
         yAxis: {
@@ -880,11 +905,48 @@ function myChart()
     };
     
     myChart2.setOption(option2);
-//     myChart2.on('click', function(params){
-//     	alert(JSON.stringify(params));
-//     });
+       myChart2.on('click', function(params){
+       	
+   		if($("#bottomCol .active").text()=="竞品对比"||$("#bottomCol .active").text()=="内部对比")
+	    {
+	    	
+	        getPinglun(pId);
+	    }
+	   	else{
+	   		getPinglun(params.name);
+	   	}
+       	
+       });
 }
 
+function findPId(pName)
+{
+	var allData;
+	var pId;
+    if($("#bottomCol .active").text()=="竞品对比")
+    {
+    	
+        allData=competing_product_lines;
+        
+    }
+    else if($("#bottomCol .active").text()=="内部对比")
+    {
+        allData=category_product_lines;
+    }
+    
+    for(var i=0;i<allData.length;i++)
+    {
+    	if(allData[i].name==pName)
+    	{
+    		pId=allData[i].product_line_id;
+    		break;
+    	}
+    }
+    return pId;
+   
+    
+   
+}
 
 
 mui(".chart-tab-col").on('tap','div',function(event){
