@@ -907,7 +907,7 @@ function myChart()
     
     myChart2.setOption(option2);
        myChart2.on('click', function(params){
-       	
+       	var pId=findPId(params.name);
    		if($("#bottomCol .active").text()=="竞品对比"||$("#bottomCol .active").text()=="内部对比")
 	    {
 	    	
