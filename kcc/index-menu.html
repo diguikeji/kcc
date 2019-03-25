@@ -25,7 +25,7 @@
 						<img src="images/menu_name.png" >
 						<span>咔嚓名</span>
 					</div>
-					<span class="username"></span>
+					<span class="username_en"></span>
 				</div>
 
 				<div class="row_between menu_item">
@@ -116,7 +116,8 @@
                     console.log("信息");
                     console.log(JSON.stringify(data));
 					myStorage.setItem("user",data);
-                    $(".username").text(data.info.username);
+                    $(".username").text(data.info.ch_name);
+                    $(".username_en").text(data.info.en_name);
                     $("#department").text(data.info.department);
                     $("#app_last_login").text(data.info.app_last_login);
                     $("#position").text(data.info.position);
