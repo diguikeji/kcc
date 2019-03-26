@@ -749,7 +749,7 @@ function myChart()
 							if(value.data < maxValue/10){
 								return '';
 							}else{
-								return value.data;
+								return parseFloat(value.data).toFixed(2);
 							}
 						},
 						textStyle:{
