@@ -357,9 +357,9 @@
 
 									$("#swiperList").append('<div class="swiper-slide">'+
 											'<div class="row" style="background: -webkit-linear-gradient(bottom, '+color.colorRgb()+' , '+color+');">'+
-											'<div class="slide-detail flex_one">'+data.brand_count[i].praise_total+' <div style="color:'+color+'">好评</div></div>'+
+											'<div class="slide-detail flex_one">'+data.brand_count[i].praise_total+'<span style="font-size:0.18rem;">个</span><div style="color:'+color+'">好评</div></div>'+
 											'<div class="slide-detail slide-middle" data-id="'+data.brand_count[i].brand_id+'"><img class="logo'+i+'" src="'+baseServerUrl+icon+'"></div>'+
-											'<div class="slide-detail flex_one">'+data.brand_count[i].bad_total+'<div style="color:'+color+'">负评</div>'+
+											'<div class="slide-detail flex_one">'+data.brand_count[i].bad_total+'<span style="font-size:0.18rem;">个</span><div style="color:'+color+'">负评</div>'+
 											'</div>'+
 											'</div>'+
 											'</div>');
@@ -371,7 +371,7 @@
 								}
 								swiper = new Swiper('.swiper-banner', {
 									slidesPerView: 1.2,
-									loop : true,
+									//loop : true,
 									centeredSlides: true,
 									spaceBetween: 16,
 									on:{

@@ -325,7 +325,7 @@
                         //iPhone3启动图片选，分辨率：320x480
                         "retina35" : "unpackage/res/启动页640-1136.png",
                         //3.5英寸设备(iPhone4)启动图片，分辨率：640x960
-                        "retina40" : "unpackage/res/启动页828-1792.png",
+                        "retina40" : "unpackage/res/启动页640-1136.png",
                         //4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136
                         "retina47" : "unpackage/res/启动页640-1136.png",
                         //4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334
