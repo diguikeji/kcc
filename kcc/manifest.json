@@ -323,21 +323,21 @@
                     "iphone" : {
                         "default" : "",
                         //iPhone3启动图片选，分辨率：320x480
-                        "retina35" : "unpackage/res/启动页640-1136.png",
+                        "retina35" : "unpackage/res/splash_screen_640960.png",
                         //3.5英寸设备(iPhone4)启动图片，分辨率：640x960
-                        "retina40" : "unpackage/res/启动页640-1136.png",
+                        "retina40" : "unpackage/res/splash_screen_640960.png",
                         //4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136
-                        "retina47" : "unpackage/res/启动页640-1136.png",
+                        "retina47" : "unpackage/res/splash_screen_7501334.png",
                         //4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334
-                        "retina55" : "unpackage/res/启动页1242-2208.png",
+                        "retina55" : "unpackage/res/splash_screen_12422208.png",
                         //5.5 英寸设备(iPhone6 Plus)启动图片，分辨率：1242x2208
                         "retina55l" : "unpackage/res/启动页1242-2688.png",
                         //5.5 英寸设备(iPhone6 Plus)横屏启动图片，分辨率：2208x1242
-                        "iphonex" : "unpackage/res/启动页1125-2436.png",
+                        "iphonex" : "unpackage/res/splash_screen_11252436.png",
                         //iPhoneX启动图片，分辨率：1125x2436
                         "iphonexl" : "unpackage/res/启动页828-1792.png",
                         "portrait-896h@2x" : "unpackage/res/启动页828-1792.png",
-                        "portrait-896h@3x" : "unpackage/res/启动页1242-2688.png"
+                        "portrait-896h@3x" : "unpackage/res/splash_screen_12422208.png"
                     },
                     //iPhoneX横屏启动图片，分辨率：2436x1125
                     "ipad" : {
@@ -364,11 +364,11 @@
                     //普通屏启动图片，分辨率：240x282
                     "ldpi" : "",
                     //大屏启动图片，分辨率：320x442
-                    "hdpi" : "unpackage/res/splash_screen@1x.png",
+                    "hdpi" : "unpackage/res/splash_screen_480762.png",
                     //高分屏启动图片，分辨率：480x762
-                    "xhdpi" : "unpackage/res/splash_screen@2x.png",
+                    "xhdpi" : "unpackage/res/splash_screen_7201242.png",
                     //720P高分屏启动图片，分辨率：720x1242
-                    "xxhdpi" : "unpackage/res/splash_screen@3x.png"
+                    "xxhdpi" : "unpackage/res/splash_screen_10801882.png"
                 }
             },
             //1080P高分屏启动图片，分辨率：1080x1882
