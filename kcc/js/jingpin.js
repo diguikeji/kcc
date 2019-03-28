@@ -92,6 +92,12 @@ function httpRequest()
         console.log(JSON.stringify(data));
         data=data.product_line_info;
         $("#sizes").empty();
+        
+        if(data.sizes.length>0)
+        {
+        	data.sizes.splice(0,0,"全部");
+        }
+        
         for(var i=0;i<data.sizes.length;i++)
         {
 			$("#sizes").append("<div>"+data.sizes[i]+"</div>");
@@ -389,6 +395,10 @@ function  huaxian(data,typeValue)
         var size= $(".jingpin-chart-tab .active").text();
         if(size)
         {
+        	if(size=="全部")
+        	{
+        		size="";
+        	}
         	param.size=size;
         }
         
@@ -451,7 +461,6 @@ function  huaxian(data,typeValue)
 				}
 			}
 			html1=html1+'<span class="jingpin-top-detail"><span class="quan2 quan" style="background: '+data.trends[i][0].color+';"></span>'+i+'</span>';
-			
 	
         }
         
@@ -474,6 +483,8 @@ function  huaxian(data,typeValue)
 
 		duibiData=data;
 		createChartData();
+		
+		getPinglun();
 
 
     },function(err)
@@ -634,6 +645,26 @@ function myChart()
     else
     {
         allData=sizesList;
+        
+        for(var i=1;i<sizesList.length;i++)
+        {
+        	for(var j=0;j<sizesList[i].endXData.length;j++)
+        	{
+        		sizesList[0].endYData[j]=parseFloat(sizesList[0].endYData[j])+parseFloat(sizesList[i].endYData[j]);
+        	}
+        	
+        	for(var j=0;j<sizesList[i].endData2.length;j++)
+        	{
+        		sizesList[0].endData2[j]=parseFloat(sizesList[0].endData2[j])+parseFloat(sizesList[i].endData2[j]);
+        	}
+        	
+        	for(var j=0;j<sizesList[i].endData3.length;j++)
+        	{
+        		sizesList[0].endData3[j]=parseFloat(sizesList[0].endData3[j])+parseFloat(sizesList[i].endData3[j]);
+        	}
+        	
+        }
+        
     }
 
     console.log("结果结果"+JSON.stringify(allData));
