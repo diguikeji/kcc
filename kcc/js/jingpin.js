@@ -738,12 +738,19 @@ function myChart()
     var series2=[];
 
     var lineHeight=30;
-    for(var i=0;i<allData.length;i++)
+    if(allData.length==1)
+    {
+    	lineHeight=80;
+    }
+   
+	for(var i=0;i<allData.length;i++)
     {
         lineHeight=lineHeight+40;
 		ySeries2.push(allData[i].name);
 
     }
+    
+    
 
 	$(".jingpin-row-list").height(lineHeight);
 	
