@@ -80,6 +80,7 @@ var sizes;
 
 var product_line_name;
 
+var brandColor;
 function httpRequest()
 {
     Global.commonAjax({
@@ -105,10 +106,13 @@ function httpRequest()
         $("#sizes div").eq(0).addClass("active");
         $("#product_line_icon").attr("src",baseServerUrl+data.product_line_icon);
         $("#product_line_name").text(data.product_line_name);
+        $("#pinglunCount").text(data.product_line_name);
 		product_line_name = data.product_line_name;
 		brand_color1 = data.brand_color1;
+		$("#titleLine").css({"background":brand_color1});
+		
 		console.log(brand_color1);
-
+		brandColor=brand_color1;
         competing_product_lines=data.competing_product_lines;
 
         sizes=data.sizes;
@@ -171,7 +175,7 @@ function firstInitData()
         for(var i=0;i<sizes.length;i++)
         {
             var obj={};
-            var colorValue=getRandomColor(i);
+            var colorValue=colorList[i+1];
             obj.color=colorValue;
             obj.name=sizes[i];
 
@@ -190,7 +194,7 @@ function firstInitData()
     	 
         for(var i=0;i<competing_product_lines.length;i++)
         {
-            var colorValue=getRandomColor();
+            var colorValue=colorList[i];
 			if(competing_product_lines[i].product_line_name == product_line_name){
 				colorValue = brand_color1;
 			}
@@ -210,7 +214,7 @@ function firstInitData()
     {
         for(var i=0;i<category_product_lines.length;i++)
         {
-            var colorValue=getRandomColor();
+            var colorValue=colorList[i];
 			if(i == 0){
 				colorValue = brand_color1;
 			}
@@ -445,7 +449,7 @@ function  huaxian(data,typeValue)
         for(var i in data.trends) {
 
             data.trends[i][0].color=getRandomColor(++index);
-            html=html+'<div>'+i+'</div>';
+            html=html+'<div style="border:1px solid '+brandColor+';border-right:0;color:'+brandColor+'">'+i+'</div>';
             trendsList.push(i);
             
 			if(typeValue==3)
@@ -477,12 +481,15 @@ function  huaxian(data,typeValue)
         
 
         $(".chart-tab-col").html(html);
+        $(".chart-tab-col div:last-child").css({"border-right":"1px solid "+brandColor});
+        
         $(".jingpin-top-second").html(html1);
 
         $(".chart-tab-col div").eq(0).addClass("active");
 
 		duibiData=data;
 		createChartData();
+		$(".jingpin-chart .chart-tab-col .active").css({"background":brandColor});
 		
 		getPinglun();
 
@@ -542,7 +549,6 @@ function getPinglun(pIdSize)
 
         console.log("获取产品线评论返回数据");
         console.log(JSON.stringify(data));
-        $("#pinglunCount").text(data.comments.length);
 		if(data.comments.length == 0){
 			$("#pinglunAll").empty();
 			$(".pinglun-list").addClass("hideClass");
@@ -874,10 +880,11 @@ function myChart()
  		
  		 if($("#bottomCol .active").text()=="竞品对比"||$("#bottomCol .active").text()=="内部对比")
 	    {
-	    	
+	    	$("#pinglunCount").text(params.name);
 	        getPinglun(pId);
 	    }
 	   	else{
+	   		$("#pinglunCount").text(params.name);
 	   		getPinglun(params.name);
 	   	}
  		
@@ -947,6 +954,8 @@ function myChart()
 	   	else{
 	   		getPinglun(params.name);
 	   	}
+	   	
+	   	$("#pinglunCount").text(params.name);
        	
        });
 }
@@ -985,6 +994,8 @@ mui(".chart-tab-col").on('tap','div',function(event){
 
     $(".chart-tab-col div").removeClass("active");
     $(this).addClass("active");
+    $(".jingpin-chart .chart-tab-col div").css({"background":"#fff"});
+    $(".jingpin-chart .chart-tab-col .active").css({"background":brandColor});
     createChartData();
 
 })

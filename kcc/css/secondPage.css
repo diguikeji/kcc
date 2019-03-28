@@ -2,7 +2,7 @@
 
 
 .jingpin-title{position: relative;padding-left:0.1rem;font-weight: bold;font-size:0.16rem;padding-top:0.2rem;}
-.jingpin-title:before{content: " ";display: inline-block;position: absolute;width:0.03rem;height:0.14rem;background: #ea002a;left:0;top:0.22rem;}
+.jingpin-title span{display: inline-block;position: absolute;width:0.03rem;height:0.14rem;background: #ea002a;left:0;top:0.24rem;}
 
 .chart-tab-col{border-radius:4px;white-space: nowrap;max-width:100;overflow: auto;}
 .chart-tab{margin-top:0.2rem;}
@@ -16,10 +16,10 @@
 .jingpin-col .jingpin-row.last .line-col #duanValue3{margin-left:-0.1rem;}
 .jingpin-chart{position: relative;}
 .jingpin-chart .jingpin-top{width:100%;z-index:10000;white-space: nowrap;overflow: auto;position:relative;top:0.1rem;}
-.jingpin-chart .chart-tab-col div{display:inline-block;padding:0 0.1rem;text-align: center;border:1px solid #ea002a;border-left:0;line-height: 0.3rem;box-sizing: border-box;color:#ea002a;}
-.jingpin-chart .chart-tab-col div:first-child{border-left:1px solid #ea002a;border-radius: 4px 0 0 4px;}
-.jingpin-chart .chart-tab-col div:last-child{border-radius: 0 4px 4px 0;}
-.jingpin-chart .chart-tab-col div.active{background: #ea002a;color:#fff;}
+.jingpin-chart .chart-tab-col div{display:inline-block;padding:0 0.1rem;text-align: center;border-right:1px solid #ea002a;line-height: 0.3rem;box-sizing: border-box;color:#ea002a;}
+.jingpin-chart .chart-tab-col div:first-child{border-radius: 4px 0 0 4px;}
+.jingpin-chart .chart-tab-col div:last-child{border-radius: 0 4px 4px 0;border-right:1px solid #ea002a;}
+.jingpin-chart .chart-tab-col div.active{background: #ea002a;color:#fff!important;}
 .jingpin-col .jingpin-row.last .line-col span.last-text{position: absolute;right:0;left:auto;text-align: right;width:auto;}
 
 .jingpin-col .jingpin-row{padding:0 0 0.18rem 0.85rem;position: relative;}
@@ -70,7 +70,7 @@
 
 .pinglun-list{list-style: none;padding:0;margin:0;font-size:0.12rem;max-height:2.3rem;overflow:auto;background: #f5f5f5;border-radius: 0.1rem;margin-top:0.15rem;padding:0.15rem;}
 .pinglun-title{font-weight: bold;padding:0.13rem 0;border-bottom:1px solid #ddd;position: relative;}
-.pinglun-title .right{position: absolute;right:0;font-weight: normal;color:#999;}
+.pinglun-title .right{position: absolute;right:0;top:0.12rem;font-weight: normal;color:#278ED0;font-size:0.14rem;}
 .pinglun-list .tag-list{padding:0.05rem 0;}
 .pinglun-list .tag-list span{background: #e6e6e6;border-radius: 0.1rem;display: inline-block;padding:0.02rem 0.16rem;font-size:0.1rem;margin:0 0.01rem;}
 .pinglun-list .name-text{font-weight: bold;font-size:0.12rem;color:#000;}
