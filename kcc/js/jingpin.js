@@ -110,6 +110,11 @@ function httpRequest()
 		product_line_name = data.product_line_name;
 		brand_color1 = data.brand_color1;
 		$("#titleLine").css({"background":brand_color1});
+		$("#titleLine2").css({"background":brand_color1});
+		$("#titleLine3").css({"background":brand_color1});
+		// $("#bottomCol .active").css({"color":brand_color1});
+		$(".jingpin-bottom .right .active").css({"color":brand_color1});
+		$("#pinglunCount").css({"color":brand_color1});
 		
 		console.log(brand_color1);
 		brandColor=brand_color1;
@@ -187,6 +192,7 @@ function firstInitData()
 
         }
         huaxian(sizes[i],3);
+		// $("#bottomCol .active").css({"color":brand_color1});
     }
 
     if($("#bottomCol .active").text()=="竞品对比")
@@ -207,7 +213,7 @@ function firstInitData()
         }
 
         huaxian(competing_product_lines,1);
-
+		// $("#bottomCol .active").css({"color":brand_color1});
     }
 
     if($("#bottomCol .active").text()=="内部对比")
@@ -227,7 +233,7 @@ function firstInitData()
         }
         
         huaxian(category_product_lines,2);
-
+		// $("#bottomCol .active").css({"color":brand_color1});
     }
 
 
@@ -605,8 +611,9 @@ function getPinglun(pIdSize)
 $(".jingpin-bottom .right div").click(function()
 {
     $(".jingpin-bottom .right div").removeClass("active");
+    $(".jingpin-bottom .right div").css({"color":"#000"});
     $(this).addClass("active");
-
+	$(this).css({"color":brand_color1});
     firstInitData();
 
 });
