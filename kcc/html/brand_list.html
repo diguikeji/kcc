@@ -443,12 +443,20 @@
 
 				$obj.find(".competition_praise_ratio").text(parseFloat(data.competition_praise_ratio*100).toFixed(2));
 				$obj.find(".ring_praise_ratio").text(parseFloat(data.ring_praise_ratio*100).toFixed(2));
-				if(parseFloat(data.ring_praise_ratio) < 0){
-					$obj.find(".corner").addClass("reduce_active");
-					$obj.find$(".corner").text("-");
+				if(parseFloat(data.ring_praise_ratio) > 0){
+					$obj.find(".ring_praise_ratio").text("+"+parseFloat(data.ring_praise_ratio*100).toFixed(2)+"%");
+					$(".ring_praise_ratio").css('color', '#FF0000');
 				}else{
-					$obj.find(".corner").removeClass("reduce_active");
-					$obj.find(".corner").text("+");
+					$obj.find(".ring_praise_ratio").text(parseFloat(data.ring_praise_ratio*100).toFixed(2)+"%");
+					$(".ring_praise_ratio").css('color', '#00FF00');
+				}
+				
+				if(parseFloat(data.competition_praise_ratio*100) > 0){
+					$obj.find(".competition_praise_ratio").text("+"+parseFloat(data.competition_praise_ratio*100).toFixed(2)+"%");
+					$(".competition_praise_ratio").css('color', '#FF0000');
+				}else{
+					$obj.find(".competition_praise_ratio").text(parseFloat(data.competition_praise_ratio*100).toFixed(2)+"%");
+					$(".competition_praise_ratio").css('color', '#00FF00');
 				}
 
 
@@ -539,6 +547,8 @@
 
 
 		var brand_id=GetQueryString("brand_id");
+		var index = GetQueryString("index");
+		var nameList = ['好奇','高洁丝','舒洁'];
 
 		var swiper;
 
@@ -565,19 +575,16 @@
 
 							'<div class="row_between content_head">'+
 								'<div class="col_between head_wrap">'+
-									'<div class="head_name head_name_top">'+data.categorys[i].category_name+'</div>'+
+									'<div class="head_name head_name_top">'+nameList[index]+data.categorys[i].category_name+'</div>'+
 									'<div class="head_left_wrap">'+
 										'<div class="row_between item">'+
-											'<span>高出行业</span><span><span  class="competition_praise_ratio">0</span>%</span>'+
+											'<span>高出行业</span><span  class="competition_praise_ratio">0%</span>'+
 										'</div>'+
 
 										'<div class="row_between item">'+
 											'<span>当月环比</span>'+
 											'<div class="row_center">'+
-													'<div class="contain">'+
-													'<div class="corner"></div>'+
-													'</div>'+
-													'<div><span class="ring_praise_ratio">0</span>%</div>'+
+													'<span class="ring_praise_ratio">0%</span>'+
 											'</div>'+
 										'</div>'+
 

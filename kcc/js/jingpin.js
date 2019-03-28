@@ -94,10 +94,10 @@ function httpRequest()
         data=data.product_line_info;
         $("#sizes").empty();
         
-        if(data.sizes.length>0)
-        {
-        	data.sizes.splice(0,0,"全部");
-        }
+//         if(data.sizes.length>0)
+//         {
+//         	data.sizes.splice(0,0,"全部");
+//         }
         
         for(var i=0;i<data.sizes.length;i++)
         {
@@ -405,10 +405,10 @@ function  huaxian(data,typeValue)
         var size= $(".jingpin-chart-tab .active").text();
         if(size)
         {
-        	if(size=="全部")
-        	{
-        		size="";
-        	}
+//         	if(size=="全部")
+//         	{
+//         		size="";
+//         	}
         	param.size=size;
         }
         
@@ -797,7 +797,7 @@ function myChart()
 					label: {
 						formatter: function(value){
 							console.log(maxValue);
-							if(value.data < maxValue/10){
+							if(value.data < maxValue/4){
 								return '';
 							}else{
 								return parseFloat(value.data).toFixed(2);
@@ -832,7 +832,7 @@ function myChart()
                     color:duibiData.trends[trendsList[i]][0].color,
                      label: {
                         formatter: function (a, b, c) {
-							if(a.data*100 < 10){
+							if(a.data*100 < 20){
 								return '';
 							}else{
 								return (a.data*100).toFixed(2)+ "%";
