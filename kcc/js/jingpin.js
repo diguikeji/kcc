@@ -7,9 +7,9 @@ function getRandomColor(index){
 		var r = parseInt(brand_color1.substring(1,3)+'', 16); 
 		var g = parseInt(brand_color1.substring(3,5)+'', 16);
 		var b = parseInt(brand_color1.substring(5,7)+'', 16);
-		var temp = (1-index*0.15);
-		if(temp<0 || temp>1){
-			temp = 0.1;
+		var temp = (1-index*0.1);
+		if(temp<=0){
+			temp += 0.9;
 		} 
 		var a = temp.toFixed(1);
 		return "rgba("+r+","+g+","+b+","+a+")";
@@ -746,6 +746,7 @@ function myChart()
 	for(var i=0;i<allData.length;i++)
     {
         lineHeight=lineHeight+40;
+		// if(allData[i].name != '全部')
 		ySeries2.push(allData[i].name);
 
     }
@@ -797,7 +798,8 @@ function myChart()
 					label: {
 						formatter: function(value){
 							console.log(maxValue);
-							if(value.data < maxValue/10){
+							
+							if((maxValue<=0) || (value.data < maxValue/4)){
 								return '';
 							}else{
 								return parseFloat(value.data).toFixed(2);
@@ -832,7 +834,7 @@ function myChart()
                     color:duibiData.trends[trendsList[i]][0].color,
                      label: {
                         formatter: function (a, b, c) {
-							if(a.data*100 < 10){
+							if(a.data*100 <51){
 								return '';
 							}else{
 								return (a.data*100).toFixed(2)+ "%";
@@ -944,7 +946,12 @@ function myChart()
             clickable: true,
             axisLabel : {
                 formatter: function(value){
-						return value+"%";
+						if(value < 20){
+							return "";
+						}else{
+							return value+"%";
+						}
+						
 				}
 				
             }

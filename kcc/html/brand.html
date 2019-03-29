@@ -319,14 +319,25 @@
 
 				data=data.brand_praise_ratio;
 				//$obj.find(".percent_num").text(parseFloat(data.praise_ratio*100).toFixed(2));
-				$obj.find(".hangye").text(parseFloat(data.competition_praise_ratio*100).toFixed(2));
-				$obj.find(".huanbi").text(parseFloat(data.ring_praise_ratio*100).toFixed(2));
+// 				$obj.find(".hangye").text(parseFloat(data.competition_praise_ratio*100).toFixed(2));
+// 				$obj.find(".huanbi").text(parseFloat(data.ring_praise_ratio*100).toFixed(2));
 				
-				if(parseFloat(data.ring_praise_ratio*100) <0){
-					$(".corner").text("-");
+				if(parseFloat(data.ring_praise_ratio*100) >0){
+					$obj.find(".huanbi").text("+"+parseFloat(data.ring_praise_ratio*100).toFixed(2));
+					
 				}else{
-					$(".corner").text("+");
+					$obj.find(".huanbi").text("-"+(0-parseFloat(data.ring_praise_ratio*100).toFixed(2)));
+					
 				}
+				
+				if(parseFloat(data.competition_praise_ratio*100) >0){
+					$obj.find(".hangye").text("+"+parseFloat(data.competition_praise_ratio*100).toFixed(2));
+					
+				}else{
+					$obj.find(".hangye").text("-"+(0-parseFloat(data.competition_praise_ratio*100).toFixed(2)));
+					
+				}
+				
 
 					var color=$obj.find(".huan").attr("data-color");
 
@@ -371,9 +382,10 @@
 		mui("#listCol").on('tap','.brand-detail',function(event){
 
 		var brand_id=$(this).attr("data-id");
+		var index = $(this).attr("data-index");
 
 			Global.openWindow({
-				url: 'brand_list.html?brand_id='+brand_id,
+				url: 'brand_list.html?brand_id='+brand_id+"&index="+index,
 				id: 'brand_list.html',
 				waiting: {
 					autoShow: false
@@ -425,7 +437,7 @@
 				for(var i=0;i<data.length;i++)
 				{
 
-					$("#listCol").append('<div class="row item brand-detail" data-id="'+data[i].brand_id+'">'+
+					$("#listCol").append('<div class="row item brand-detail" data-id="'+data[i].brand_id+'" data-index="'+i+'">'+
 							'<div class="item_left_wrap col_center" style="background: '+data[i].brand_color1.colorRgb()+';">'+
 							'<div class="circle">'+
 							'<div class="huan" data-color="'+data[i].brand_color1+'"></div>'+
@@ -440,15 +452,15 @@
 								'<div class="col_between left_bottom_wrap" style="color:'+data[i].brand_color1+'">'+
 									'<div class="row_between item">'+
 							'<span>高出行业</span>'+
-							'<span><span class="hangye"></span>%</span>'+
+							'<span><span class="hangye">0</span>%</span>'+
 							'</div>'+
 						'<div class="row_between item">'+
 							'<span>当月环比</span>'+
 							'<div class="row_center">'+
-								'<div class="container">'+
-									'<div class="corner" style="color: '+data[i].brand_color1+';">+</div>'+
-									'</div>'+
-								'<div><span class="huanbi"></span>%</div>'+
+// 								'<div class="container">'+
+// 									'<div class="corner" style="color: '+data[i].brand_color1+';">+</div>'+
+// 									'</div>'+
+								'<div><span class="huanbi">0</span>%</div>'+
 								'</div>'+
 							'</div>'+
 						'</div>'+
