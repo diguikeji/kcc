@@ -530,6 +530,12 @@ function getPinglun(pIdSize)
     }
     else{
     	param.product_line_id=product_line_id;
+    	var sizeValue=$("#sizes .active").text();
+    	if(sizeValue=="全部")
+    	{
+    		sizeValue="";
+    	}
+    	param.size=sizeValue;
     }
 
     var platform_id="";
