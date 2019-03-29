@@ -535,7 +535,7 @@ function getPinglun(pIdSize)
     	{
     		sizeValue="";
     	}
-    	param.size=sizeValue;
+    	param.size=sizeValue; 
     }
 
     var platform_id="";
@@ -552,6 +552,8 @@ function getPinglun(pIdSize)
     
     
     param.attr=$(".chart-tab-col .active").text();
+
+	//alert(JSON.stringify(param));
 	
     Global.commonAjax({
         url: 'app/brand/get-product-line-comment/',
@@ -589,7 +591,7 @@ function getPinglun(pIdSize)
                 '<div class="name-col">'+
             '<span class="name-text">'+data.comments[i].nick_name+'</span>'+
             ' <span class="name-tag">'+data.comments[i].platform_name+'</span>'+
-            ' <div class="time-text">'+data.comments[i].comment_time.replace("T", " ")+'</div>'+
+            ' <div class="time-text">'+data.comments[i].comment_time+'</div>'+
             ' <span class="right">'+
             ' <img src="../images/icon/state_negative@2x.png"/>'+
             ' <img src="../images/icon/state_positive@2x.png"/>'+
@@ -1023,6 +1025,7 @@ mui(".chart-tab-col").on('tap','div',function(event){
     $(this).addClass("active");
     $(".jingpin-chart .chart-tab-col div").css({"background":"#fff"});
     $(".jingpin-chart .chart-tab-col .active").css({"background":brandColor});
+    getPinglun();
     createChartData();
 
 })
