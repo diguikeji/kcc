@@ -724,7 +724,7 @@ function myChart()
         },
         grid: {
             left: '3%',
-            right: '10%',
+            right: '15%',
             bottom: '3%',
             containLabel: true
         },
