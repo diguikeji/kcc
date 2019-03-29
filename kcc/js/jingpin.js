@@ -658,7 +658,7 @@ function myChart()
     else
     {
         allData=sizesList;
-        
+        /*
         for(var i=1;i<sizesList.length;i++)
         {
         	for(var j=0;j<sizesList[i].endXData.length;j++)
@@ -677,7 +677,7 @@ function myChart()
         	}
         	
         }
-        
+        */
     }
 
     console.log("结果结果"+JSON.stringify(allData));
