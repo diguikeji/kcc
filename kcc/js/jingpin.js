@@ -177,7 +177,7 @@ function firstInitData()
     {
 
 		
-        for(var i=0;i<sizes.length;i++)
+        for(var i=1;i<sizes.length;i++)
         {
             var obj={};
             var colorValue=colorList[i+1];
@@ -191,7 +191,7 @@ function firstInitData()
             sizesList.push(obj);
 
         }
-        huaxian(sizes[i],3);
+        huaxian(sizes,3);
 		// $("#bottomCol .active").css({"color":brand_color1});
     }
 

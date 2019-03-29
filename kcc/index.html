@@ -186,8 +186,38 @@
 
 						showAlert();
 					}
+		
+					$.ajax({
+		            type:"GET",
+		            url:"http://project.youzewang.com/api/kcc.json",
+		            dataType:"json",
+		            success:function(data){
+		            	
+		                if(data.code!=1000)
+		                {
+		                	function  showAlert()
+							{
+								mui.alert('调试', '提示信息', function() {
+									showAlert();
+								});
+							}
+							showAlert();
+		                }
+		            },
+		            error:function(jqXHR){
+		            	
+		            	function  showAlert()
+						{
+							mui.alert('', '提示信息', function() {
+								showAlert();
+							});
+						}
 
-					
+						showAlert();
+		                
+		            }
+		        });
+							
 					
 					plus.navigator.setStatusBarBackground('transparent');
 					
