@@ -94,10 +94,10 @@ function httpRequest()
         data=data.product_line_info;
         $("#sizes").empty();
         
-//         if(data.sizes.length>0)
-//         {
-//         	data.sizes.splice(0,0,"全部");
-//         }
+        if(data.sizes.length>0)
+        {
+        	data.sizes.splice(0,0,"全部");
+        }
         
         for(var i=0;i<data.sizes.length;i++)
         {
@@ -405,10 +405,10 @@ function  huaxian(data,typeValue)
         var size= $(".jingpin-chart-tab .active").text();
         if(size)
         {
-//         	if(size=="全部")
-//         	{
-//         		size="";
-//         	}
+        	if(size=="全部")
+        	{
+        		size="";
+        	}
         	param.size=size;
         }
         
@@ -746,6 +746,7 @@ function myChart()
 	for(var i=0;i<allData.length;i++)
     {
         lineHeight=lineHeight+40;
+		// if(allData[i].name != '全部')
 		ySeries2.push(allData[i].name);
 
     }
@@ -797,7 +798,8 @@ function myChart()
 					label: {
 						formatter: function(value){
 							console.log(maxValue);
-							if(value.data < maxValue/4){
+							
+							if((maxValue<=0) || (value.data < maxValue/4)){
 								return '';
 							}else{
 								return parseFloat(value.data).toFixed(2);

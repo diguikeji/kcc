@@ -375,6 +375,7 @@
 		}
 
 		var waitingLoading;
+		var brand_name = "";
 		function xunhuan($obj)
 		{
 			if(!waitingLoading)
@@ -417,6 +418,8 @@
 				data=data.category_praise_ratio;
 				var praise_ratio=parseFloat(data.praise_ratio*100).toFixed(2);
 				//$(".percent_num").text(praise_ratio);
+				brand_name = data.brand_name;
+				$(".brand_name_text").text(brand_name);
 
 				$obj.find(".huan").circleChart({
 					size: 80,
@@ -575,7 +578,7 @@
 
 							'<div class="row_between content_head">'+
 								'<div class="col_between head_wrap">'+
-									'<div class="head_name head_name_top">'+nameList[index]+data.categorys[i].category_name+'</div>'+
+									'<div class="head_name head_name_top"><span class="brand_name_text">'+brand_name+'</span> '+data.categorys[i].category_name+'</div>'+
 									'<div class="head_left_wrap">'+
 										'<div class="row_between item">'+
 											'<span>高出行业</span><span  class="competition_praise_ratio">0%</span>'+
