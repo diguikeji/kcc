@@ -552,7 +552,7 @@ function getPinglun(pIdSize)
     
     
     param.attr=$(".chart-tab-col .active").text();
-
+	
     Global.commonAjax({
         url: 'app/brand/get-product-line-comment/',
         data:param,
@@ -589,7 +589,7 @@ function getPinglun(pIdSize)
                 '<div class="name-col">'+
             '<span class="name-text">'+data.comments[i].nick_name+'</span>'+
             ' <span class="name-tag">'+data.comments[i].platform_name+'</span>'+
-            ' <div class="time-text">'+data.comments[i].comment_time+'</div>'+
+            ' <div class="time-text">'+data.comments[i].comment_time.replace("T", " ")+'</div>'+
             ' <span class="right">'+
             ' <img src="../images/icon/state_negative@2x.png"/>'+
             ' <img src="../images/icon/state_positive@2x.png"/>'+
