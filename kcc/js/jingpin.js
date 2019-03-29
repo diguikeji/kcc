@@ -591,7 +591,7 @@ function getPinglun(pIdSize)
                 '<div class="name-col">'+
             '<span class="name-text">'+data.comments[i].nick_name+'</span>'+
             ' <span class="name-tag">'+data.comments[i].platform_name+'</span>'+
-            ' <div class="time-text">'+data.comments[i].comment_time+'</div>'+
+            ' <div class="time-text">'+data.comments[i].comment_time.replace("T", " ")+'</div>'+
             ' <span class="right">'+
             ' <img src="../images/icon/state_negative@2x.png"/>'+
             ' <img src="../images/icon/state_positive@2x.png"/>'+
@@ -715,22 +715,22 @@ function myChart()
 
     myChart0 = echarts.init(document.getElementById('main'));
 	
-
+// 	show:false,
+// 	data: allData[0].endXData,
+	
     var option = {
         tooltip: {
             trigger: 'axis'
         },
         grid: {
             left: '3%',
-            right: '4%',
+            right: '10%',
             bottom: '3%',
             containLabel: true
         },
         xAxis: {
             type: 'category',
-            boundaryGap: false,
-            show:false,
-            data: allData[0].endXData
+			name: '日期'
         },
         yAxis: {
             type: 'value'
@@ -842,7 +842,7 @@ function myChart()
                     color:duibiData.trends[trendsList[i]][0].color,
                      label: {
                         formatter: function (a, b, c) {
-							if(a.data*100 <51){
+							if(a.data*100 <25){
 								return '';
 							}else{
 								return (a.data*100).toFixed(2)+ "%";

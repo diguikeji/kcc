@@ -273,6 +273,11 @@
 				font-size:0.12rem;
 			}
 			
+			.competition_praise_ratio,
+			.ring_praise_ratio{
+				color: #999999;
+			}
+			
 		</style>
 	</head>
 	<body>
@@ -370,13 +375,13 @@
 			
 			$("#allList .swiper-slide").each(function(index)
 			{
-				xunhuan($(this));
+				xunhuan($(this), index);
 			});
 		}
 
 		var waitingLoading;
 		var brand_name = "";
-		function xunhuan($obj)
+		function xunhuan($obj, index)
 		{
 			if(!waitingLoading)
 			{
@@ -444,22 +449,22 @@
 					}
 				});
 
-				$obj.find(".competition_praise_ratio").text(parseFloat(data.competition_praise_ratio*100).toFixed(2));
-				$obj.find(".ring_praise_ratio").text(parseFloat(data.ring_praise_ratio*100).toFixed(2));
+// 				$obj.find(".competition_praise_ratio").text(parseFloat(data.competition_praise_ratio*100).toFixed(2));
+// 				$obj.find(".ring_praise_ratio").text(parseFloat(data.ring_praise_ratio*100).toFixed(2));
 				if(parseFloat(data.ring_praise_ratio) > 0){
-					$obj.find(".ring_praise_ratio").text("+"+parseFloat(data.ring_praise_ratio*100).toFixed(2)+"%");
-					$(".ring_praise_ratio").css('color', '#FF0000');
-				}else{
-					$obj.find(".ring_praise_ratio").text(parseFloat(data.ring_praise_ratio*100).toFixed(2)+"%");
-					$(".ring_praise_ratio").css('color', '#00FF00');
+					$obj.find(".ring_praise_ratio"+(index+"")).text("+"+parseFloat(data.ring_praise_ratio*100).toFixed(2)+"%");
+					$(".ring_praise_ratio"+(index+"")).css('color', '#FF0000');
+				}else if(parseFloat(data.ring_praise_ratio) < 0){
+					$obj.find(".ring_praise_ratio"+(index+"")).text(parseFloat(data.ring_praise_ratio*100).toFixed(2)+"%");
+					$(".ring_praise_ratio"+(index+"")).css('color', '#00FF00');
 				}
 				
 				if(parseFloat(data.competition_praise_ratio*100) > 0){
-					$obj.find(".competition_praise_ratio").text("+"+parseFloat(data.competition_praise_ratio*100).toFixed(2)+"%");
-					$(".competition_praise_ratio").css('color', '#FF0000');
-				}else{
-					$obj.find(".competition_praise_ratio").text(parseFloat(data.competition_praise_ratio*100).toFixed(2)+"%");
-					$(".competition_praise_ratio").css('color', '#00FF00');
+					$obj.find(".competition_praise_ratio"+(index+"")).text("+"+parseFloat(data.competition_praise_ratio*100).toFixed(2)+"%");
+					$(".competition_praise_ratio"+(index+"")).css('color', '#FF0000');
+				}else if(parseFloat(data.competition_praise_ratio*100) < 0){
+					$obj.find(".competition_praise_ratio"+(index+"")).text(parseFloat(data.competition_praise_ratio*100).toFixed(2)+"%");
+					$(".competition_praise_ratio"+(index+"")).css('color', '#00FF00');
 				}
 
 
@@ -581,13 +586,13 @@
 									'<div class="head_name head_name_top"><span class="brand_name_text">'+brand_name+'</span> '+data.categorys[i].category_name+'</div>'+
 									'<div class="head_left_wrap">'+
 										'<div class="row_between item">'+
-											'<span>高出行业</span><span  class="competition_praise_ratio">0%</span>'+
+											'<span>高出行业</span><span class="competition_praise_ratio'+i+'" style="color: #999999;">0%</span>'+
 										'</div>'+
 
 										'<div class="row_between item">'+
 											'<span>当月环比</span>'+
 											'<div class="row_center">'+
-													'<span class="ring_praise_ratio">0%</span>'+
+													'<span class="ring_praise_ratio'+i+'" style="color: #999999;">0%</span>'+
 											'</div>'+
 										'</div>'+
 
