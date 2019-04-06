@@ -750,6 +750,10 @@ function myChart()
     {
     	lineHeight=80;
     }
+    if(allData.length==2)
+    {
+    	lineHeight=60;
+    }
    
 	for(var i=0;i<allData.length;i++)
     {
