@@ -1,23 +1,166 @@
 var product_line_id=GetQueryString("product_line_id");
 
+var nameList = ['好奇','高洁丝','舒洁'];
+var brandIndex = GetQueryString("index");
+
+
+console.log(brandIndex);
+console.log("舒洁");
+console.log(brandIndex);
+console.log("舒洁");
+console.log(brandIndex);
+console.log("舒洁");
+console.log(brandIndex);
+console.log("舒洁");
+console.log(brandIndex);
+console.log("舒洁");
+					
 //随机颜色
 function getRandomColor(index){ 
-	// return "#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6); 
-	if((index>0) && brand_color1){
-		var r = parseInt(brand_color1.substring(1,3)+'', 16); 
-		var g = parseInt(brand_color1.substring(3,5)+'', 16);
-		var b = parseInt(brand_color1.substring(5,7)+'', 16);
-		var temp = (1-index*0.1);
-		if(temp<=0){
-			temp += 0.9;
-		} 
-		var a = temp.toFixed(1);
-		return "rgba("+r+","+g+","+b+","+a+")";
-	}else if(index == 0){
-		return brand_color1;
-	}else{
-		return "#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6); 
-	}
+	// return "#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6);
+	var brand_name = nameList[brandIndex];
+	 if(index == 0){
+		 if(brand_name == "好奇"){
+			 
+			 
+			 
+			return "#CF102D";
+		 }else if(brand_name == "高洁丝"){
+			return "#EA002A";
+		 }else if(brand_name == "舒洁"){
+			 
+			return "#278ED0";
+		 }else{
+			return "#CF102D";
+		 }
+		 
+	 }else if(index == 1){
+		 if(brand_name == "好奇"){
+		 			return "#FF3D00";
+		 }else if(brand_name == "高洁丝"){
+		 			return "#FF3D00";
+		 }else if(brand_name == "舒洁"){
+		 			return "#00A8FF";
+					
+		 }else{
+		 			return "#FF3D00";
+		 }
+		 
+	 }else if(index == 2){
+		 if(brand_name == "好奇"){
+		 			return "#FF9E80";
+		 }else if(brand_name == "高洁丝"){
+		 			return "#FF9E80";
+		 }else if(brand_name == "舒洁"){
+		 			return "#51C4FF";
+		 }else{
+		 			return "#FF9E80";
+		 }
+		 
+	 }else if(index == 3){
+		 if(brand_name == "好奇"){
+		 			return "#FFBC80";
+		 }else if(brand_name == "高洁丝"){
+		 			return "#FFBC80";
+		 }else if(brand_name == "舒洁"){
+		 			return "#B3E5FC";
+		 }else{
+		 			return "#FFBC80";
+		 }
+		 
+	 }else if(index == 4){
+		 if(brand_name == "好奇"){
+		 			return "#FFD480";
+		 }else if(brand_name == "高洁丝"){
+		 			return "#FFD480";
+		 }else if(brand_name == "舒洁"){
+		 			return "#BBDEFB";
+		 }else{
+		 			return "#FFD480";
+		 }
+		 
+	 }else if(index == 5){
+		 if(brand_name == "好奇"){
+		 			return "#FFE398";
+		 }else if(brand_name == "高洁丝"){
+		 			return "#FFE398";
+		 }else if(brand_name == "舒洁"){
+		 			return "#80DEEA";
+		 }else{
+		 			return "#FFE398";
+		 }
+		 
+	 }else if(index == 6){
+		 if(brand_name == "好奇"){
+		 			return "#FFFE80";
+		 }else if(brand_name == "高洁丝"){
+		 			return "#FFFE80";
+		 }else if(brand_name == "舒洁"){
+		 			return "#B2EBF2";
+		 }else{
+		 			return "#FFFE80";
+		 }
+	 }else{
+		 if(brand_name == "好奇"){
+		 	brand_color1 = "#FFFE80";
+			var r = parseInt(brand_color1.substring(1,3)+'', 16); 
+			var g = parseInt(brand_color1.substring(3,5)+'', 16);
+			var b = parseInt(brand_color1.substring(5,7)+'', 16);
+			var temp = (1-(index-6)*0.2);
+			var a = temp.toFixed(1);
+			return "rgba("+r+","+g+","+b+","+a+")";
+				
+				
+				
+		 }else if(brand_name == "高洁丝"){
+		 	
+			brand_color1 = "#FFFE80";
+			var r = parseInt(brand_color1.substring(1,3)+'', 16); 
+			var g = parseInt(brand_color1.substring(3,5)+'', 16);
+			var b = parseInt(brand_color1.substring(5,7)+'', 16);
+			var temp = (1-(index-6)*0.2);
+			var a = temp.toFixed(1);
+			return "rgba("+r+","+g+","+b+","+a+")";
+			
+		 }else if(brand_name == "舒洁"){
+		 	
+			brand_color1 = "#B2EBF2";
+			var r = parseInt(brand_color1.substring(1,3)+'', 16); 
+			var g = parseInt(brand_color1.substring(3,5)+'', 16);
+			var b = parseInt(brand_color1.substring(5,7)+'', 16);
+			var temp = (1-(index-6)*0.2);
+			var a = temp.toFixed(1);
+			return "rgba("+r+","+g+","+b+","+a+")";
+			
+		 }else{
+		 	
+			brand_color1 = "#B2EBF2";
+			var r = parseInt(brand_color1.substring(1,3)+'', 16); 
+			var g = parseInt(brand_color1.substring(3,5)+'', 16);
+			var b = parseInt(brand_color1.substring(5,7)+'', 16);
+			var temp = (1-(index-6)*0.1);
+			var a = temp.toFixed(1);
+			return "rgba("+r+","+g+","+b+","+a+")";
+			
+		 }
+		 
+		
+	 }
+// 	if((index>0) && brand_color1){
+// 		var r = parseInt(brand_color1.substring(1,3)+'', 16); 
+// 		var g = parseInt(brand_color1.substring(3,5)+'', 16);
+// 		var b = parseInt(brand_color1.substring(5,7)+'', 16);
+// 		var temp = (1-index*0.1);
+// 		if(temp<=0){
+// 			temp += 0.9;
+// 		} 
+// 		var a = temp.toFixed(1);
+// 		return "rgba("+r+","+g+","+b+","+a+")";
+// 	}else if(index == 0){
+// 		return brand_color1;
+// 	}else{
+// 		return "#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6); 
+// 	}
 	
 };
 
@@ -224,6 +367,21 @@ function firstInitData()
 			if(i == 0){
 				colorValue = brand_color1;
 			}
+			
+			//修复问题
+			if(category_product_lines[i].product_line_name.indexOf("T6") != -1){
+				colorValue = "#AC6A00";
+			}else if(category_product_lines[i].product_line_name.indexOf("T5") != -1){
+				colorValue = "#F9AC90";
+			}else if(category_product_lines[i].product_line_name.indexOf("T4") != -1){
+				colorValue = "#FFF100";
+			}else if(category_product_lines[i].product_line_name.indexOf("T3") != -1){
+				colorValue = "#BFBFBF";
+			}else {
+				
+			}
+			
+			
             category_product_lines[i].color=colorValue;
             category_product_lines[i].name= category_product_lines[i].product_line_name;
 
@@ -591,7 +749,7 @@ function getPinglun(pIdSize)
                 '<div class="name-col">'+
             '<span class="name-text">'+data.comments[i].nick_name+'</span>'+
             ' <span class="name-tag">'+data.comments[i].platform_name+'</span>'+
-            ' <div class="time-text">'+data.comments[i].comment_time+'</div>'+
+            ' <div class="time-text">'+data.comments[i].comment_time.replace("T", " ")+'</div>'+
             ' <span class="right">'+
             ' <img src="../images/icon/state_negative@2x.png"/>'+
             ' <img src="../images/icon/state_positive@2x.png"/>'+
@@ -715,22 +873,22 @@ function myChart()
 
     myChart0 = echarts.init(document.getElementById('main'));
 	
-
+// 	show:false,
+// 	data: allData[0].endXData,
+	
     var option = {
         tooltip: {
             trigger: 'axis'
         },
         grid: {
             left: '3%',
-            right: '4%',
+            right: '15%',
             bottom: '3%',
             containLabel: true
         },
         xAxis: {
             type: 'category',
-            boundaryGap: false,
-            show:false,
-            data: allData[0].endXData
+			name: '日期'
         },
         yAxis: {
             type: 'value'
@@ -846,7 +1004,7 @@ function myChart()
                     color:duibiData.trends[trendsList[i]][0].color,
                      label: {
                         formatter: function (a, b, c) {
-							if(a.data*100 <51){
+							if(a.data*100 <25){
 								return '';
 							}else{
 								return (a.data*100).toFixed(2)+ "%";
