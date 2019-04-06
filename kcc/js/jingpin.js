@@ -2,18 +2,6 @@ var product_line_id=GetQueryString("product_line_id");
 
 var nameList = ['好奇','高洁丝','舒洁'];
 var brandIndex = GetQueryString("index");
-
-
-console.log(brandIndex);
-console.log("舒洁");
-console.log(brandIndex);
-console.log("舒洁");
-console.log(brandIndex);
-console.log("舒洁");
-console.log(brandIndex);
-console.log("舒洁");
-console.log(brandIndex);
-console.log("舒洁");
 					
 //随机颜色
 function getRandomColor(index){ 
@@ -146,21 +134,6 @@ function getRandomColor(index){
 		 
 		
 	 }
-// 	if((index>0) && brand_color1){
-// 		var r = parseInt(brand_color1.substring(1,3)+'', 16); 
-// 		var g = parseInt(brand_color1.substring(3,5)+'', 16);
-// 		var b = parseInt(brand_color1.substring(5,7)+'', 16);
-// 		var temp = (1-index*0.1);
-// 		if(temp<=0){
-// 			temp += 0.9;
-// 		} 
-// 		var a = temp.toFixed(1);
-// 		return "rgba("+r+","+g+","+b+","+a+")";
-// 	}else if(index == 0){
-// 		return brand_color1;
-// 	}else{
-// 		return "#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6); 
-// 	}
 	
 };
 
@@ -791,8 +764,6 @@ $("#chakanPinglun").on("touchstart",function()
     hideTip();
 
 });
-
-
 //数组求最大值
 Array.prototype.max = function() {
     var max = this[0];
@@ -824,26 +795,6 @@ function myChart()
     else
     {
         allData=sizesList;
-        /*
-        for(var i=1;i<sizesList.length;i++)
-        {
-        	for(var j=0;j<sizesList[i].endXData.length;j++)
-        	{
-        		sizesList[0].endYData[j]=parseFloat(sizesList[0].endYData[j])+parseFloat(sizesList[i].endYData[j]);
-        	}
-        	
-        	for(var j=0;j<sizesList[i].endData2.length;j++)
-        	{
-        		sizesList[0].endData2[j]=parseFloat(sizesList[0].endData2[j])+parseFloat(sizesList[i].endData2[j]);
-        	}
-        	
-        	for(var j=0;j<sizesList[i].endData3.length;j++)
-        	{
-        		sizesList[0].endData3[j]=parseFloat(sizesList[0].endData3[j])+parseFloat(sizesList[i].endData3[j]);
-        	}
-        	
-        }
-        */
     }
 
     console.log("结果结果"+JSON.stringify(allData));
@@ -873,9 +824,7 @@ function myChart()
 
     myChart0 = echarts.init(document.getElementById('main'));
 	
-// 	show:false,
-// 	data: allData[0].endXData,
-	
+
     var option = {
         tooltip: {
             trigger: 'axis'
@@ -888,7 +837,12 @@ function myChart()
         },
         xAxis: {
             type: 'category',
-			name: '日期'
+            boundaryGap: false,
+            data: allData[0].endXData,
+			name: '日期',
+			axisLabel: {
+				show: false
+			}
         },
         yAxis: {
             type: 'value'
