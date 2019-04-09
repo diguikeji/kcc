@@ -244,6 +244,8 @@ function httpRequest()
         }
         
         category_product_lines=data.category_product_lines;
+		
+		// console.log(JSON.stringify(category_product_lines));
 
         if(data.is_my_collect)
         {
@@ -362,6 +364,8 @@ function firstInitData()
                 '<span class="quan2 quan" style="background: '+colorValue+';">' +
                 '</span>'+category_product_lines[i].product_line_name+'</span>');
         }
+		
+		//console.log($("#jingpinTop").html());
         
         huaxian(category_product_lines,2);
 		// $("#bottomCol .active").css({"color":brand_color1});
@@ -585,7 +589,8 @@ function  huaxian(data,typeValue)
 		var index = 0;
         for(var i in data.trends) {
 
-            data.trends[i][0].color=getRandomColor(++index);
+            data.trends[i][0].color=getRandomColor(index);
+			index++;
             html=html+'<div style="border:1px solid '+brandColor+';border-right:0;color:'+brandColor+'">'+i+'</div>';
             trendsList.push(i);
             
