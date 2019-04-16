@@ -133,7 +133,7 @@ var isAppIn = false;
         },
         //网络请求
         commonAjax: function(params,callback, errorback) {
-           var baseUrl = "http://mpvpn.3322.org:9090/";
+           var baseUrl = "http://39.98.234.50:9090/";
 			
 			console.log(JSON.stringify(params));
             //默认 get请求
