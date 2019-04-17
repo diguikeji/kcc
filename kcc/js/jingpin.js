@@ -917,14 +917,14 @@ function myChart()
 			totalObj.tag=allData[j].endData5[i];
             obj.total.push(totalObj);
             obj.total_ratio.push(allData[j].endData3[i]);
-			if(maxValue < allData[j].endData2[i]){
-				maxValue = allData[j].endData2[i];
+            
+            
+            
+			if(maxValue < parseFloat(allData[j].endData2[i]))
+			{
+				maxValue = parseFloat(allData[j].endData2[i]);
 			}
         }
-        
-        console.log("数据格式数据格式");
-        console.log(JSON.stringify(obj.total));
-        
         
         var seriesObj1={
             name:trendsList[i],
@@ -941,12 +941,15 @@ function myChart()
                 normal : {
                     color:duibiData.trends[trendsList[i]][0].color,
 					label: {
-						formatter: function(value){
+						formatter: function(data){
 							
-							if((maxValue<=0) || (value.data < maxValue/4)){
+							console.log("最大值");
+							console.log(maxValue);
+							
+							if((maxValue<=0) || (data.data.value < maxValue/4)){
 								return '';
 							}else{
-								return parseFloat(value.data);
+								return data.data.value+data.data.tag;
 							}
 						},
 						textStyle:{
@@ -956,15 +959,7 @@ function myChart()
 					}
                 }
             },
-            data: obj.total.map(_=>({
-                    label: {
-                        normal: {
-                            formatter:_.value+_.tag
-                        }
-                    },
-                    value: _.value
-
-                }))
+            data: obj.total
         }
 		
         series1.push(seriesObj1);
