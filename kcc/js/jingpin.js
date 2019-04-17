@@ -886,7 +886,14 @@ function myChart()
         lineHeight=lineHeight+40;
 		// if(allData[i].name != '全部')
 		ySeries2.push(allData[i].name);
-		ySeries3.push(allData[i].name+" "+allData[i].tag);
+		if(allData[i].tag)
+		{
+			ySeries3.push(allData[i].name+" "+allData[i].tag);
+		}
+		else{
+			ySeries3.push(allData[i].name);
+		}
+		
 
     }
     
