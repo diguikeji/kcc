@@ -387,7 +387,8 @@ var isAppIn = false;
 	}
 }());
 
-var colorList=["","#FFF028","#84CDCB","#5A9FD6","#DEC0A7","#FD99C0","#5A9FD6"];
+// var colorList=["","#FFF028","#84CDCB","#5A9FD6","#DEC0A7","#FD99C0","#5A9FD6"];
+var colorList=["","#84CDCB","#FD99C0","#5A9FD6","#DEC0A7","#FFF028","#5A9FD6"];
 
 //颜色转化
 var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
