@@ -959,7 +959,7 @@ function myChart()
             data: obj.total.map(_=>({
                     label: {
                         normal: {
-                            formatter: _.value + _.tag
+                            formatter:_.value+_.tag
                         }
                     },
                     value: _.value
