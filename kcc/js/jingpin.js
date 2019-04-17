@@ -943,9 +943,6 @@ function myChart()
 					label: {
 						formatter: function(data){
 							
-							console.log("最大值");
-							console.log(maxValue);
-							
 							if((maxValue<=0) || (data.data.value < maxValue/4)){
 								return '';
 							}else{
@@ -1007,7 +1004,6 @@ function myChart()
 
 	console.log("数据");
 	console.log(JSON.stringify(duibiData));
-   
 
 
     myChart1 = echarts.init(document.getElementById('jingpinRow1'));
@@ -1059,6 +1055,7 @@ function myChart()
 	// series1.reverse();
 	
 	ySeries2.reverse();
+	ySeries3.reverse();
 
     myChart1.setOption(option1);
 
