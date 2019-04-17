@@ -98,8 +98,6 @@ function getRandomColor(index){
 			var a = temp.toFixed(1);
 			return "rgba("+r+","+g+","+b+","+a+")";
 				
-				
-				
 		 }else if(brand_name == "高洁丝"){
 		 	
 			brand_color1 = "#FFFE80";
@@ -212,12 +210,12 @@ function httpRequest()
         
         if(data.sizes.length>0)
         {
-        	data.sizes.splice(0,0,"全部");
+        	data.sizes.splice(0,0,{size:"全部",size:"全部"});
         }
         
         for(var i=0;i<data.sizes.length;i++)
         {
-			$("#sizes").append("<div>"+data.sizes[i]+"</div>");
+			$("#sizes").append("<div>"+data.sizes[i].size+"</div>");
         }
         $("#sizes div").eq(0).addClass("active");
         $("#product_line_icon").attr("src",baseServerUrl+data.product_line_icon);
@@ -300,11 +298,11 @@ function firstInitData()
             var obj={};
             var colorValue=colorList[i+1];
             obj.color=colorValue;
-            obj.name=sizes[i];
+            obj.name=sizes[i].size;
 
             $("#jingpinTop").append('<span class="jingpin-top-detail">' +
                 '<span class="quan2 quan" style="background: '+colorValue+';">' +
-                '</span>'+sizes[i]+'</span>');
+                '</span>'+sizes[i].size+'</span>');
 
             sizesList.push(obj);
 
@@ -408,7 +406,8 @@ function createChartData()
                 list[i].data11=[];
                 list[i].data12=[];
                 list[i].data13=[];
-                
+                list[i].data14=[];
+                list[i].data15=[];
                 
                 if(data.trends[typeStr])
                 {
@@ -435,6 +434,8 @@ function createChartData()
                 		 var obj={
                 		 	attr:data.totals[j].attr,
                             total:data.totals[j].total,
+                            tag:data.totals[j].tag,
+                            sig_tag:data.totals[j].sig_tag,
                             total_ratio:data.totals[j].total_ratio
                         };
                         list[i].data1.push(obj);
@@ -442,6 +443,8 @@ function createChartData()
                         list[i].data11.push(data.totals[j].attr);
                         list[i].data12.push(data.totals[j].total);
                         list[i].data13.push(data.totals[j].total_ratio);
+                        list[i].data14.push(data.totals[j].tag);
+                        list[i].data15.push(data.totals[j].sig_tag);
                         
                 	}
                 }
@@ -457,6 +460,8 @@ function createChartData()
             	list[i].endData1=trendsList;
                 list[i].endData2=[];
                 list[i].endData3=[];
+                list[i].endData4=[];
+                list[i].endData5=[];
             	
             	for(var key in duibiData.trends)
             	{
@@ -473,6 +478,8 @@ function createChartData()
             				{
             					list[i].endData2.push(list[i].data1[j].total);
             					list[i].endData3.push(list[i].data1[j].total_ratio);
+            					list[i].endData4.push(list[i].data1[j].tag);
+            					list[i].endData5.push(list[i].data1[j].sig_tag);
             					break;
             				}
             			}
@@ -784,6 +791,7 @@ Array.prototype.max = function() {
 var myChart0;
 var myChart1;
 var myChart2;
+
 function myChart()
 {
 	
@@ -801,7 +809,6 @@ function myChart()
     {
         allData=sizesList;
     }
-
     console.log("结果结果"+JSON.stringify(allData));
 
     var series=[];
@@ -861,6 +868,8 @@ function myChart()
     var series1=[];
     var ySeries2=[];
     var series2=[];
+    
+    var ySeries3=[];
 
     var lineHeight=30;
     if(allData.length==1)
@@ -877,6 +886,7 @@ function myChart()
         lineHeight=lineHeight+40;
 		// if(allData[i].name != '全部')
 		ySeries2.push(allData[i].name);
+		ySeries3.push(allData[i].name+" "+allData[i].tag);
 
     }
     
@@ -902,13 +912,19 @@ function myChart()
 
         for(var j=0;j<allData.length;j++)
         {
-
-            obj.total.push(allData[j].endData2[i]);
+			var totalObj={};
+			totalObj.value=allData[j].endData2[i];
+			totalObj.tag=allData[j].endData5[i];
+            obj.total.push(totalObj);
             obj.total_ratio.push(allData[j].endData3[i]);
 			if(maxValue < allData[j].endData2[i]){
 				maxValue = allData[j].endData2[i];
 			}
         }
+        
+        console.log("数据格式数据格式");
+        console.log(JSON.stringify(obj.total));
+        
         
         var seriesObj1={
             name:trendsList[i],
@@ -926,12 +942,11 @@ function myChart()
                     color:duibiData.trends[trendsList[i]][0].color,
 					label: {
 						formatter: function(value){
-							console.log(maxValue);
 							
 							if((maxValue<=0) || (value.data < maxValue/4)){
 								return '';
 							}else{
-								return parseFloat(value.data).toFixed(2);
+								return parseFloat(value.data);
 							}
 						},
 						textStyle:{
@@ -941,7 +956,15 @@ function myChart()
 					}
                 }
             },
-            data: obj.total
+            data: obj.total.map(_=>({
+                    label: {
+                        normal: {
+                            formatter: _.value + _.tag
+                        }
+                    },
+                    value: _.value
+
+                }))
         }
 		
         series1.push(seriesObj1);
@@ -963,6 +986,7 @@ function myChart()
                     color:duibiData.trends[trendsList[i]][0].color,
                      label: {
                         formatter: function (a, b, c) {
+                        	
 							if(a.data*100 <25){
 								return '';
 							}else{
@@ -1014,7 +1038,7 @@ function myChart()
         },
         yAxis: {
             type: 'category',
-            data: ySeries2
+            data: ySeries3
         },
         series: series1
 
