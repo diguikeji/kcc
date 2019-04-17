@@ -1,7 +1,7 @@
 var Global = {};
 
-// var baseServerUrl = "http://mpvpn.3322.org:9090";
-var baseServerUrl = "http://39.98.234.50:9090";
+ //var baseServerUrl = "http://mpvpn.3322.org:9090";
+ var baseServerUrl = "http://39.98.234.50:9090";
 
 var isOpenLogin = false;
 var isAppIn = false;
