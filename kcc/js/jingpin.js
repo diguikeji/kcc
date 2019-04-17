@@ -299,6 +299,7 @@ function firstInitData()
             var colorValue=colorList[i+1];
             obj.color=colorValue;
             obj.name=sizes[i].size;
+            obj.tag=sizes[i].tag;
 
             $("#jingpinTop").append('<span class="jingpin-top-detail">' +
                 '<span class="quan2 quan" style="background: '+colorValue+';">' +
@@ -925,8 +926,6 @@ function myChart()
             obj.total.push(totalObj);
             obj.total_ratio.push(allData[j].endData3[i]);
             
-            
-            
 			if(maxValue < parseFloat(allData[j].endData2[i]))
 			{
 				maxValue = parseFloat(allData[j].endData2[i]);
@@ -1019,9 +1018,24 @@ function myChart()
 		item.data.reverse();
 	});
     var option1 = {
+        
         tooltip: {
-            trigger: 'axis'
+            trigger: 'axis',
+            formatter: function (a, b, c) {
+            	
+				console.log("查看数据");
+				
+                var str=a[0].name+"";
+                for(var i=0;i< a.length;i++)
+                {
+                    str=str+"<br/>"+a[i].marker+ a[i].seriesName+":"+a[i].value+a[i].data.tag;
+                }
+                return str;
+
+            }
+            
         },
+        
         grid: {
             left: '3%',
             right: '4%',
