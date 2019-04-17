@@ -538,7 +538,7 @@
 				window.addEventListener('loginRefresh',function(e){
 					console.log("首页更新头像");
 				var user=myStorage.getItem("user");
-				$('#portrait').attr("src", user.info.portrait);
+				$('#portrait').attr("src", user.info.portrait?user.info.portrait:'images/default_head.png');
 				});
 
 			

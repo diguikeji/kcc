@@ -243,13 +243,13 @@
 		
 		window.addEventListener('loginRefresh',function(e){
 				var user=myStorage.getItem("user");
-				$('#portrait').attr("src", user.info.portrait);
+				$('#portrait').attr("src", user.info.portrait?user.info.portrait:'../images/default_head.png');
 		});
 				
 		//刷新数据
 		window.addEventListener('dataRefresh',function(e){
 				var user=myStorage.getItem("user");
-				$('#portrait').attr("src", user.info.portrait);
+				$('#portrait').attr("src", user.info.portrait?user.info.portrait:'../images/default_head.png');
 				httpRequest();
 				
 			});

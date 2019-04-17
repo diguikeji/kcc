@@ -121,7 +121,7 @@
                     $("#department").text(data.info.department);
                     $("#app_last_login").text(data.info.app_last_login);
                     $("#position").text(data.info.position);
-                    $('#portrait').attr("src", data.info.portrait);
+                    $('#portrait').attr("src", data.info.portrait?data.info.portrait:'images/default_head.png');
                     
                     updateInfo();
                     
