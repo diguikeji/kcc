@@ -292,7 +292,7 @@ function firstInitData()
     if($("#bottomCol .active").text()=="尺码对比")
     {
 
-		
+		$(".header-title").text("尺码对比");
         for(var i=1;i<sizes.length;i++)
         {
             var obj={};
@@ -314,7 +314,7 @@ function firstInitData()
 
     if($("#bottomCol .active").text()=="竞品对比")
     {
-    	 
+    	$(".header-title").text("竞品对比");
         for(var i=0;i<competing_product_lines.length;i++)
         {
             var colorValue=colorList[i];
@@ -335,6 +335,7 @@ function firstInitData()
 
     if($("#bottomCol .active").text()=="内部对比")
     {
+		$(".header-title").text("内部对比");
         for(var i=0;i<category_product_lines.length;i++)
         {
             var colorValue=colorList[i];
