@@ -140,16 +140,19 @@
 
 				console.log("收藏品牌列表");
 				console.log(JSON.stringify(data));
-
-				var baifenbi1=100*(data.my_brand.praise_total/data.my_brand.total);
-				$("#shoucangList1").empty();
-				$("#shoucangList1").append('<li style="border-left: 5px solid '+data.my_brand.brand_color1+';">' +
-						'<div class="left"> <img src="'+baseServerUrl+data.my_brand.brand_icon1+'"/> <div class="text" style="color: '+data.my_brand.brand_color1+';"> '+data.my_brand.week_praise_total+' <p>本周好评</p> </div> </div>' +
-						'<div class="right"><div class="hengtiao">' +
-						'<div style="width:'+baifenbi1+'%;" style="background: -webkit-linear-gradient(left, #fff , #cf102d);"><span style="background:  '+data.my_brand.brand_color1+';"><img src="../images/icon/dianzan.png"/></span> </div>' +
-						'</div>' +
-						'<div class="bottom-text clearfix"><div>累计好评 <span>'+data.my_brand.praise_total+'</span></div>' +
-						'<div>总评 <span>'+data.my_brand.total+'</span> </div></div></div></li>');
+				
+				if(data && data.my_brand){
+					var baifenbi1=100*(data.my_brand.praise_total/data.my_brand.total);
+					$("#shoucangList1").empty();
+					$("#shoucangList1").append('<li style="border-left: 5px solid '+data.my_brand.brand_color1+';">' +
+							'<div class="left"> <img src="'+baseServerUrl+data.my_brand.brand_icon1+'"/> <div class="text" style="color: '+data.my_brand.brand_color1+';"> '+data.my_brand.week_praise_total+' <p>本周好评</p> </div> </div>' +
+							'<div class="right"><div class="hengtiao">' +
+							'<div style="width:'+baifenbi1+'%;" style="background: -webkit-linear-gradient(left, #fff , #cf102d);"><span style="background:  '+data.my_brand.brand_color1+';"><img src="../images/icon/dianzan.png"/></span> </div>' +
+							'</div>' +
+							'<div class="bottom-text clearfix"><div>累计好评 <span>'+data.my_brand.praise_total+'</span></div>' +
+							'<div>总评 <span>'+data.my_brand.total+'</span> </div></div></div></li>');
+				}
+				
 
 				$("#shoucangList2").empty();
 				for(var i=0;i<data.collect_brands.length;i++)
@@ -184,13 +187,16 @@
 				console.log("收藏列表");
 				console.log(JSON.stringify(data));
 					$("#chanpinList1").empty();
-					$("#chanpinList1").append('<li data-id="'+data.my_product_line.product_line_id+'">'+
+					if(data && data.my_product_line){
+						$("#chanpinList1").append('<li data-id="'+data.my_product_line.product_line_id+'">'+
 							'<img class="left" src="'+baseServerUrl+data.my_product_line.product_line_icon+'"/>'+
 							'<div class="middle">'+data.my_product_line.product_line_name+'</div>'+
 							'<div class="right">'+
 							'<span class="mui-icon mui-icon-arrowright"></span>'+
 							'</div>'+
 							'</li>');
+					}
+					
 
 				$("#chanpinList2").empty();
 				for(var i=0;i<data.collect_product_lines.length;i++)
