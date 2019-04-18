@@ -37,33 +37,35 @@ var isAppIn = false;
         },
         error500: function() {
             //$(".mui-content").html('<div class="error-col"><img src="../images/error/500.png"/><button type="button" class="mui-btn mui-btn-outlined go-home" >返回首页</button></div>');
-            mui.openWindow({
-                url: 'error500.html',
-                id: 'error500.html',
-                waiting: {
-                    autoShow: false
-                }
-            })
+//             mui.openWindow({
+//                 url: 'error500.html',
+//                 id: 'error500.html',
+//                 waiting: {
+//                     autoShow: false
+//                 }
+//             })
         },
         error404: function() {
             //$(".mui-content").html('<div class="error-col"><img src="../images/error/404.png"/><button type="button" class="mui-btn mui-btn-outlined go-home" >返回首页</button></div>');
-            mui.openWindow({
-                url: 'error404.html',
-                id: 'error404.html',
-                waiting: {
-                    autoShow: false
-                }
-            })
+//             mui.openWindow({
+//                 url: 'error404.html',
+//                 id: 'error404.html',
+//                 waiting: {
+//                     autoShow: false
+//                 }
+//             })
         },
         errorNet: function() {
             //$(".mui-content").html('<div class="error-col"><img src="../images/error/wangluo.png"/><button type="button" class="mui-btn mui-btn-outlined go-home" >返回首页</button></div>');
-            mui.openWindow({
-                url: 'errornet.html',
-                id: 'errornet.html',
-                waiting: {
-                    autoShow: false
-                }
-            })
+//             mui.openWindow({
+//                 url: 'errornet.html',
+//                 id: 'errornet.html',
+//                 waiting: {
+//                     autoShow: false
+//                 }
+//             })
+
+			mui.toast("网络错误");
         },
         errorDetail: function() {
             $(".mui-content").html('<div class="error-col"><img src="../images/error/tixian.png"/></div>');

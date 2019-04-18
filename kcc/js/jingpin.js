@@ -989,7 +989,7 @@ function myChart()
 							if(a.data*100 <25){
 								return '';
 							}else{
-								return (a.data*100).toFixed(2)+ "%";
+								return parseInt(a.data*100)+ "%";
 							}
                             
                         },
@@ -1103,7 +1103,7 @@ function myChart()
         },
         grid: {
             left: '3%',
-            right: '-10%',
+            right: '0%',
             bottom: '8%',
             containLabel: true
         },

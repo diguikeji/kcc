@@ -398,7 +398,10 @@
 		function  httpRequest()
 		{
 			var user=myStorage.getItem("user");
-			$('#portrait').attr("src", user.info.portrait?user.info.portrait:'../images/default_head.png');
+			if(user){
+				$('#portrait').attr("src", user.info.portrait?user.info.portrait:'../images/default_head.png');
+			}
+			
 			
 			var data=myStorage.getItem("brands");
 			
