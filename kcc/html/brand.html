@@ -398,10 +398,13 @@
 		function  httpRequest()
 		{
 			var user=myStorage.getItem("user");
-			if(user){
-				$('#portrait').attr("src", user.info.portrait?user.info.portrait:'../images/default_head.png');
+			if(user && user.info && user.info.portrait){
+				console.log("990000999000");
+				$('#portrait').attr("src", user.info.portrait);
+			}else{
+				console.log("990000999000-----");
+				$('#portrait').attr("src", '../images/default_head.png');
 			}
-			
 			
 			var data=myStorage.getItem("brands");
 			
@@ -489,7 +492,7 @@
 	window.addEventListener('loginRefresh',function(e){
 				
 				var user=myStorage.getItem("user");
-				$('#portrait').attr("src", user.info.portrait);
+				$('#portrait').attr("src", user.info.portrait?user.info.portrait:"../images/default_head.png");
 	});
 
 	window.addEventListener('loginTabRefresh',function(e){

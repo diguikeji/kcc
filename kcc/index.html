@@ -226,6 +226,25 @@
 						closeMenu();
 					},false);
 					
+					window.addEventListener('loginChangeTab',function(e){
+						console.log('loginChangeTabloginChangeTabloginChangeTabloginChangeTabloginChangeTabloginChangeTab');
+						
+						
+							var h = plus.webview.getWebviewById("html/brand.html");
+							mui.fire(h,'brandAnimate');
+							
+								targetPage = plus.webview.getWebviewById(subpages[0]);
+							
+								util.toggleNview(1);
+								// 子页面切换
+								util.changeSubpage(targetPage, activePage, aniShow);
+								//更新当前活跃的页面
+								activePage = targetPage;
+							
+							
+							
+					});
+					
 					// 创建子webview窗口 并初始化
 					var aniShow = {};
 					util.initSubpage(aniShow);

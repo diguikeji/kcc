@@ -117,6 +117,7 @@
 	<script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../js/app.js"></script>
 	<script src="../js/myStorage.js"></script>
+	<script src="../js/util.js"></script>
 	<script type="text/javascript">
 		// test1 1A2b3c4d5e
 		mui.init();
@@ -196,9 +197,14 @@
  				//发送事件 我的页面刷新
  				
 				sendRefresh();
-				mui.back();
- 				
+				//mui.back();
+					
+				var h = plus.webview.getWebviewById(plus.runtime.appid);
+				console.log(JSON.stringify(h))
+				mui.fire(h,'loginChangeTab',{});
 				
+				
+				mui.back();
 				
 			}, function(err){
 				mui.toast("用户名或者密码错误");
@@ -216,8 +222,8 @@
 			mui.fire(h,'loginRefresh',{loginRefresh: "loginRefresh"});
 
 			//刷新三个tab页面数据
-			var h0 = plus.webview.getWebviewById("html/brand.html");
-			mui.fire(h0,'loginTabRefresh');
+// 			var h0 = plus.webview.getWebviewById("html/brand.html");
+// 			mui.fire(h0,'loginTabRefresh');
 
 			var h1 = plus.webview.getWebviewById(plus.runtime.appid);
 			mui.fire(h1,'loginTabRefresh');
