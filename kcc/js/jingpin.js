@@ -763,10 +763,10 @@ function getPinglun(pIdSize)
 					
             		if(day==0)
             		{
-            			var dayHtml='用户当天追评';
+            			var dayHtml='当天追评';
             		}
             		else{
-            			var dayHtml='用户'+day+'天后追评';
+            			var dayHtml=day+'天后追评';
             		}
             		
             		childHtml=childHtml+ '<div class="name-col">'+
