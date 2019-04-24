@@ -730,7 +730,51 @@ function getPinglun(pIdSize)
                     html=html+'<img src="'+imgList[j]+'"/>';
                 }
             }
-
+            
+            var childHtml="";
+            var childCommments=data.comments[i].child_comments;
+            if(childCommments.length>0)
+            {
+            	
+            	for(var j=0;j<childCommments.length;j++)
+            	{
+            		var childImgHtml="";
+            		
+            		if(childCommments[j].resource_urls)
+		            {
+		                var imgList=childCommments[j].resource_urls.split("|");
+		                for(var k=0;k<imgList;k++)
+		                {
+		                    childImgHtml=childImgHtml+'<img src="'+imgList[k]+'"/>';
+		                }
+		            }
+            		
+            		var prevTime=data.comments[i].comment_time.replace("T", " ");
+            		var zhuiTime=childCommments[j].comment_time.replace("T", " ");
+            		
+            		
+					var prevTime = prevTime.replace(/-/g,'/'); 
+					var prevTime = new Date(prevTime).getTime();
+					
+					var zhuiTime = zhuiTime.replace(/-/g,'/'); 
+					var zhuiTime = new Date(zhuiTime).getTime();
+					
+					var day=parseInt((zhuiTime-prevTime)/3600/24000);
+					
+            		if(day==0)
+            		{
+            			var dayHtml='用户当天追评';
+            		}
+            		else{
+            			var dayHtml='用户'+day+'天后追评';
+            		}
+            		
+            		childHtml=childHtml+ '<div class="name-col">'+
+		            '<span class="name-text">'+dayHtml+'</span>'+
+		            '</div><div class="content">'+childCommments[j].content+'</div><div class="img-list">'+childImgHtml+
+            		' </div>';
+            	}
+            }
 
             $(".pinglun-list").append('<li>'+
                 '<div class="name-col">'+
@@ -747,7 +791,7 @@ function getPinglun(pIdSize)
             ' <span>'+data.comments[i].tag+'</span>'+
             '</div>'+
             ' <div class="img-list">'+html+
-            ' </div>'+
+            ' </div>'+childHtml+
             '</li>');
         }
 
